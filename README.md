@@ -5,7 +5,7 @@
 集成Datax-web、flink-streaming-platform-web、datax-cloud这三大开源服务
 实现数据同步集成、数据开发、元数据管理、数据服务一体化
 方便小型企业及个人开发者使用开发
-####内置功能
+###内置功能
 * 用户管理：用户是系统操作者，该功能主要完成系统用户配置。
 * 部门管理：配置系统组织机构（公司、部门、小组），树结构展现支持数据权限。
 * 岗位管理：配置系统用户所属担任职务。
@@ -32,37 +32,37 @@
 * 数据API：包含数据服务、数据脱敏、API调用日志;支持SQL取数、整表取数、api限流、api黑白名单、字段脱敏等功能
 （后续会继续优化现有功能，开发商业业务功能）
 #### 软件架构
-![img.png](img.png)
+![img.png](img/img.png)
 #### 系统截图
 
 1. 系统整体功能
-![img_1.png](img_1.png)
+![img_1.png](img/img_1.png)
 2. 系统管理
-![img_2.png](img_2.png)
+![img_2.png](img/img_2.png)
 3. 系统监控
-![img_3.png](img_3.png)
+![img_3.png](img/img_3.png)
 4. 基础建设
-![img_4.png](img_4.png)
-![img_5.png](img_5.png)
-![img_6.png](img_6.png)
-![img_7.png](img_7.png)
+![img_4.png](img/img_4.png)
+![img_5.png](img/img_5.png)
+![img_6.png](img/img_6.png)
+![img_7.png](img/img_7.png)
 5. 数据集成
-![img_8.png](img_8.png)
+![img_8.png](img/img_8.png)
 6. 数据开发
-![img_9.png](img_9.png)
-![img_10.png](img_10.png)
+![img_9.png](img/img_9.png)
+![img_10.png](img/img_10.png)
 7. 数据资产
-![img_11.png](img_11.png)
-![img_12.png](img_12.png)
-![img_13.png](img_13.png)
+![img_11.png](img/img_11.png)
+![img_12.png](img/img_12.png)
+![img_13.png](img/img_13.png)
 8. 数据标准
-![img_14.png](img_14.png)
-![img_15.png](img_15.png)
+![img_14.png](img/img_14.png)
+![img_15.png](img/img_15.png)
 9. 数据质量
-![img_16.png](img_16.png)
-![img_17.png](img_17.png)
+![img_16.png](img/img_16.png)
+![img_17.png](img/img_17.png)
 10. 数据API
-![img_18.png](img_18.png)
+![img_18.png](img/img_18.png)
 #### 使用说明
 
 1.  xxxx
