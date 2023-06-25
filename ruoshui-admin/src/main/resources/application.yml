@@ -43,8 +43,8 @@ logging:
 spring:
   datasource:
     username: root
-    password: root
-    url: jdbc:mysql://localhost:3306/bigdata?serverTimezone=Asia/Shanghai&useLegacyDatetimeCode=false&useSSL=false&nullNamePatternMatchesAll=true&useUnicode=true&characterEncoding=UTF-8
+    password: Mendale#2022
+    url: jdbc:mysql://cluster03.toroidal.com:3306/bigdata?serverTimezone=Asia/Shanghai&useLegacyDatetimeCode=false&useSSL=false&nullNamePatternMatchesAll=true&useUnicode=true&characterEncoding=UTF-8
     driver-class-name: com.mysql.cj.jdbc.Driver
   # datax-web email
   mail:
@@ -52,8 +52,8 @@ spring:
     port: 465
     #username: xxx@qq.com
     #password: xxx
-    username: xxxxxxxxx@qq.com
-    password: xxxxxxxxxx
+    username: 2217343704@qq.com
+    password: lsx19980707..
     authorization: exvxwvhgixaoeajj
     properties:
       mail:
@@ -143,27 +143,7 @@ datax:
     dataxPyHome: /lsx/datax/bin/datax.py
     dataxHome: /lsx/datax/
 
-#job, access token
-flinkx:
-  job:
-    accessToken:
-    #i18n (default empty as chinese, "en" as english)
-    i18n:
-    ## triggerpool max size
-    triggerpool:
-      fast:
-        max: 200
-      slow:
-        max: 100
-      ### log retention days
-    logretentiondays: 30
-  executor:
-    flinkxHome: /lsx/flinkx/flinkx.py
-    flinkxjsonPath: /lsx/flinkx/job/
-    flinkxlogHome: /lsx/flinkx/job-log
-    dataxHome: /lsx/datax/bin/datax.py
-    dataxjsonPath: /lsx/datax/job/
-    dataxlogHome: /lsx/datax/job-log
+
   
 ## MyBatis配置
 #mybatis:
