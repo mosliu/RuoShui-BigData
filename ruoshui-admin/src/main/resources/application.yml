@@ -43,8 +43,8 @@ logging:
 spring:
   datasource:
     username: root
-    password: Mendale#2022
-    url: jdbc:mysql://cluster03.toroidal.com:3306/bigdata?serverTimezone=Asia/Shanghai&useLegacyDatetimeCode=false&useSSL=false&nullNamePatternMatchesAll=true&useUnicode=true&characterEncoding=UTF-8
+    password: root
+    url: jdbc:mysql://localhost:3306/bigdata?serverTimezone=Asia/Shanghai&useLegacyDatetimeCode=false&useSSL=false&nullNamePatternMatchesAll=true&useUnicode=true&characterEncoding=UTF-8
     driver-class-name: com.mysql.cj.jdbc.Driver
   # datax-web email
   mail:
@@ -142,8 +142,6 @@ datax:
   executor:
     dataxPyHome: /lsx/datax/bin/datax.py
     dataxHome: /lsx/datax/
-
-
   
 ## MyBatis配置
 #mybatis:
