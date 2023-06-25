@@ -30,23 +30,7 @@ public class ExcecutorConfig  implements InitializingBean, DisposableBean {
 	public void destroy() throws Exception {
 	}
 
-	@Value("${flinkx.executor.flinkxHome}")
-	private  String flinkxHome;
 
-	@Value("${flinkx.executor.flinkxjsonPath}")
-	private  String flinkxjsonPath;
-
-	@Value("${flinkx.executor.flinkxlogHome}")
-	private  String flinkxlogHome;
-
-	@Value("${flinkx.executor.dataxHome}")
-	private String dataxHome;
-
-	@Value("${flinkx.executor.dataxjsonPath}")
-	private String dataxjsonPath;
-
-	@Value("${flinkx.executor.dataxlogHome}")
-	private String dataxlogHome;
 
 	@Value("${spring.datasource.url}")
 	private String url;
@@ -63,54 +47,6 @@ public class ExcecutorConfig  implements InitializingBean, DisposableBean {
 
 	public static void setExcecutorConfig(ExcecutorConfig excecutorConfig) {
 		ExcecutorConfig.excecutorConfig = excecutorConfig;
-	}
-
-	public String getFlinkxHome() {
-		return flinkxHome;
-	}
-
-	public void setFlinkxHome(String flinkxHome) {
-		this.flinkxHome = flinkxHome;
-	}
-
-	public String getFlinkxjsonPath() {
-		return flinkxjsonPath;
-	}
-
-	public void setFlinkxjsonPath(String flinkxjsonPath) {
-		this.flinkxjsonPath = flinkxjsonPath;
-	}
-
-	public String getFlinkxlogHome() {
-		return flinkxlogHome;
-	}
-
-	public void setFlinkxlogHome(String flinkxlogHome) {
-		this.flinkxlogHome = flinkxlogHome;
-	}
-
-	public String getDataxHome() {
-		return dataxHome;
-	}
-
-	public void setDataxHome(String dataxHome) {
-		this.dataxHome = dataxHome;
-	}
-
-	public String getDataxjsonPath() {
-		return dataxjsonPath;
-	}
-
-	public void setDataxjsonPath(String dataxjsonPath) {
-		this.dataxjsonPath = dataxjsonPath;
-	}
-
-	public String getDataxlogHome() {
-		return dataxlogHome;
-	}
-
-	public void setDataxlogHome(String dataxlogHome) {
-		this.dataxlogHome = dataxlogHome;
 	}
 
 	public String getUrl() {

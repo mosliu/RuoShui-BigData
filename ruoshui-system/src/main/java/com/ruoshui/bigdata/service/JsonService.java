@@ -17,6 +17,5 @@ public interface JsonService {
      * @param dto
      * @return
      */
-    String buildJobFlinkxJson(JsonBuildDto dto);
     String buildJobDataxJson(JsonBuildDto dto);
 }
