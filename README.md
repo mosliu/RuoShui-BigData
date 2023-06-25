@@ -72,6 +72,8 @@
 #### 参与贡献
 1. Datax-web、flink-streaming-platform-web、datax-cloud的贡献者
 2. 心静若水
+#### 联系方式
+![img.png](img/lxfs.png)
 
 #### 特技
 
