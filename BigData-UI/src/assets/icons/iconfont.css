@@ -1,0 +1,278 @@
+@font-face {
+  font-family: "iconNew";
+  src: url('../icons/iconfont.ttf') format('truetype')
+}
+
+.iconNew {
+  font-family:"iconNew" !important;
+  font-size:16px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: 0.2px;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-chart_polar_active:before {
+  content: "\e618";
+}
+
+.icon-chart_tree_active:before {
+  content: "\e94d";
+}
+
+.icon-chart_tree:before {
+  content: "\e94f";
+}
+
+.icon-chart_polar:before {
+  content: "\e94e";
+}
+
+.icon-chart_table:before {
+  content: "\e601";
+}
+
+.icon-chart_liquidfill_active:before {
+  content: "\e65f";
+}
+
+.icon-chart_table_active:before {
+  content: "\e616";
+}
+
+.icon-chart_liquidfill:before {
+  content: "\e602";
+}
+
+.icon-chart_sunburst:before {
+  content: "\e60e";
+}
+
+.icon-chart_funnel:before {
+  content: "\e614";
+}
+
+.icon-chart_sankey:before {
+  content: "\e615";
+}
+
+.icon-chart_kpi:before {
+  content: "\e617";
+}
+
+.icon-chart_funnel_active:before {
+  content: "\e62a";
+}
+
+.icon-chart_sankey_active:before {
+  content: "\e634";
+}
+
+.icon-chart_sunburst_active:before {
+  content: "\e635";
+}
+
+.icon-chart_kpi_active:before {
+  content: "\e636";
+}
+
+.icon-chart_donut_active:before {
+  content: "\e622";
+}
+
+.icon-chart_radar_active:before {
+  content: "\e623";
+}
+
+.icon-chart_treemap_active:before {
+  content: "\e624";
+}
+
+.icon-chart_scatter_active:before {
+  content: "\e625";
+}
+
+.icon-chart_gauge_active:before {
+  content: "\e626";
+}
+
+.icon-chart_bar_active:before {
+  content: "\e628";
+}
+
+.icon-chart_line_active:before {
+  content: "\e629";
+}
+
+.icon-chart_line:before {
+  content: "\e62b";
+}
+
+.icon-chart_donut:before {
+  content: "\e62c";
+}
+
+.icon-chart_bar:before {
+  content: "\e62e";
+}
+
+.icon-chart_scatter:before {
+  content: "\e630";
+}
+
+.icon-chart_treemap:before {
+  content: "\e631";
+}
+
+.icon-chart_radar:before {
+  content: "\e632";
+}
+
+.icon-chart_gauge:before {
+  content: "\e633";
+}
+
+.icon-chart_wordcloud_active:before {
+  content: "\e66f";
+}
+
+.icon-chart_geo_active:before {
+  content: "\e670";
+}
+
+.icon-chart_wordcloud:before {
+  content: "\e672";
+}
+
+.icon-chart_geo:before {
+
+  content: "\e673";
+}
+
+.icon-chart_pie_active:before {
+  content: "\e63b";
+}
+
+.icon-chart_pie:before {
+  content: "\e650";
+}
+
+.icon--folder-empty3:before {
+  content: "\e64f";
+}
+
+.icon-zuzhi:before {
+  content: "\e67d";
+}
+
+.icon-shujuziduan:before {
+  content: "\e658";
+}
+
+.icon-shujubiao:before {
+  content: "\e686";
+}
+
+.icon-shujuku:before {
+  content: "\e64e";
+}
+
+.icon-weidu:before {
+  content: "\e64c";
+}
+
+.icon-zhibiao:before {
+  content: "\e64d";
+}
+
+.icon-shuaxin:before {
+  content: "\e63f";
+}
+
+.icon-shezhi:before {
+  content: "\e613";
+}
+
+.icon-colum-height:before {
+  content: "\e7ef";
+}
+
+.icon-column-width:before {
+  content: "\e7fc";
+}
+
+.icon-ScreenFull:before {
+  content: "\e83a";
+}
+
+.icon-dashboard:before {
+  content: "\e60b";
+}
+
+.icon-shanchu:before {
+  content: "\e62d";
+}
+
+.icon-xinzeng:before {
+  content: "\e64a";
+}
+
+.icon-sousuo:before {
+  content: "\e62f";
+}
+
+.icon-pdf:before {
+  content: "\e78d";
+}
+
+.icon-xiugai:before {
+  content: "\e63a";
+}
+
+.icon-tuichu:before {
+  content: "\e641";
+}
+
+.icon-chakan:before {
+  content: "\e600";
+}
+
+.icon-touxiang:before {
+  content: "\e620";
+}
+
+.icon-excel:before {
+  content: "\e637";
+}
+
+.icon-psw-reset:before {
+  content: "\e7de";
+}
+
+.icon-xiazai:before {
+  content: "\e611";
+}
+
+.icon-shangchuan:before {
+  content: "\e612";
+}
+
+.icon-menu-line:before {
+  content: "\e653";
+}
+
+.icon-chongzhi:before {
+  content: "\e627";
+}
+
+.icon-word:before {
+  content: "\e640";
+}
+
+.icon-submit:before {
+  content: "\e638";
+}
+
+.icon-size:before {
+  content: "\e63c";
+}
