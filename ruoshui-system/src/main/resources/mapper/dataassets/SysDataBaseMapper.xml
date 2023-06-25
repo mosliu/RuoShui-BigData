@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoshui.dataassets.mapper.SysDataBaseMapper">
+    
+    <resultMap type="SysDataBase" id="SysDataBaseResult">
+        <result property="id"    column="id"    />
+        <result property="baseName"    column="base_name"    />
+        <result property="dataSourceId"    column="data_source_id"    />
+        <result property="dataSourceCode"    column="data_source_code"    />
+        <result property="dataSourceName"    column="data_source_name"    />
+        <result property="colonyState"    column="colony_state"    />
+        <result property="colonyName"    column="colony_name"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateBy"    column="update_by"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="remark"    column="remark"    />
+    </resultMap>
+
+    <sql id="selectSysDataBaseVo">
+        select id, base_name, data_source_id, data_source_code, data_source_name, colony_state, colony_name, create_by, create_time, update_by, update_time, remark from sys_data_base
+    </sql>
+
+    <select id="selectSysDataBaseList" parameterType="SysDataBase" resultMap="SysDataBaseResult">
+        <include refid="selectSysDataBaseVo"/>
+        <where>  
+            <if test="baseName != null  and baseName != ''"> and base_name like concat('%', #{baseName}, '%')</if>
+            <if test="dataSourceCode != null  and dataSourceCode != ''"> and data_source_code like concat('%', #{dataSourceCode}, '%')</if>
+            <if test="dataSourceName != null  and dataSourceName != ''"> and data_source_name like concat('%', #{dataSourceName}, '%')</if>
+            <if test="colonyState != null  and colonyState != ''"> and colony_state = #{colonyState}</if>
+            <if test="colonyName != null  and colonyName != ''"> and colony_name like concat('%', #{colonyName}, '%')</if>
+        </where>
+    </select>
+    
+    <select id="selectSysDataBaseById" parameterType="Long" resultMap="SysDataBaseResult">
+        <include refid="selectSysDataBaseVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertSysDataBase" parameterType="SysDataBase" useGeneratedKeys="true" keyProperty="id">
+        insert into sys_data_base
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="baseName != null and baseName != ''">base_name,</if>
+            <if test="dataSourceId != null">data_source_id,</if>
+            <if test="dataSourceCode != null and dataSourceCode != ''">data_source_code,</if>
+            <if test="dataSourceName != null">data_source_name,</if>
+            <if test="colonyState != null and colonyState != ''">colony_state,</if>
+            <if test="colonyName != null">colony_name,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="remark != null">remark,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="baseName != null and baseName != ''">#{baseName},</if>
+            <if test="dataSourceId != null">#{dataSourceId},</if>
+            <if test="dataSourceCode != null and dataSourceCode != ''">#{dataSourceCode},</if>
+            <if test="dataSourceName != null">#{dataSourceName},</if>
+            <if test="colonyState != null and colonyState != ''">#{colonyState},</if>
+            <if test="colonyName != null">#{colonyName},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="remark != null">#{remark},</if>
+         </trim>
+    </insert>
+
+    <update id="updateSysDataBase" parameterType="SysDataBase">
+        update sys_data_base
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="baseName != null and baseName != ''">base_name = #{baseName},</if>
+            <if test="dataSourceId != null">data_source_id = #{dataSourceId},</if>
+            <if test="dataSourceCode != null and dataSourceCode != ''">data_source_code = #{dataSourceCode},</if>
+            <if test="dataSourceName != null">data_source_name = #{dataSourceName},</if>
+            <if test="colonyState != null and colonyState != ''">colony_state = #{colonyState},</if>
+            <if test="colonyName != null">colony_name = #{colonyName},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="remark != null">remark = #{remark},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteSysDataBaseById" parameterType="Long">
+        delete from sys_data_base where id = #{id}
+    </delete>
+
+    <delete id="deleteSysDataBaseByIds" parameterType="String">
+        delete from sys_data_base where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

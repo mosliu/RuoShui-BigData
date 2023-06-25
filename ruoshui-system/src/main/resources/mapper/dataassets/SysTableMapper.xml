@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoshui.dataassets.mapper.SysTableMapper">
+
+    <resultMap type="SysTable" id="SysTableResult">
+        <result property="id"    column="id"    />
+        <result property="parentId"    column="parent_id"    />
+        <result property="parentName"    column="parent_name"    />
+        <result property="ancestors"    column="ancestors"    />
+        <result property="name"    column="name"    />
+        <result property="type"    column="type"    />
+        <result property="lenth"    column="lenth"    />
+        <result property="comment"    column="comment"    />
+        <result property="createtablequery"    column="createTableQuery"    />
+        <result property="levelCode"    column="level_code"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateBy"    column="update_by"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="actionType"    column="action_type"    />
+        <result property="theme"    column="theme"    />
+    </resultMap>
+
+    <sql id="selectSysTableVo">
+        select id, parent_id, parent_name, ancestors, name, type, lenth, comment, createTableQuery, level_code, create_by, create_time, update_by, update_time,action_type,theme from sys_table
+    </sql>
+
+    <select id="selectSysTableList" parameterType="SysTable" resultMap="SysTableResult">
+        <include refid="selectSysTableVo"/>
+        <where>
+            and level_code = 'table'
+            <if test="actionType != null and actionType != ''"> and action_type = #{action_type}</if>
+            <if test="theme != null and theme != ''"> and theme = #{theme}</if>
+            <if test="parentId != null and parentId != ''"> and parent_id = #{parentId}</if>
+            <if test="parentName != null and parentName != ''"> and parent_name = #{parentName}</if>
+            <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
+            <if test="comment != null  and comment != ''"> and comment like concat('%', #{comment}, '%')</if>
+            <if test="createBy != null  and createBy != ''"> and create_by like concat('%', #{createBy}, '%')</if>
+            <if test="params.beginCreateTime != null and params.beginCreateTime != '' and params.endCreateTime != null and params.endCreateTime != ''"> and create_time between #{params.beginCreateTime} and #{params.endCreateTime}</if>
+            <if test="updateBy != null  and updateBy != ''"> and update_by = #{updateBy}</if>
+            <if test="params.beginUpdateTime != null and params.beginUpdateTime != '' and params.endUpdateTime != null and params.endUpdateTime != ''"> and update_time between #{params.beginUpdateTime} and #{params.endUpdateTime}</if>
+        </where>
+    </select>
+
+    <select id="selectSysTableFieldList" parameterType="SysTable" resultMap="SysTableResult">
+        <include refid="selectSysTableVo"/>
+        <where>
+            and level_code = 'field'
+            <if test="parentId != null "> and parent_id = #{parentId}</if>
+            <if test="parentName != null "> and parent_name = like concat('%',#{parentName, '%')</if>
+            <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
+            <if test="comment != null  and comment != ''"> and comment like concat('%', #{comment}, '%')</if>
+            <if test="createBy != null  and createBy != ''"> and create_by like concat('%', #{createBy}, '%')</if>
+            <if test="params.beginCreateTime != null and params.beginCreateTime != '' and params.endCreateTime != null and params.endCreateTime != ''"> and create_time between #{params.beginCreateTime} and #{params.endCreateTime}</if>
+            <if test="updateBy != null  and updateBy != ''"> and update_by = #{updateBy}</if>
+            <if test="params.beginUpdateTime != null and params.beginUpdateTime != '' and params.endUpdateTime != null and params.endUpdateTime != ''"> and update_time between #{params.beginUpdateTime} and #{params.endUpdateTime}</if>
+        </where>
+    </select>
+
+
+    <select id="selectSysTableById" parameterType="Long" resultMap="SysTableResult">
+        <include refid="selectSysTableVo"/>
+        where id = #{id}
+    </select>
+    <select id="selectSysTableByName" resultType="java.lang.Integer">
+        select count(*) from sys_table
+        where name = #{name} and parent_id = #{parentId}
+    </select>
+
+
+    <insert id="insertSysTable" parameterType="SysTable" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        insert into sys_table
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="parentId != null">parent_id,</if>
+            <if test="parentName != null">parent_name,</if>
+            <if test="ancestors != null">ancestors,</if>
+            <if test="name != null">name,</if>
+            <if test="type != null">type,</if>
+            <if test="lenth != null">lenth,</if>
+            <if test="comment != null">comment,</if>
+            <if test="createtablequery != null">createTableQuery,</if>
+            <if test="levelCode != null">level_code,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="actionType != null">action_type,</if>
+            <if test="theme != null">theme,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="parentId != null">#{parentId},</if>
+            <if test="parentName != null">#{parentName},</if>
+            <if test="ancestors != null">#{ancestors},</if>
+            <if test="name != null">#{name},</if>
+            <if test="type != null">#{type},</if>
+            <if test="lenth != null">#{lenth},</if>
+            <if test="comment != null">#{comment},</if>
+            <if test="createtablequery != null">#{createtablequery},</if>
+            <if test="levelCode != null">#{levelCode},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="actionType != null">#{actionType},</if>
+            <if test="theme != null">#{theme},</if>
+        </trim>
+    </insert>
+
+    <update id="updateSysTable" parameterType="SysTable">
+        update sys_table
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="parentId != null">parent_id = #{parentId},</if>
+            <if test="parentName != null">parent_name = #{parentName},</if>
+            <if test="ancestors != null">ancestors = #{ancestors},</if>
+            <if test="name != null">name = #{name},</if>
+            <if test="type != null">type = #{type},</if>
+            <if test="lenth != null">lenth = #{lenth},</if>
+            <if test="comment != null">comment = #{comment},</if>
+            <if test="createtablequery != null">createTableQuery = #{createtablequery},</if>
+            <if test="levelCode != null">level_code = #{levelCode},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="actionType != null">action_type = #{actionType},</if>
+            <if test="theme != null">theme = #{theme},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteSysTableById" parameterType="Long">
+        delete from sys_table where id = #{id}
+    </delete>
+
+    <delete id="deleteSysTableByIds" parameterType="String">
+        delete from sys_table where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+        or (parent_id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+            and level_code = 'field'
+            )
+    </delete>
+    <delete id="deleteSysTableByparentName">
+        delete from sys_table where parent_name = #{parentName} and action_type is null and theme is null
+    </delete>
+
+    <delete id="deleteSysTableByparentId">
+        delete from sys_table where parent_id = #{parentId}
+    </delete>
+</mapper>

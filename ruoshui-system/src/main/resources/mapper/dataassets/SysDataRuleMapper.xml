@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoshui.dataassets.mapper.SysDataRuleMapper">
+    
+    <resultMap type="SysDataRule" id="SysDataRuleResult">
+        <result property="id"    column="id"    />
+        <result property="dataSourceId"    column="data_source_id"    />
+        <result property="dataLayerCode"    column="data_layer_code"    />
+        <result property="dataLayerName"    column="data_layer_name"    />
+        <result property="dataSourceName"    column="data_source_name"    />
+        <result property="dataSourceCode"    column="data_source_code"    />
+        <result property="ruleTypeCode"    column="rule_type_code"    />
+        <result property="ruleTypeName"    column="rule_type_name"    />
+        <result property="ruleText"    column="rule_text"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateBy"    column="update_by"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="remark"    column="remark"    />
+    </resultMap>
+
+    <sql id="selectSysDataRuleVo">
+        select id, data_source_id,data_source_code,data_layer_name,data_layer_code,data_source_name,rule_type_code, rule_type_name, rule_text, create_by, create_time, update_by, update_time, remark from sys_data_rule
+    </sql>
+
+    <select id="selectSysDataRuleList" parameterType="SysDataRule" resultMap="SysDataRuleResult">
+        <include refid="selectSysDataRuleVo"/>
+        <where>  
+            <if test="ruleTypeName != null  and ruleTypeName != ''"> and rule_type_name like concat('%', #{ruleTypeName}, '%')</if>
+            <if test="createBy != null  and createBy != ''"> and create_by like concat('%', #{createBy}, '%')</if>
+            <if test="remark != null  and remark != ''"> and remark like concat('%', #{remark}, '%')</if>
+            <if test="dataSourceId != null  and dataSourceId != ''"> and data_source_id like concat('%', #{dataSourceId}, '%')</if>
+            <if test="dataSourceName != null  and dataSourceName != ''"> and data_source_name like concat('%', #{dataSourceName}, '%')</if>
+            <if test="dataSourceCode != null  and dataSourceCode != ''"> and data_source_code like concat('%', #{dataSourceCode}, '%')</if>
+        </where>
+    </select>
+    
+    <select id="selectSysDataRuleById" parameterType="Long" resultMap="SysDataRuleResult">
+        <include refid="selectSysDataRuleVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertSysDataRule" parameterType="SysDataRule" useGeneratedKeys="true" keyProperty="id">
+        insert into sys_data_rule
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="ruleTypeCode != null">rule_type_code,</if>
+            <if test="ruleTypeName != null">rule_type_name,</if>
+            <if test="ruleText != null">rule_text,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="remark != null">remark,</if>
+            <if test="dataSourceId != null">data_source_id,</if>
+            <if test="dataSourceName != null">data_source_name,</if>
+            <if test="dataSourceCode != null">data_source_code,</if>
+            <if test="dataLayerName != null">data_layer_name,</if>
+            <if test="dataLayerCode != null">data_layer_code,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="ruleTypeCode != null">#{ruleTypeCode},</if>
+            <if test="ruleTypeName != null">#{ruleTypeName},</if>
+            <if test="ruleText != null">#{ruleText},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="remark != null">#{remark},</if>
+            <if test="dataSourceId != null">#{dataSourceId},</if>
+            <if test="dataSourceName != null">#{dataSourceName},</if>
+            <if test="dataSourceCode != null">#{dataSourceCode},</if>
+            <if test="dataLayerName != null">#{dataLayerName},</if>
+            <if test="dataLayerCode != null">#{dataLayerCode},</if>
+         </trim>
+    </insert>
+
+    <update id="updateSysDataRule" parameterType="SysDataRule">
+        update sys_data_rule
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="ruleTypeCode != null">rule_type_code = #{ruleTypeCode},</if>
+            <if test="ruleTypeName != null">rule_type_name = #{ruleTypeName},</if>
+            <if test="ruleText != null">rule_text = #{ruleText},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="remark != null">remark = #{remark},</if>
+            <if test="dataSourceId != null">data_source_id = #{dataSourceId},</if>
+            <if test="dataSourceName != null">data_source_name = #{dataSourceName},</if>
+            <if test="dataSourceCode != null">data_source_code = #{dataSourceCode},</if>
+            <if test="dataLayerName != null">data_layer_name = #{dataLayerName},</if>
+            <if test="dataLayerCode != null">data_layer_code = #{dataLayerCode},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteSysDataRuleById" parameterType="Long">
+        delete from sys_data_rule where id = #{id}
+    </delete>
+
+    <delete id="deleteSysDataRuleByIds" parameterType="String">
+        delete from sys_data_rule where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

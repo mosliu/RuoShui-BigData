@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoshui.bigdata.mapper.SysServersMapper">
+    
+    <resultMap type="com.ruoshui.bigdata.entity.SysServers" id="SysServersResult">
+        <result property="id"    column="id"    />
+        <result property="groupname"    column="groupName"    />
+        <result property="groupcode"    column="groupCode"    />
+        <result property="serveraddress"    column="serverAddress"    />
+        <result property="osname"    column="osName"    />
+        <result property="starttime"    column="startTime"    />
+        <result property="pid"    column="pid"    />
+        <result property="cpucores"    column="cpuCores"    />
+        <result property="cpuutilization"    column="cpuUtilization"    />
+        <result property="cpurate"    column="cpuRate"    />
+        <result property="jvminitialmemory"    column="jvmInitialMemory"    />
+        <result property="jvmmaxmemory"    column="jvmMaxMemory"    />
+        <result property="jvmusedmemory"    column="jvmUsedMemory"    />
+        <result property="physicalmemory"    column="physicalMemory"    />
+        <result property="surplusmemory"    column="surplusMemory"    />
+        <result property="usedmemory"    column="usedMemory"    />
+        <result property="diskstatus"    column="diskStatus"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="createBy"    column="create_by"    />
+    </resultMap>
+
+    <sql id="selectSysServersVo">
+        select id, groupName, groupCode, serverAddress, osName, startTime, pid, cpuCores, cpuUtilization, cpuRate, jvmInitialMemory, jvmMaxMemory, jvmUsedMemory, physicalMemory, surplusMemory, usedMemory, diskStatus, create_time, create_by from sys_servers
+    </sql>
+
+    <select id="selectSysServersList" parameterType="com.ruoshui.bigdata.entity.SysServers" resultMap="SysServersResult">
+        <include refid="selectSysServersVo"/>
+        <where>  
+            <if test="groupname != null  and groupname != ''"> and groupName like concat('%', #{groupname}, '%')</if>
+            <if test="groupcode != null  and groupcode != ''"> and groupCode = #{groupcode}</if>
+            <if test="serveraddress != null  and serveraddress != ''"> and serverAddress = #{serveraddress}</if>
+        </where>
+    </select>
+    
+    <select id="selectSysServersById" parameterType="Long" resultMap="SysServersResult">
+        <include refid="selectSysServersVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertSysServers" parameterType="com.ruoshui.bigdata.entity.SysServers" useGeneratedKeys="true" keyProperty="id">
+        insert into sys_servers
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="groupname != null">groupName,</if>
+            <if test="groupcode != null">groupCode,</if>
+            <if test="serveraddress != null">serverAddress,</if>
+            <if test="osname != null">osName,</if>
+            <if test="starttime != null">startTime,</if>
+            <if test="pid != null">pid,</if>
+            <if test="cpucores != null">cpuCores,</if>
+            <if test="cpuutilization != null">cpuUtilization,</if>
+            <if test="cpurate != null">cpuRate,</if>
+            <if test="jvminitialmemory != null">jvmInitialMemory,</if>
+            <if test="jvmmaxmemory != null">jvmMaxMemory,</if>
+            <if test="jvmusedmemory != null">jvmUsedMemory,</if>
+            <if test="physicalmemory != null">physicalMemory,</if>
+            <if test="surplusmemory != null">surplusMemory,</if>
+            <if test="usedmemory != null">usedMemory,</if>
+            <if test="diskstatus != null">diskStatus,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="createBy != null">create_by,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="groupname != null">#{groupname},</if>
+            <if test="groupcode != null">#{groupcode},</if>
+            <if test="serveraddress != null">#{serveraddress},</if>
+            <if test="osname != null">#{osname},</if>
+            <if test="starttime != null">#{starttime},</if>
+            <if test="pid != null">#{pid},</if>
+            <if test="cpucores != null">#{cpucores},</if>
+            <if test="cpuutilization != null">#{cpuutilization},</if>
+            <if test="cpurate != null">#{cpurate},</if>
+            <if test="jvminitialmemory != null">#{jvminitialmemory},</if>
+            <if test="jvmmaxmemory != null">#{jvmmaxmemory},</if>
+            <if test="jvmusedmemory != null">#{jvmusedmemory},</if>
+            <if test="physicalmemory != null">#{physicalmemory},</if>
+            <if test="surplusmemory != null">#{surplusmemory},</if>
+            <if test="usedmemory != null">#{usedmemory},</if>
+            <if test="diskstatus != null">#{diskstatus},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="createBy != null">#{createBy},</if>
+         </trim>
+    </insert>
+
+    <update id="updateSysServers" parameterType="com.ruoshui.bigdata.entity.SysServers">
+        update sys_servers
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="groupname != null">groupName = #{groupname},</if>
+            <if test="groupcode != null">groupCode = #{groupcode},</if>
+            <if test="serveraddress != null">serverAddress = #{serveraddress},</if>
+            <if test="osname != null">osName = #{osname},</if>
+            <if test="starttime != null">startTime = #{starttime},</if>
+            <if test="pid != null">pid = #{pid},</if>
+            <if test="cpucores != null">cpuCores = #{cpucores},</if>
+            <if test="cpuutilization != null">cpuUtilization = #{cpuutilization},</if>
+            <if test="cpurate != null">cpuRate = #{cpurate},</if>
+            <if test="jvminitialmemory != null">jvmInitialMemory = #{jvminitialmemory},</if>
+            <if test="jvmmaxmemory != null">jvmMaxMemory = #{jvmmaxmemory},</if>
+            <if test="jvmusedmemory != null">jvmUsedMemory = #{jvmusedmemory},</if>
+            <if test="physicalmemory != null">physicalMemory = #{physicalmemory},</if>
+            <if test="surplusmemory != null">surplusMemory = #{surplusmemory},</if>
+            <if test="usedmemory != null">usedMemory = #{usedmemory},</if>
+            <if test="diskstatus != null">diskStatus = #{diskstatus},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteSysServersById" parameterType="Long">
+        delete from sys_servers where id = #{id} and serverAddress != 'localhost'
+    </delete>
+
+    <delete id="deleteSysServersByIds" parameterType="String">
+        delete from sys_servers where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+        and serverAddress != 'localhost'
+    </delete>
+</mapper>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoshui.bigdata.mapper.JobDatasourceMapper">
+
+    <update id="update" parameterType="com.ruoshui.bigdata.entity.JobDatasource">
+        UPDATE job_jdbc_datasource
+        <set>
+            <if test="datasourceName!=null">datasource_name = #{datasourceName},</if>
+            <if test="datasource!=null">datasource = #{datasource},</if>
+            <if test="datasourceGroup!=null">datasource_group = #{datasourceGroup},</if>
+            <if test="jdbcUsername!=null">jdbc_username = #{jdbcUsername},</if>
+            <if test="jdbcPassword!=null">jdbc_password = #{jdbcPassword},</if>
+            <if test="jdbcUrl!=null">jdbc_url = #{jdbcUrl},</if>
+            <if test="jdbcDriverClass!=null">jdbc_driver_class = #{jdbcDriverClass},</if>
+            <if test="status!=null">status = #{status},</if>
+            <if test="comments!=null">comments = #{comments},</if>
+            <if test="databaseName!=null">database_name = #{databaseName},</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <sql id="Show_Column_List">
+        t.id,
+		t.datasource_name,
+		t.datasource,
+		t.datasource_group,
+		t.jdbc_username,
+        t.jdbc_password,
+        t.jdbc_url,
+        t.jdbc_driver_class,
+        t.status,
+        t.create_by,
+        t.create_date,
+        t.update_date,
+        t.comments,
+        t.zk_adress,
+        t.database_name,
+        t.orcschema
+    </sql>
+
+    <select id="getDataSourceById" parameterType="java.util.HashMap"
+            resultType="com.ruoshui.bigdata.entity.JobDatasource">
+        SELECT <include refid="Show_Column_List" />
+        FROM job_jdbc_datasource AS t
+        WHERE t.id = #{id}
+    </select>
+
+    <select id="findDataSourceName" resultType="com.ruoshui.bigdata.entity.JobDatasource">
+        SELECT datasource_name,id,datasource
+        FROM job_jdbc_datasource
+        where datasource_group = 'warehouse_building'
+        AND (database_name is null or database_name = '')
+        ORDER BY id ASC
+    </select>
+    <select id="getdataSourceAll" resultType="com.ruoshui.bigdata.entity.JobDatasource">
+        SELECT datasource_name,id,datasource
+        FROM job_jdbc_datasource
+        where datasource_group = 'warehouse_building'
+          AND database_name is not null
+        ORDER BY id ASC
+    </select>
+
+</mapper>
