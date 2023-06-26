@@ -100,7 +100,7 @@
 注意：服务端的分组名要和你设置的AppName一致
 3. 打包 拷贝 ruoshui-datax-executor 下的 ruoshui-datax-executor.jar 执行即可
 
-#### DataX使用说明
+#### Flink使用说明
 1. 打包项目 拷贝 ruoshui-flink-core 下的 flink-streaming-core.jar 重名为 ruoshui-flink-core.jar
 2. 放到flink集群的机器目录下 （不需要启动）
 3. 设置服务端中 数据开发模块中的 系统设置 即可
