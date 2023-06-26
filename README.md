@@ -64,10 +64,32 @@
 10. 数据API
 ![img_18.png](img/img_18.png)
 #### 使用说明
-
-1.  xxxx
-2.  xxxx
-3.  xxxx
+1. 拉取代码
+2. 修改ruoshui-admin---->src--->main--->resources下的application.yml配置文件
+![img.png](img/img50.png)
+![img_1.png](img/img51.png)
+![img.png](img/img52.png)
+3. 修改ruoshui-admin---->src--->main--->resources下的application-druid.yml配置文件
+![img.png](img/img53.png)
+4. 修改ruoshui-datax-executor---->src--->main--->resources下的pplication.yml配置文件
+![img.png](img/img54.png)
+5. 将sql目录下的sql文件导入到自己数据库
+6. 下载pluginLibs数据源jar包放到RuoShui-BigData主目录下，链接：https://pan.baidu.com/s/15gvBtnLqrLstmd7u8WgLYg?pwd=n7ai
+   提取码：n7ai
+7. 下载datax放到服务器上或者电脑本地 下载地址 链接：https://pan.baidu.com/s/1B0b6nevsB7gXOBMvVBqqtA?pwd=ipwu
+   提取码：ipwu
+8. 打包项目
+![img.png](img/img55.png)
+9. 拷贝主服务 ruoshui-admin 下的ruoshui-admin.jar 
+![img.png](img/img56.png)
+10. 运行主jar包
+11. 到BigData-UI目录下 执行 npm install --registry=https://registry.npmmirror.com
+安装依赖
+12. 修改 vue.config.js文件 
+![img.png](img/img57.png)
+修改为自己的服务段地址
+13. npm run dev 启动前端
+14. 前端详细部署可以参照若依的部署文档 http://doc.ruoyi.vip/ruoyi-vue/document/hjbs.html#%E5%90%8E%E7%AB%AF%E9%83%A8%E7%BD%B2
 
 #### 参与贡献
 1. Datax-web、flink-streaming-platform-web、datax-cloud的贡献者
@@ -76,7 +98,6 @@
 ![img.png](img/lxfs.png)
 
 #### 特技
-
 1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
 2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
 3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
