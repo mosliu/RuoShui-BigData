@@ -231,6 +231,6 @@ export default {
   float: right;
 }
 .el-card ::v-deep .el-card__body {
-  height: calc(110vh - 180px);
+  height: calc(105vh - 180px);
 }
 </style>

@@ -339,7 +339,7 @@ export default {
   float: right;
 }
 .el-card ::v-deep .el-card__body {
-  height: calc(100vh - 170px);
+  height: calc(105vh - 180px);
 }
 .tree-wrapper {
   overflow-y: auto;
