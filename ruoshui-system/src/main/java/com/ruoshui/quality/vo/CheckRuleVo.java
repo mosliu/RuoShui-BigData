@@ -5,7 +5,7 @@ import com.ruoshui.quality.dto.RuleConfig;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * <p>
@@ -23,7 +23,7 @@ public class CheckRuleVo implements Serializable {
     private String id;
     private String status;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-    private LocalDateTime createTime;
+    private Date createTime;
     private String remark;
     private String ruleName;
     private String ruleTypeId;
