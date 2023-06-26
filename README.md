@@ -71,7 +71,7 @@
 ![img.png](img/img52.png)
 3. 修改ruoshui-admin---->src--->main--->resources下的application-druid.yml配置文件
 ![img.png](img/img53.png)
-4. 修改ruoshui-datax-executor---->src--->main--->resources下的pplication.yml配置文件
+4. 修改ruoshui-datax-executor---->src--->main--->resources下的application.yml配置文件
 ![img.png](img/img54.png)
 5. 将sql目录下的sql文件导入到自己数据库
 6. 下载pluginLibs数据源jar包放到RuoShui-BigData主目录下，链接：https://pan.baidu.com/s/15gvBtnLqrLstmd7u8WgLYg?pwd=n7ai
@@ -90,6 +90,25 @@
 修改为自己的服务段地址
 13. npm run dev 启动前端
 14. 前端详细部署可以参照若依的部署文档 http://doc.ruoyi.vip/ruoyi-vue/document/hjbs.html#%E5%90%8E%E7%AB%AF%E9%83%A8%E7%BD%B2
+
+
+#### DataX使用说明
+1. 进入系统的 基础建设 模块下的 执行器管理  添加执行器
+![img.png](img/img60.png)
+2. 修改上面的 ruoshui-datax-executor---->src--->main--->resources下的application.yml配置文件
+![img.png](img/img54.png)
+注意：服务端的分组名要和你设置的AppName一致
+3. 打包 拷贝 ruoshui-datax-executor 下的 ruoshui-datax-executor.jar 执行即可
+
+#### DataX使用说明
+1. 打包项目 拷贝 ruoshui-flink-core 下的 flink-streaming-core.jar 重名为 ruoshui-flink-core.jar
+2. 放到flink集群的机器目录下 （不需要启动）
+3. 设置服务端中 数据开发模块中的 系统设置 即可
+![img.png](img/img61.png)
+![img.png](img/img62.png)
+![img.png](img/img63.png)
+这是我的flink机器下的目录结构，对照配置
+4. 详细使用方法 请依照 flink-streaming-platform-web 参照地址： https://gitee.com/zhuhuipei/flink-streaming-platform-web
 
 #### 参与贡献
 1. Datax-web、flink-streaming-platform-web、datax-cloud的贡献者
