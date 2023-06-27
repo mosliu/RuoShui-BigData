@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ruoshui.common.core.domain.AjaxResult;
-import com.ruoshui.databse.core.JsonPage;
+import com.ruoshui.core.database.core.JsonPage;
 import com.ruoshui.metadata.dto.MetadataColumnDto;
 import com.ruoshui.metadata.entity.MetadataColumnEntity;
 import com.ruoshui.metadata.query.MetadataColumnQuery;

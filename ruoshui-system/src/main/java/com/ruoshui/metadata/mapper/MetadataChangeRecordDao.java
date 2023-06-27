@@ -4,7 +4,7 @@ package com.ruoshui.metadata.mapper;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Constants;
-import com.ruoshui.databse.base.BaseDao;
+import com.ruoshui.core.database.base.BaseDao;
 import com.ruoshui.metadata.entity.MetadataChangeRecordEntity;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;

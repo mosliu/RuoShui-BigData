@@ -5,7 +5,7 @@ import com.aspose.words.Document;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.ruoshui.common.database.service.DbQuery;
-import com.ruoshui.databse.base.BaseService;
+import com.ruoshui.core.database.base.BaseService;
 import com.ruoshui.core.database.core.DbColumn;
 import com.ruoshui.core.database.core.DbTable;
 import com.ruoshui.metadata.dto.MetadataSourceDto;

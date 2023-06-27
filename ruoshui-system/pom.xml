@@ -738,18 +738,6 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>com.ruoshui</groupId>
-            <artifactId>ruoshui-database-core</artifactId>
-            <version>3.8.2</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.ruoshui</groupId>
-            <artifactId>ruoshui-database-commom</artifactId>
-            <version>3.8.2</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-openfeign-core</artifactId>
             <version>3.0.3</version>

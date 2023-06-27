@@ -5,6 +5,7 @@ import lombok.Data;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * <p>
@@ -22,7 +23,7 @@ public class MetadataChangeRecordVo implements Serializable {
     private String id;
     private String status;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-    private LocalDateTime createTime;
+    private Date createTime;
     private Integer version;
     private String objectType;
     private String objectId;

@@ -8,7 +8,7 @@ import com.baomidou.mybatisplus.extension.api.R;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ruoshui.common.core.controller.BaseController;
 import com.ruoshui.common.core.domain.AjaxResult;
-import com.ruoshui.databse.core.JsonPage;
+import com.ruoshui.core.database.core.JsonPage;
 import com.ruoshui.metadata.dto.MetadataChangeRecordDto;
 import com.ruoshui.metadata.entity.MetadataChangeRecordEntity;
 import com.ruoshui.metadata.mapstruct.MetadataChangeRecordMapper;

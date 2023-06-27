@@ -1,6 +1,5 @@
 package com.ruoshui.quality.enums;
 
-import com.ruoshui.database.constants.DbType;
 
 import java.util.Map;
 

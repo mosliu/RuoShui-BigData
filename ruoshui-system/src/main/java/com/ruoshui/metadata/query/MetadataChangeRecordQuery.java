@@ -1,6 +1,7 @@
 package com.ruoshui.metadata.query;
 
-import com.ruoshui.databse.base.BaseQueryParams;
+
+import com.ruoshui.core.database.base.BaseQueryParams;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

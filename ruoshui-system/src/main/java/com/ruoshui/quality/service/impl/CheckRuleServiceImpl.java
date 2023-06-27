@@ -1,10 +1,9 @@
 package com.ruoshui.quality.service.impl;
 
 import com.ruoshui.common.core.redis.RedisCache;
+import com.ruoshui.common.database.constants.DbType;
 import com.ruoshui.core.database.base.BaseServiceImpl;
 import com.ruoshui.core.database.core.RedisConstant;
-import com.ruoshui.database.constants.DbType;
-import com.ruoshui.database.utils.RedisService;
 import com.ruoshui.quality.dto.*;
 import com.ruoshui.quality.entity.CheckRuleEntity;
 import com.ruoshui.quality.enums.RuleItem;

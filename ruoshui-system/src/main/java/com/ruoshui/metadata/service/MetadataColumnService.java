@@ -3,7 +3,7 @@ package com.ruoshui.metadata.service;
 
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.ruoshui.databse.base.BaseService;
+import com.ruoshui.core.database.base.BaseService;
 import com.ruoshui.metadata.dto.MetadataColumnDto;
 import com.ruoshui.metadata.entity.MetadataColumnEntity;
 import com.ruoshui.metadata.query.MetadataColumnQuery;

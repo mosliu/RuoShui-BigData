@@ -2,7 +2,7 @@ package com.ruoshui.metadata.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.ruoshui.databse.base.DataScopeBaseEntity;
+import com.ruoshui.core.database.base.DataScopeBaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;

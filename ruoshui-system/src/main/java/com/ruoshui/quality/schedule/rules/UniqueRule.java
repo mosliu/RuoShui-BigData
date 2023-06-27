@@ -1,6 +1,6 @@
 package com.ruoshui.quality.schedule.rules;
 
-import com.ruoshui.database.constants.DbType;
+import com.ruoshui.common.database.constants.DbType;
 
 import java.util.Map;
 

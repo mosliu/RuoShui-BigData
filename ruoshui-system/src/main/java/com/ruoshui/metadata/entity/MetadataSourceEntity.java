@@ -5,7 +5,6 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.ruoshui.common.core.domain.BaseEntity;
-import com.ruoshui.databse.base.DataScopeBaseEntity;
 import com.ruoshui.metadata.dto.DbSchema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

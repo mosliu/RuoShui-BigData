@@ -1,7 +1,7 @@
 package com.ruoshui.metadata.service.impl;
 
 
-import com.ruoshui.databse.base.BaseServiceImpl;
+import com.ruoshui.core.database.base.BaseServiceImpl;
 import com.ruoshui.metadata.dto.MetadataChangeRecordDto;
 import com.ruoshui.metadata.entity.MetadataChangeRecordEntity;
 import com.ruoshui.metadata.mapper.MetadataChangeRecordDao;
