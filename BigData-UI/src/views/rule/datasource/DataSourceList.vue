@@ -51,18 +51,22 @@
           <span>{{ scope.$index +1 }}</span>
         </template>
       </el-table-column>
-      <template v-for="(item, index) in tableColumns">
-        <el-table-column
-          v-if="item.show"
-          :key="index"
-          :prop="item.prop"
-          :label="item.label"
-          :formatter="item.formatter"
-          align="center"
-          show-overflow-tooltip
-        />
-      </template>
-
+      <el-table-column label="数据源名称" align="center">
+        <template slot-scope="scope">{{ scope.row.sourceName }}</template>
+      </el-table-column>
+      <el-table-column label="同步状态" align="center">
+         <template slot-scope="scope">
+           <dict-tag :options="dict.type.datasource_Synchronization_status" :value="scope.row.isSync"/>
+         </template>
+      </el-table-column>
+      <el-table-column label="状态" align="center">
+         <template slot-scope="scope">
+           <dict-tag :options="dict.type.sys_data_status" :value="scope.row.status"/>
+         </template>
+      </el-table-column>
+      <el-table-column label="创建时间" align="center">
+        <template slot-scope="scope">{{ scope.row.createTime}}</template>
+      </el-table-column>
       <el-table-column
             label="操作"
             align="center"
@@ -112,7 +116,7 @@ import { pageDataSource, delDataSource, refreshMetadata } from '@/api/metadata/d
 
 export default {
   name: 'DataSourceList',
-  dicts: ['sys_data_status'],
+  dicts: ['sys_data_status','datasource_Synchronization_status'],
   data() {
     return {
       tableHeight: document.body.offsetHeight - 310 + 'px',
@@ -126,23 +130,6 @@ export default {
       },
       // 遮罩层
       loading: true,
-      // 表格头
-      tableColumns: [
-        { prop: 'sourceName', label: '数据源名称', show: true },
-        {
-          prop: 'isSync',
-          label: '同步状态',
-          show: true,
-          formatter: this.syncFormatter
-        },
-        {
-          prop: 'status',
-          label: '状态',
-          show: true,
-          formatter: this.statusFormatter
-        },
-        { prop: 'createTime', label: '创建时间', show: true }
-      ],
       // 默认选择中表格头
       checkedTableColumns: [],
       tableSize: 'medium',
@@ -164,7 +151,7 @@ export default {
     this.getList()
   },
   mounted() {
-    this.initCols()
+    
   },
   methods: {
     /** 查询数据源列表 */
@@ -182,9 +169,7 @@ export default {
           console.log(err.message)
         })
     },
-    initCols() {
-      this.checkedTableColumns = this.tableColumns.map(col => col.prop)
-    },
+
     handleCheckedColsChange(val) {
       this.tableColumns.forEach(col => {
         if (!this.checkedTableColumns.includes(col.prop)) {
@@ -280,23 +265,6 @@ export default {
       this.queryParams.pageNum = val
       this.getList()
     },
-    syncFormatter(row, column, cellValue, index) {
-      if (cellValue === '0') {
-        return <el-tag type='warning'>未同步</el-tag>
-      } else if (cellValue === '1') {
-        return <el-tag type='info'>同步中</el-tag>
-      } else if (cellValue === '2') {
-        return <el-tag type='success'>已同步</el-tag>
-      }
-    },
-    statusFormatter(row, column, cellValue, index) {
-      const dictLabel = this.selectDictLabel(this.dict.type.sys_data_status, cellValue)
-      if (cellValue === '1') {
-        return <el-tag type='success'>{dictLabel}</el-tag>
-      } else {
-        return <el-tag type='warning'>{dictLabel}</el-tag>
-      }
-    }
   }
 }
 </script>

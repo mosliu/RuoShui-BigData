@@ -55,50 +55,61 @@ public class AsyncTask {
 
     @Async("taskExecutor")
     public void doTask(MetadataSourceEntity dataSource) {
-        long start = System.currentTimeMillis();
-        DbSchema dbSchema = dataSource.getDbSchema();
-        DbQueryProperty dbQueryProperty = new DbQueryProperty(dataSource.getDbType(), dbSchema.getHost(),
-                dbSchema.getUsername(), dbSchema.getPassword(), dbSchema.getPort(), dbSchema.getDbName(), dbSchema.getSid());
-        DbQuery dbQuery = dataSourceFactory.createDbQuery(dbQueryProperty);
-        List<DbTable> tables = dbQuery.getTables(dbSchema.getDbName());
-        if (CollUtil.isNotEmpty(tables)) {
-            List<MetadataTableEntity> metadataTableEntityList = tables.stream().map(table -> {
-                MetadataTableEntity metadataTable = new MetadataTableEntity();
-                metadataTable.setSourceId(dataSource.getId());
-                metadataTable.setTableName(table.getTableName());
-                metadataTable.setTableComment(table.getTableComment());
-                return metadataTable;
-            }).collect(Collectors.toList());
-            if (CollUtil.isNotEmpty(metadataTableEntityList)) {
-                metadataTableEntityList.stream().forEach(table -> {
-                    metadataTableDao.insert(table);
-                    List<DbColumn> columns = dbQuery.getTableColumns(dbSchema.getDbName(), table.getTableName());
-                    if (CollUtil.isNotEmpty(columns)) {
-                        List<MetadataColumnEntity> metadataColumnEntityList = columns.stream().map(column -> {
-                            MetadataColumnEntity metadataColumn = new MetadataColumnEntity();
-                            metadataColumn.setSourceId(dataSource.getId());
-                            metadataColumn.setTableId(table.getId());
-                            metadataColumn.setColumnName(column.getColName());
-                            metadataColumn.setColumnComment(column.getColComment());
-                            metadataColumn.setColumnKey(column.getColKey() ? "1" : "0");
-                            metadataColumn.setColumnNullable(column.getNullable() ? "1" : "0");
-                            metadataColumn.setColumnPosition(column.getColPosition().toString());
-                            metadataColumn.setDataType(column.getDataType());
-                            metadataColumn.setDataLength(column.getDataLength());
-                            metadataColumn.setDataPrecision(column.getDataPrecision());
-                            metadataColumn.setDataScale(column.getDataScale());
-                            metadataColumn.setDataDefault(column.getDataDefault());
-                            return metadataColumn;
-                        }).collect(Collectors.toList());
-                        if (CollUtil.isNotEmpty(metadataColumnEntityList)) {
-                            metadataColumnEntityList.stream().forEach(column -> metadataColumnDao.insert(column));
+        Boolean completed = false;
+        try {
+            long start = System.currentTimeMillis();
+            DbSchema dbSchema = dataSource.getDbSchema();
+            DbQueryProperty dbQueryProperty = new DbQueryProperty(dataSource.getDbType(), dbSchema.getHost(),
+                    dbSchema.getUsername(), dbSchema.getPassword(), dbSchema.getPort(), dbSchema.getDbName(), dbSchema.getSid());
+            DbQuery dbQuery = dataSourceFactory.createDbQuery(dbQueryProperty);
+            List<DbTable> tables = dbQuery.getTables(dbSchema.getDbName());
+            if (CollUtil.isNotEmpty(tables)) {
+                List<MetadataTableEntity> metadataTableEntityList = tables.stream().map(table -> {
+                    MetadataTableEntity metadataTable = new MetadataTableEntity();
+                    metadataTable.setSourceId(dataSource.getId());
+                    metadataTable.setTableName(table.getTableName());
+                    metadataTable.setTableComment(table.getTableComment());
+                    return metadataTable;
+                }).collect(Collectors.toList());
+                if (CollUtil.isNotEmpty(metadataTableEntityList)) {
+                    metadataTableEntityList.stream().forEach(table -> {
+                        metadataTableDao.insert(table);
+                        List<DbColumn> columns = dbQuery.getTableColumns(dbSchema.getDbName(), table.getTableName());
+                        if (CollUtil.isNotEmpty(columns)) {
+                            List<MetadataColumnEntity> metadataColumnEntityList = columns.stream().map(column -> {
+                                MetadataColumnEntity metadataColumn = new MetadataColumnEntity();
+                                metadataColumn.setSourceId(dataSource.getId());
+                                metadataColumn.setTableId(table.getId());
+                                metadataColumn.setColumnName(column.getColName());
+                                metadataColumn.setColumnComment(column.getColComment());
+                                metadataColumn.setColumnKey(column.getColKey() ? "1" : "0");
+                                metadataColumn.setColumnNullable(column.getNullable() ? "1" : "0");
+                                metadataColumn.setColumnPosition(column.getColPosition().toString());
+                                metadataColumn.setDataType(column.getDataType());
+                                metadataColumn.setDataLength(column.getDataLength());
+                                metadataColumn.setDataPrecision(column.getDataPrecision());
+                                metadataColumn.setDataScale(column.getDataScale());
+                                metadataColumn.setDataDefault(column.getDataDefault());
+                                return metadataColumn;
+                            }).collect(Collectors.toList());
+                            if (CollUtil.isNotEmpty(metadataColumnEntityList)) {
+                                metadataColumnEntityList.stream().forEach(column -> metadataColumnDao.insert(column));
+                            }
                         }
-                    }
-                });
+                    });
+                }
             }
-        }
-        dataSource.setIsSync(SyncStatus.IsSync.getKey());
-        metadataSourceDao.updateById(dataSource);
-        log.info("异步任务执行完成！耗时{}秒", (System.currentTimeMillis() - start  / 1000));
+            dataSource.setIsSync(SyncStatus.IsSync.getKey());
+            metadataSourceDao.updateById(dataSource);
+            completed = true;
+            log.info("异步任务执行完成！耗时{}秒", (System.currentTimeMillis() - start / 1000));
+        }finally {
+                if(!completed){
+                    dataSource.setIsSync(SyncStatus.ErrSync.getKey());
+                    metadataSourceDao.updateById(dataSource);
+                    log.info("异步任务执行失败！");
+                }
+            }
+
     }
 }

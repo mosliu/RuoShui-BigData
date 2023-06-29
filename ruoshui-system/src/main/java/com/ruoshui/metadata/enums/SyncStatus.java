@@ -4,8 +4,8 @@ public enum SyncStatus {
 
     NotSync("0"),
     InSync("1"),
-    IsSync("2");
-
+    IsSync("2"),
+    ErrSync("3");
     private final String key;
 
     SyncStatus(String key) {
