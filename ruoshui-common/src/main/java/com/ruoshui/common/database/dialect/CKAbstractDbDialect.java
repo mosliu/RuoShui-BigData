@@ -9,18 +9,16 @@ import com.ruoshui.common.database.service.DbDialect;
  * @author yuwei
  * @since 2020-03-14
  */
-public abstract class AbstractDbDialect implements DbDialect {
+public abstract class CKAbstractDbDialect implements DbDialect {
 
     @Override
     public String columns(String dbName, String tableName) {
-        return "select column_name AS COLNAME, ordinal_position AS COLPOSITION, column_default AS DATADEFAULT, is_nullable AS NULLABLE, data_type AS DATATYPE, " +
-                "character_maximum_length AS DATALENGTH, numeric_precision AS DATAPRECISION, numeric_scale AS DATASCALE, column_key AS COLKEY, column_comment AS COLCOMMENT " +
-                "from information_schema.columns where table_schema = '" + dbName + "' and table_name = '" + tableName + "' order by ordinal_position ";
+        return "select name COLNAME,type DATATYPE,'' DATALENGTH, '' DATAPRECISION,'' DATASCALE, is_in_primary_key COLKEY,'' NULLABLE,rowNumberInAllBlocks() COLPOSITION,default_expression DATADEFAULT,comment COLCOMMENT  from system.columns where database = '" + dbName + "' and table = '" + tableName + "'";
     }
 
     @Override
     public String tables(String dbName) {
-        return "SELECT table_name AS TABLENAME, table_comment AS TABLECOMMENT FROM information_schema.tables where table_schema = '" + dbName + "' ";
+        return "SELECT name AS TABLENAME, '' AS TABLECOMMENT FROM system.tables where database = '" + dbName + "' ";
     }
 
     @Override

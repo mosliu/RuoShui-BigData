@@ -14,7 +14,7 @@ import java.sql.ResultSet;
  * @author xinjingruoshui
  * @since 2023-05-30
  */
-public class ClickhouseDialect extends AbstractDbDialect {
+public class ClickhouseDialect extends CKAbstractDbDialect {
 
     @Override
     public RowMapper<DbColumn> columnMapper() {
