@@ -1336,7 +1336,10 @@ INSERT INTO `sys_dict_data` VALUES (198, 0, 'SQL流任务', '0', 'flink_job_type
 INSERT INTO `sys_dict_data` VALUES (199, 0, 'JAR流任务', '1', 'flink_job_type', NULL, 'primary', 'N', '0', 'admin', '2023-05-12 11:41:36', 'admin', '2023-05-12 11:44:40', NULL);
 INSERT INTO `sys_dict_data` VALUES (200, 0, 'JAR批任务', '3', 'flink_job_type', NULL, 'warning', 'N', '0', 'admin', '2023-05-12 11:42:34', 'admin', '2023-05-12 13:56:53', NULL);
 INSERT INTO `sys_dict_data` VALUES (201, 0, 'SQL批任务', '2', 'flink_job_type', NULL, 'info', 'N', '0', 'admin', '2023-05-12 13:55:45', '', NULL, NULL);
-
+INSERT INTO `sys_dict_data` VALUES (202, 0, '未同步', '0', 'datasource_Synchronization_status', NULL, 'info', 'N', '0', 'admin', '2023-06-29 14:52:18', 'admin', '2023-06-29 14:52:38', NULL);
+INSERT INTO `sys_dict_data` VALUES (203, 0, '同步中', '1', 'datasource_Synchronization_status', NULL, 'warning', 'N', '0', 'admin', '2023-06-29 14:53:06', '', NULL, NULL);
+INSERT INTO `sys_dict_data` VALUES (204, 0, '已同步', '2', 'datasource_Synchronization_status', NULL, 'success', 'N', '0', 'admin', '2023-06-29 14:53:22', '', NULL, NULL);
+INSERT INTO `sys_dict_data` VALUES (205, 0, '同步失败', '3', 'datasource_Synchronization_status', NULL, 'danger', 'N', '0', 'admin', '2023-06-29 14:53:40', '', NULL, NULL);
 -- ----------------------------
 -- Table structure for sys_dict_type
 -- ----------------------------
@@ -1395,6 +1398,7 @@ INSERT INTO `sys_dict_type` VALUES (125, '正则规则类型', 'data_regex_crypt
 INSERT INTO `sys_dict_type` VALUES (126, '加密规则类型', 'data_algorithm_crypto', '0', 'admin', '2023-05-10 14:29:48', '', NULL, NULL);
 INSERT INTO `sys_dict_type` VALUES (127, '脱敏状态', 'data_cipher_status', '0', 'admin', '2023-05-10 14:33:38', '', NULL, NULL);
 INSERT INTO `sys_dict_type` VALUES (128, 'flink任务类型', 'flink_job_type', '0', 'admin', '2023-05-12 11:40:09', '', NULL, NULL);
+INSERT INTO `sys_dict_type` VALUES (129, '数据源同步状态', 'datasource_Synchronization_status', '0', 'admin', '2023-06-29 14:51:48', '', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for sys_job
