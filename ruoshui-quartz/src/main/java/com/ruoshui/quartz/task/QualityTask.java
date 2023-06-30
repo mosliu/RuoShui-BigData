@@ -44,7 +44,7 @@ public class QualityTask {
     private CheckReportService checkReportService;
 
     @Autowired
-    private static MetadataSourceService metadataSourceService;
+    private MetadataSourceService metadataSourceService;
 
     public void task() {
         // 结果集
@@ -90,18 +90,10 @@ public class QualityTask {
                 updateWrapper.eq(CheckRuleEntity::getId, s.getCheckRuleId());
                 checkRuleService.update(updateWrapper);
             }
-            // 定时任务日志
-            ScheduleLogEntity scheduleLogEntity = new ScheduleLogEntity();
-            scheduleLogEntity.setExecuteJobId("1310823026538962945");
-            scheduleLogEntity.setExecuteBatch(DateUtil.format(new Date(), DatePattern.PURE_DATETIME_PATTERN));
-            scheduleLogEntity.setExecuteDate(s.getCheckDate());
-            scheduleLogEntity.setExecuteRuleId(s.getCheckRuleId());
-            scheduleLogEntity.setExecuteResult(s.getCheckResult());
-            scheduleLogEntity.setStatus(status);
         });
     }
 
-    static class TaskHander implements Callable<CheckReportEntity> {
+    class TaskHander implements Callable<CheckReportEntity> {
 
         private CountDownLatch latch;
         private CheckRuleEntity checkRuleEntity;
@@ -111,7 +103,6 @@ public class QualityTask {
             this.latch = latch;
             this.checkRuleEntity = checkRuleEntity;
         }
-
         @Override
         public CheckReportEntity call() {
             log.info("任务 - 规则id：{}，规则名称：{}， 时间：{}", checkRuleEntity.getId(), checkRuleEntity.getRuleName(), System.currentTimeMillis());
@@ -128,7 +119,6 @@ public class QualityTask {
                         dbSchema.getUsername(), dbSchema.getPassword(), dbSchema.getPort(), dbSchema.getDbName(), dbSchema.getSid());
                 DataSourceFactory dataSourceFactory = SpringContextHolder.getBean(DataSourceFactory.class);
                 DbQuery dbQuery = Optional.ofNullable(dataSourceFactory.createDbQuery(dbQueryProperty)).orElseThrow(() -> new DataException("创建数据查询接口出错"));
-
                 conn = dbQuery.getConnection();
                 stmt = conn.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
                 rs = stmt.executeQuery(checkRuleEntity.getRuleSql());
