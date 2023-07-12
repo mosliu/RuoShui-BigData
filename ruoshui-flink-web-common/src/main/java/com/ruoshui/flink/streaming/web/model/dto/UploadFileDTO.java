@@ -56,6 +56,8 @@ public class UploadFileDTO {
 
   private Integer resourceId;
 
+  private String remarks;
+
 
 
 
@@ -75,6 +77,7 @@ public class UploadFileDTO {
     uploadFile.setResourceName(uploadFileDTO.getResourceName());
     uploadFile.setResourceType(uploadFileDTO.getResourceType());
     uploadFile.setResourceId(uploadFileDTO.getResourceId());
+    uploadFile.setRemarks(uploadFileDTO.remarks);
     return uploadFile;
   }
 
@@ -92,6 +95,7 @@ public class UploadFileDTO {
     uploadFileDTO.setResourceName(uploadFile.getResourceName());
     uploadFileDTO.setResourceType(uploadFile.getResourceType());
     uploadFileDTO.setResourceId(uploadFile.getResourceId());
+    uploadFileDTO.setRemarks(uploadFile.getRemarks());
     if (uploadFile.getCreateTime() != null) {
       uploadFileDTO.setCreateTime(uploadFile.getCreateTime());
       uploadFileDTO.setCreateTimeStr(DateFormatUtils.toFormatString(uploadFile.getCreateTime()));

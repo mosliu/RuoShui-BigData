@@ -21,9 +21,10 @@
             </el-table-column>
              <el-table-column prop="resourceName" :show-overflow-tooltip="true" label="资源名称" align="center" />
             <el-table-column prop="fileName" :show-overflow-tooltip="true" label="文件名" align="center" />
-            <el-table-column prop="downloadJarHttp" :show-overflow-tooltip="true" label="http地址" min-width="40"
+            <el-table-column prop="downloadJarHttp" :show-overflow-tooltip="true" label="http地址"
               align="center" />
-            <el-table-column prop="createTimeStr" :show-overflow-tooltip="true" label="上传时间" min-width="25" align="center" />
+              <el-table-column prop="remarks" :show-overflow-tooltip="true" label="备注" align="center" />
+            <el-table-column prop="createTimeStr" :show-overflow-tooltip="true" label="上传时间"  align="center" />
             <el-table-column prop="operate" label="操作" width="180" fixed="right" align="center">
               <template slot-scope="scope">
                 <el-link type="primary" icon="el-icon-delete" @click.native="deleteFile(scope.row)">删除</el-link>
@@ -37,9 +38,8 @@
             @size-change="handleSizeChange" @current-change="handleCurrentChange" />
         </div>
 
-        <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
-          <el-form ref="dataForm" :model="temp" label-position="right" label-width="20%" style="width: 500px; margin-left:50px;">
-
+        <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible" width="30%" >
+          <el-form ref="dataForm" :model="temp" label-position="right" label-width="20%" style="width: 600px; margin-left:50px;">
             <el-form-item label="选择目录资源" prop="resourceId">
               <el-select v-model="temp.resourceId" placeholder="选择目录资源" style="width: 50%" >
                   <el-option
@@ -50,6 +50,9 @@
                   ></el-option>
               </el-select>
             </el-form-item>
+          <el-form-item label="备注" prop="remarks">
+            <el-input v-model="temp.remarks" style="width: 50%"/>
+          </el-form-item>
              <el-upload class="upload-demo" ref="upload" drag action="/prod-api/flink/uploadJar/upload" multiple
                 :auto-upload="false" :with-credentials="true" :limit="1" :before-upload="handleBefore"
                 :on-success="handleFilUploadSuccess" :on-remove="handleRemove" :data="temp"
@@ -116,7 +119,8 @@
         },
         list: [],
         temp: {
-          resourceId: ''
+          resourceId: '',
+          remarks: ''
         },
         uploadData: {
           resourceId: ''

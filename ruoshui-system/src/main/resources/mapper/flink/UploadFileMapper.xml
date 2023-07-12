@@ -15,11 +15,13 @@
     <result column="resource_type" jdbcType="VARCHAR" property="resourceType" />
     <result column="resource_name" jdbcType="VARCHAR" property="resourceName" />
     <result column="resource_id" jdbcType="VARCHAR" property="resourceId" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+
 
   </resultMap>
 
   <sql id="Base_Column_List">
-    id, file_name, file_path, `type`, is_deleted, create_time, edit_time, creator, editor,url,resource_type,resource_name,resource_id
+    id, file_name, file_path, `type`, is_deleted, create_time, edit_time, creator, editor,url,resource_type,resource_name,resource_id,remarks
   </sql>
 
   <insert id="insert" parameterType="com.ruoshui.flink.streaming.web.model.entity.UploadFile">
@@ -28,10 +30,10 @@
     </selectKey>
     insert into upload_file (file_name, file_path, `type`,
     is_deleted, create_time, edit_time,
-    creator, editor,url,resource_name,resource_type,resource_id)
+    creator, editor,url,resource_name,resource_type,resource_id,remarks)
     values (#{fileName,jdbcType=VARCHAR}, #{filePath,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER},
     0,  now(), now(),
-    #{creator,jdbcType=VARCHAR}, #{editor,jdbcType=VARCHAR},#{url,jdbcType=VARCHAR},#{resourceName,jdbcType=VARCHAR},#{resourceType,jdbcType=VARCHAR},#{resourceId,jdbcType=INTEGER})
+    #{creator,jdbcType=VARCHAR}, #{editor,jdbcType=VARCHAR},#{url,jdbcType=VARCHAR},#{resourceName,jdbcType=VARCHAR},#{resourceType,jdbcType=VARCHAR},#{resourceId,jdbcType=INTEGER},#{remarks,jdbcType=VARCHAR})
   </insert>
 
   <update id="deleteById">

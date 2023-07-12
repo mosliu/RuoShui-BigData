@@ -59,20 +59,21 @@ public class UploadApiController extends BaseController {
 
 
   @RequestMapping(value = "/upload", method = RequestMethod.POST, consumes = "multipart/form-data")
-  public RestResult<?> upload(HttpServletRequest request, @RequestParam(value="resourceId")  String resourceId,@RequestParam("file") MultipartFile file) {
+  public RestResult<?> upload(HttpServletRequest request, @RequestParam(value="resourceId")  String resourceId,@RequestParam(value="remarks")  String remarks,@RequestParam("file") MultipartFile file) {
     try {
        String  uploadPath = RuoShuiConfig.getUploadPath();
       //通过ID查资源服务器信息
       BaseResource baseResource = baseResourceMapper.getById(Integer.parseInt(resourceId));
       log.info("uploadPath={}", uploadPath);
       // 上传并返回新文件名称
-      String fileName = FileUploadUtils.upload(uploadPath, file);
+      String fileName = FileUploadUtils.flnkJarupload(uploadPath, file);
       String url = serverConfig.getUrl() + fileName;
       Map<String, String> ipAndPort = serverConfig.getIpAndPort1(url);
       if(!"".equals(ipAndPort.get("port")) && null!=ipAndPort.get("port")){
         url = url.replaceFirst(":"+ipAndPort.get("port"),":"+ String.valueOf(ReadYmlUtil.getValueToString("server.port")));
       }
       UploadFileDTO uploadFileDTO = new UploadFileDTO();
+      uploadFileDTO.setRemarks(remarks);
       uploadFileDTO.setFileName(file.getOriginalFilename());
       uploadFileDTO.setFilePath(FileUtils.getName(fileName));
       uploadFileDTO.setType(FileTypeEnum.JAR.getCode());
@@ -95,8 +96,9 @@ public class UploadApiController extends BaseController {
     try {
       UploadFileDTO uploadFileById = uploadFileService.getUploadFileById(id);
       String  uploadPath = RuoShuiConfig.getUploadPath();
-      String[] split = uploadFileById.getDownloadJarHttp().split("/");
-      String filePath = uploadPath + "/" + split[split.length-4] + "/" + split[split.length-3] + "/" + split[split.length-2] + "/" + uploadFileById.getFilePath();
+//      String[] split = uploadFileById.getDownloadJarHttp().split("/");
+//      String filePath = uploadPath + "/" + split[split.length-4] + "/" + split[split.length-3] + "/" + split[split.length-2] + "/" + uploadFileById.getFilePath();
+      String filePath = uploadPath + "/" + uploadFileById.getFilePath();
       FileUtils.deleteFile(filePath);
       uploadFileService.deleteFile(id);
       return RestResult.success();

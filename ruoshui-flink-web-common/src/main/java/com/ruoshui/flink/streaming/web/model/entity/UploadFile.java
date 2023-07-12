@@ -38,4 +38,5 @@ public class UploadFile implements Serializable {
   private String resourceType;
   private String resourceName;
   private Integer resourceId;
+  private String remarks;
 }
