@@ -2098,10 +2098,9 @@ CREATE TABLE `upload_file`  (
   `resource_type` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '资源类型',
   `resource_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '资源名称',
   `resource_id` int(11) NULL DEFAULT NULL COMMENT '资源ID',
+  `remarks` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 88 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '上传文件管理' ROW_FORMAT = Dynamic;
-
-
 -- ----------------------------
 -- Table structure for user
 -- ----------------------------
