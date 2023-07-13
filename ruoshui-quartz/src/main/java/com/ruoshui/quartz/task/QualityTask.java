@@ -112,13 +112,14 @@ public class QualityTask {
             Connection conn = null;
             Statement stmt = null;
             ResultSet rs = null;
+            DbQuery dbQuery = null;
             try {
                 MetadataSourceEntity dataSource = Optional.ofNullable(metadataSourceService.getMetadataSourceById(checkRuleEntity.getRuleSourceId())).orElseThrow(() -> new DataException("获取数据源接口出错"));
                 DbSchema dbSchema = dataSource.getDbSchema();
                 DbQueryProperty dbQueryProperty = new DbQueryProperty(dataSource.getDbType(), dbSchema.getHost(),
                         dbSchema.getUsername(), dbSchema.getPassword(), dbSchema.getPort(), dbSchema.getDbName(), dbSchema.getSid());
                 DataSourceFactory dataSourceFactory = SpringContextHolder.getBean(DataSourceFactory.class);
-                DbQuery dbQuery = Optional.ofNullable(dataSourceFactory.createDbQuery(dbQueryProperty)).orElseThrow(() -> new DataException("创建数据查询接口出错"));
+                dbQuery = Optional.ofNullable(dataSourceFactory.createDbQuery(dbQueryProperty)).orElseThrow(() -> new DataException("创建数据查询接口出错"));
                 conn = dbQuery.getConnection();
                 stmt = conn.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
                 rs = stmt.executeQuery(checkRuleEntity.getRuleSql());
@@ -141,6 +142,9 @@ public class QualityTask {
                     }
                     if (conn != null) {
                         conn.close();
+                    }
+                    if (dbQuery != null) {
+                        dbQuery.close();
                     }
                 } catch (SQLException e) {
                     checkReportEntity.setCheckResult("释放数据库连接出错");

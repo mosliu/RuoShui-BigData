@@ -92,12 +92,7 @@ public class SqlConsoleServiceImpl implements SqlConsoleService {
             log.error("全局异常信息ex={}, StackTrace={}", e.getMessage(), ThrowableUtil.getStackTrace(e));
         }
 
-        //关闭连接
-        for(Connection conn : conns){
-            if (null != conn && !conn.isClosed()) {
-                conn.close();
-            }
-        }
+        dbQuery.close();
         // 关闭线程池
         executorService.shutdown();
         // 执行完清除
