@@ -1,0 +1,4 @@
+INSERT INTO `sys_job` VALUES (105, 'Flink客户端心跳更新', 'SYSTEM', 'flinkTask.checkHeartbeat', '0 */1 * * * ?', '1', '0', '0', 'admin', '2023-07-13 10:41:44', 'admin', '2023-07-13 10:44:57', '');
+INSERT INTO `sys_job` VALUES (106, 'Flink一致性校验检查', 'SYSTEM', 'flinkTask.checkJobStatus', '0 */5 * * * ?', '1', '0', '0', 'admin', '2023-07-13 10:43:24', '', '2023-07-13 10:43:27', '');
+INSERT INTO `sys_job` VALUES (107, 'Flink自动savePoint', 'SYSTEM', 'flinkTask.autoSavePoint', '0 */1 * * * ?', '1', '0', '0', 'admin', '2023-07-13 10:44:30', '', '2023-07-13 10:44:33', '');
+INSERT INTO `sys_job` VALUES (108, '离线任务调度检测', 'SYSTEM', 'flinkTask.autoBatchRegisterJob', '0 */1 * * * ?', '1', '0', '0', 'admin', '2023-07-13 10:46:02', '', '2023-07-13 10:46:06', '');

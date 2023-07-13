@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.sql.SQLException;
 import java.util.List;
 
 @RestController
@@ -24,7 +25,7 @@ public class SqlConsoleController extends BaseController {
     private SqlConsoleService sqlConsoleService;
 
     @PostMapping("/run")
-    public AjaxResult sqlRun(@RequestBody @Validated SqlConsoleDto sqlConsoleDto){
+    public AjaxResult sqlRun(@RequestBody @Validated SqlConsoleDto sqlConsoleDto) throws SQLException {
         List<SqlConsoleVo> list = sqlConsoleService.sqlRun(sqlConsoleDto);
         return AjaxResult.success(list);
     }

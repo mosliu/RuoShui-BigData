@@ -42,7 +42,7 @@ public class SqlConsoleServiceImpl implements SqlConsoleService {
     private static Map<String, List<Connection>> connectionMap = new ConcurrentHashMap<>();
 
     @Override
-    public List<SqlConsoleVo> sqlRun(SqlConsoleDto sqlConsoleDto) {
+    public List<SqlConsoleVo> sqlRun(SqlConsoleDto sqlConsoleDto) throws SQLException {
         String sqlKey = sqlConsoleDto.getSqlKey();
         Statements stmts;
         try {
@@ -90,6 +90,13 @@ public class SqlConsoleServiceImpl implements SqlConsoleService {
             }
         } catch (Exception e) {
             log.error("全局异常信息ex={}, StackTrace={}", e.getMessage(), ThrowableUtil.getStackTrace(e));
+        }
+
+        //关闭连接
+        for(Connection conn : conns){
+            if (null != conn && !conn.isClosed()) {
+                conn.close();
+            }
         }
         // 关闭线程池
         executorService.shutdown();
