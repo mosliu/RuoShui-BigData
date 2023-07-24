@@ -121,7 +121,7 @@
 ![img_1.png](img/img71.png)
 
 #### 群聊
-![ql.png](img/ql.png)
+![qj.jpg](img/qj.jpg)
 
 #### 特技
 1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
