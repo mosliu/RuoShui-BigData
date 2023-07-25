@@ -74,10 +74,10 @@
 4. 修改ruoshui-datax-executor---->src--->main--->resources下的application.yml配置文件
 ![img.png](img/img54.png)
 5. 将sql目录下的sql文件导入到自己数据库
-6. 下载pluginLibs数据源jar包放到RuoShui-BigData主目录下，链接：https://pan.baidu.com/s/15gvBtnLqrLstmd7u8WgLYg?pwd=n7ai
-   提取码：n7ai
-7. 下载datax放到服务器上或者电脑本地 下载地址 链接：https://pan.baidu.com/s/1B0b6nevsB7gXOBMvVBqqtA?pwd=ipwu
-   提取码：ipwu
+6. 下载pluginLibs数据源jar包放到RuoShui-BigData主目录下，链接：链接：https://pan.baidu.com/s/11edXDIO3QsSicIBRUfhCYw?pwd=8bh1
+   提取码：8bh1
+7. 下载datax放到服务器上或者电脑本地 下载地址 链接：链接：https://pan.baidu.com/s/11edXDIO3QsSicIBRUfhCYw?pwd=8bh1
+   提取码：8bh1
 8. 打包项目
 ![img.png](img/img55.png)
 9. 拷贝主服务 ruoshui-admin 下的ruoshui-admin.jar 
