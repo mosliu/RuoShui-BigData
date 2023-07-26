@@ -16,49 +16,6 @@
       </el-form-item>
     </el-form>
 
-    <el-row type="flex" justify="space-between">
-      <el-col :span="12">
-        <el-button-group>
-        </el-button-group>
-      </el-col>
-      <el-col :span="12">
-        <div class="right-toolbar">
-          <el-tooltip content="密度" effect="dark" placement="top">
-            <el-dropdown trigger="click" @command="handleCommand">
-              <el-button circle size="mini">
-                <svg-icon class-name="size-icon" icon-class="colum-height" />
-              </el-button>
-              <el-dropdown-menu slot="dropdown">
-                <el-dropdown-item command="medium">正常</el-dropdown-item>
-                <el-dropdown-item command="small">中等</el-dropdown-item>
-                <el-dropdown-item command="mini">紧凑</el-dropdown-item>
-              </el-dropdown-menu>
-            </el-dropdown>
-          </el-tooltip>
-          <el-tooltip content="刷新" effect="dark" placement="top">
-            <el-button circle size="mini" @click="handleRefresh">
-              <svg-icon class-name="size-icon" icon-class="shuaxin" />
-            </el-button>
-          </el-tooltip>
-          <el-tooltip content="列设置" effect="dark" placement="top">
-            <el-popover placement="bottom" width="100" trigger="click">
-              <el-checkbox-group v-model="checkedTableColumns" @change="handleCheckedColsChange">
-                <el-checkbox
-                  v-for="(item, index) in tableColumns"
-                  :key="index"
-                  :label="item.prop"
-                >{{ item.label }}</el-checkbox>
-              </el-checkbox-group>
-              <span slot="reference">
-                <el-button circle size="mini">
-                  <svg-icon class-name="size-icon" icon-class="shezhi" />
-                </el-button>
-              </span>
-            </el-popover>
-          </el-tooltip>
-        </div>
-      </el-col>
-    </el-row>
 
     <el-table
       v-loading="loading"
@@ -75,17 +32,34 @@
           <span>{{ scope.$index +1 }}</span>
         </template>
       </el-table-column>
-      <template v-for="(item, index) in tableColumns">
-        <el-table-column
-          v-if="item.show"
-          :key="index"
-          :prop="item.prop"
-          :label="item.label"
-          :formatter="item.formatter"
-          align="center"
-          show-overflow-tooltip
-        />
-      </template>
+      <el-table-column label="数据源" align="center">
+        <template slot-scope="scope">{{ scope.row.sourceName }}</template>
+      </el-table-column>
+      <el-table-column label="数据库表" align="center">
+         <template slot-scope="scope">{{ scope.row.tableName }}</template>
+      </el-table-column>
+      <el-table-column label="变更字段" align="center">
+         <template slot-scope="scope"> {{fieldNameFormatter(scope.row.fieldName) }}</template>
+      </el-table-column>
+      <el-table-column label="原来的值" align="center">
+         <template slot-scope="scope">{{ scope.row.fieldOldValue }}</template>
+      </el-table-column>
+      <el-table-column label="最新的值" align="center">
+         <template slot-scope="scope">{{ scope.row.fieldNewValue }}</template>
+      </el-table-column>
+      <el-table-column label="版本号" align="center">
+         <template slot-scope="scope">{{ scope.row.version }}</template>
+      </el-table-column>
+      <el-table-column label="状态" align="center">
+         <template slot-scope="scope">
+           <dict-tag :options="dict.type.sys_data_status" :value="scope.row.status"/>
+         </template>
+      </el-table-column>
+      <el-table-column label="创建时间" align="center">
+        <template slot-scope="scope">{{ scope.row.createTime}}</template>
+      </el-table-column>
+
+
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-popover
@@ -136,6 +110,7 @@ import { pageChangeRecord, delChangeRecord } from '@/api/metadata/changerecord'
 
 export default {
   name: 'ChangeRecordList',
+  dicts: ['sys_data_status'],
   data() {
     return {
       tableHeight: document.body.offsetHeight - 310 + 'px',
@@ -149,22 +124,7 @@ export default {
       },
       // 遮罩层
       loading: true,
-      // 表格头
-      tableColumns: [
-        { prop: 'sourceName', label: '数据源', show: true },
-        { prop: 'tableName', label: '数据库表', show: true },
-        { prop: 'fieldName', label: '变更字段', show: true, formatter: this.fieldNameFormatter },
-        { prop: 'fieldOldValue', label: '原来的值', show: true },
-        { prop: 'fieldNewValue', label: '最新的值', show: true },
-        { prop: 'version', label: '版本号', show: true },
-        {
-          prop: 'status',
-          label: '状态',
-          show: true,
-          formatter: this.statusFormatter
-        },
-        { prop: 'createTime', label: '创建时间', show: true }
-      ],
+
       // 默认选择中表格头
       checkedTableColumns: [],
       tableSize: 'medium',
@@ -303,7 +263,7 @@ export default {
         return <el-tag type='warning'>{dictLabel}</el-tag>
       }
     },
-    fieldNameFormatter(row, column, cellValue, index) {
+    fieldNameFormatter(cellValue) {
       return this.dicts.get(cellValue)
     }
   }

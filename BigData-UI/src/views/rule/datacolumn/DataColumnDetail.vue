@@ -117,13 +117,15 @@
           <el-input v-model="form2.fieldNewValue" placeholder="请输入最新的值" />
         </el-form-item>
         <el-form-item label="状态" prop="status">
-          <el-radio-group v-model="form2.status">
-            <el-radio
-              v-for="dict in statusOptions"
-              :key="dict.id"
-              :label="dict.itemText"
-            >{{ dict.itemValue }}</el-radio>
-          </el-radio-group>
+          <el-select v-model="form2.status">
+              <el-option
+              v-for="dict in dict.type.sys_data_status"
+              :key="dict.value"
+              :label="dict.label"
+              :value="dict.value"
+              />
+            </el-select>
+          </el-form-item>
         </el-form-item>
         <el-form-item label="备注" prop="remark">
           <el-input v-model="form2.remark" type="textarea" placeholder="请输入内容" />
@@ -143,6 +145,7 @@ import { pageChangeRecord, addChangeRecord } from '@/api/metadata/changerecord'
 
 export default {
   name: 'DataColumnDetail',
+  dicts: ['sys_data_status'],
   props: {
     data: {
       type: Object,

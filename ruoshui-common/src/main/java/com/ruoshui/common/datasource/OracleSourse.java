@@ -116,7 +116,7 @@ public class OracleSourse {
             SqlQueryDTO queryDTO = SqlQueryDTO.builder().sql(sql).build();
             Boolean aBoolean = client.executeSqlWithoutResultSet(source, queryDTO);
             if (!aBoolean) {
-                logger.error("修改CK数据库的字段类型：" + sql + " 失败\n");
+                logger.error("修改Orc数据库的字段类型：" + sql + " 失败\n");
                 throw new RuntimeException("执行失败");
             }
         return true;
