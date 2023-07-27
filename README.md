@@ -98,7 +98,7 @@
 2. 修改上面的 ruoshui-datax-executor---->src--->main--->resources下的application.yml配置文件
 ![img.png](img/img54.png)
 注意：服务端的分组名要和你设置的AppName一致
-3. 打包 拷贝 ruoshui-datax-executor 下的 ruoshui-datax-executor.jar 执行即可
+3. 打包 拷贝 ruoshui-datax-executor 下的 ruoshui-datax-executor.jar 到放有datax的服务器上执行即可
 
 #### Flink使用说明
 1. 打包项目 拷贝 ruoshui-flink-core 下的 flink-streaming-core.jar 重名为 ruoshui-flink-core.jar
