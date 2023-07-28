@@ -23,4 +23,8 @@ import java.util.List;
 public interface MetadataColumnDao extends BaseDao<MetadataColumnEntity> {
 
     <E extends IPage<MetadataColumnEntity>> E selectPageWithAuth(E page, @Param(Constants.WRAPPER) Wrapper<MetadataColumnEntity> queryWrapper, @Param("roles") List<String> roles);
+
+    void deleteBysourceId(@Param("sourceId") String sourceId);
+
+
 }

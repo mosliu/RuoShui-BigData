@@ -58,9 +58,10 @@ public class AsyncTask {
         Boolean completed = false;
         try {
             long start = System.currentTimeMillis();
+            metadataTableDao.deleteBysourceId(dataSource.getId());
+            metadataColumnDao.deleteBysourceId(dataSource.getId());
             DbSchema dbSchema = dataSource.getDbSchema();
-            DbQueryProperty dbQueryProperty = new DbQueryProperty(dataSource.getDbType(), dbSchema.getHost(),
-                    dbSchema.getUsername(), dbSchema.getPassword(), dbSchema.getPort(), dbSchema.getDbName(), dbSchema.getSid());
+            DbQueryProperty dbQueryProperty = new DbQueryProperty(dataSource.getDbType(), dbSchema.getHost(),dbSchema.getUsername(), dbSchema.getPassword(), dbSchema.getPort(), dbSchema.getDbName(), dbSchema.getSid());
             DbQuery dbQuery = dataSourceFactory.createDbQuery(dbQueryProperty);
             List<DbTable> tables = dbQuery.getTables(dbSchema.getDbName());
             if (CollUtil.isNotEmpty(tables)) {

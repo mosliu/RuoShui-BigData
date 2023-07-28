@@ -24,6 +24,9 @@
         ${alias}.id,
         ${alias}.source_id, ${alias}.table_name, ${alias}.table_comment
     </sql>
+    <delete id="deleteBysourceId">
+        delete from metadata_table where source_id = ${sourceId}
+    </delete>
 
     <select id="selectPageWithAuth" resultMap="ExtendResultMap">
         SELECT s.source_name,
@@ -43,5 +46,7 @@
             </if>
         </trim>
     </select>
+
+
 
 </mapper>

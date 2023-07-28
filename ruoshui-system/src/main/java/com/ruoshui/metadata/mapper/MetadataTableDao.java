@@ -23,4 +23,8 @@ import java.util.List;
 public interface MetadataTableDao extends BaseDao<MetadataTableEntity> {
 
     <E extends IPage<MetadataTableEntity>> E selectPageWithAuth(E page, @Param(Constants.WRAPPER) Wrapper<MetadataTableEntity> queryWrapper, @Param("roles") List<String> roles);
+
+
+    void deleteBysourceId(@Param("sourceId") String sourceId);
+
 }

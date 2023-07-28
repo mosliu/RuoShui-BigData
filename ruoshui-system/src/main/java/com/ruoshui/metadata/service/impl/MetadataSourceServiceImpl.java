@@ -179,7 +179,7 @@ public class MetadataSourceServiceImpl extends BaseServiceImpl<MetadataSourceDao
     @Override
     public void syncMetadata(String id) {
         MetadataSourceEntity metadataSourceEntity = super.getById(id);
-        if (!SyncStatus.NotSync.getKey().equals(metadataSourceEntity.getIsSync())&&!SyncStatus.ErrSync.getKey().equals(metadataSourceEntity.getIsSync())) {
+        if (!SyncStatus.NotSync.getKey().equals(metadataSourceEntity.getIsSync())&&!SyncStatus.ErrSync.getKey().equals(metadataSourceEntity.getIsSync())&&!SyncStatus.IsSync.getKey().equals(metadataSourceEntity.getIsSync())) {
             throw new DataException("元数据同步中");
         }
         metadataSourceEntity.setIsSync(SyncStatus.InSync.getKey());
