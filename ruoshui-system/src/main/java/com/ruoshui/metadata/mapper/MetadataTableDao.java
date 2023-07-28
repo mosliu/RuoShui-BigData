@@ -27,4 +27,7 @@ public interface MetadataTableDao extends BaseDao<MetadataTableEntity> {
 
     void deleteBysourceId(@Param("sourceId") String sourceId);
 
+    Integer countByTableName(@Param("tableName") String tableName);
+
+    String selectIdByTableName(@Param("tableName") String tableName);
 }

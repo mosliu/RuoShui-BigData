@@ -58,8 +58,6 @@ public class AsyncTask {
         Boolean completed = false;
         try {
             long start = System.currentTimeMillis();
-            metadataTableDao.deleteBysourceId(dataSource.getId());
-            metadataColumnDao.deleteBysourceId(dataSource.getId());
             DbSchema dbSchema = dataSource.getDbSchema();
             DbQueryProperty dbQueryProperty = new DbQueryProperty(dataSource.getDbType(), dbSchema.getHost(),dbSchema.getUsername(), dbSchema.getPassword(), dbSchema.getPort(), dbSchema.getDbName(), dbSchema.getSid());
             DbQuery dbQuery = dataSourceFactory.createDbQuery(dbQueryProperty);
@@ -73,8 +71,15 @@ public class AsyncTask {
                     return metadataTable;
                 }).collect(Collectors.toList());
                 if (CollUtil.isNotEmpty(metadataTableEntityList)) {
-                    metadataTableEntityList.stream().forEach(table -> {
-                        metadataTableDao.insert(table);
+                     metadataTableEntityList.stream().forEach(table -> {
+                        Integer tablenumber = metadataTableDao.countByTableName(table.getTableName());
+                        if(tablenumber == 0){
+                            metadataTableDao.insert(table);
+                        }else{
+                            String id =  metadataTableDao.selectIdByTableName(table.getTableName());
+                            table.setId(id);
+                            metadataTableDao.updateById(table);
+                        }
                         List<DbColumn> columns = dbQuery.getTableColumns(dbSchema.getDbName(), table.getTableName());
                         if (CollUtil.isNotEmpty(columns)) {
                             List<MetadataColumnEntity> metadataColumnEntityList = columns.stream().map(column -> {
@@ -94,7 +99,17 @@ public class AsyncTask {
                                 return metadataColumn;
                             }).collect(Collectors.toList());
                             if (CollUtil.isNotEmpty(metadataColumnEntityList)) {
-                                metadataColumnEntityList.stream().forEach(column -> metadataColumnDao.insert(column));
+                                metadataColumnEntityList.stream().forEach(column ->
+                                {
+                                    Integer Columnnumber = metadataColumnDao.countByColumnName(column.getColumnName(),column.getTableId());
+                                    if(Columnnumber == 0){
+                                        metadataColumnDao.insert(column);
+                                    }else{
+                                        String id = metadataColumnDao.selectIdByColumnName(column.getColumnName(),column.getTableId());
+                                        column.setId(id);
+                                        metadataColumnDao.updateById(column);
+                                    }
+                                });
                             }
                         }
                     });

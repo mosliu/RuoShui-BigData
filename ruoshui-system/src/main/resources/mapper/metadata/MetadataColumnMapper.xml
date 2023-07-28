@@ -36,7 +36,7 @@
         ${alias}.source_id, ${alias}.table_id, ${alias}.column_name, ${alias}.column_comment, ${alias}.column_key, ${alias}.column_nullable, ${alias}.column_position, ${alias}.data_type, ${alias}.data_length, ${alias}.data_precision, ${alias}.data_scale, ${alias}.data_default
     </sql>
     <delete id="deleteBysourceId">
-        delete from metadata_column where source_id = ${sourceId}
+        delete from metadata_column where source_id = #{sourceId}
     </delete>
 
     <select id="selectPageWithAuth" resultMap="ExtendResultMap">
@@ -57,6 +57,12 @@
                 )
             </if>
         </trim>
+    </select>
+    <select id="countByColumnName" resultType="java.lang.Integer">
+        select count(*) from metadata_column where column_name = #{columnName} and table_id = #{tableId}
+    </select>
+    <select id="selectIdByColumnName" resultType="java.lang.String">
+        select id from metadata_column where column_name = #{columnName} and table_id = #{tableId}
     </select>
 
 </mapper>

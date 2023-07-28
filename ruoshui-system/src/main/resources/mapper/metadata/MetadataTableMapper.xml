@@ -25,7 +25,7 @@
         ${alias}.source_id, ${alias}.table_name, ${alias}.table_comment
     </sql>
     <delete id="deleteBysourceId">
-        delete from metadata_table where source_id = ${sourceId}
+        delete from metadata_table where source_id = #{sourceId}
     </delete>
 
     <select id="selectPageWithAuth" resultMap="ExtendResultMap">
@@ -46,7 +46,12 @@
             </if>
         </trim>
     </select>
-
+    <select id="countByTableName" resultType="java.lang.Integer">
+        select count(*) from metadata_table where table_name = #{tableName}
+    </select>
+    <select id="selectIdByTableName" resultType="java.lang.String">
+        select id from metadata_table where table_name = #{tableName}
+    </select>
 
 
 </mapper>
