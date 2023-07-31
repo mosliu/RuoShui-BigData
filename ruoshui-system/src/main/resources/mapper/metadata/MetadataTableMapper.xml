@@ -25,7 +25,7 @@
         ${alias}.source_id, ${alias}.table_name, ${alias}.table_comment
     </sql>
     <delete id="deleteBysourceId">
-        delete from metadata_table where source_id = #{sourceId}
+        delete from metadata_table where source_id = #{sourceId} and table_name = #{tableName}
     </delete>
 
     <select id="selectPageWithAuth" resultMap="ExtendResultMap">
@@ -51,6 +51,10 @@
     </select>
     <select id="selectIdByTableName" resultType="java.lang.String">
         select id from metadata_table where table_name = #{tableName}
+    </select>
+
+    <select id="selectTableBySourceId" resultType="java.lang.String">
+        select table_name from metadata_table where source_id = #{sourceId}
     </select>
 
 

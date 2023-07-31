@@ -25,7 +25,9 @@ public interface MetadataTableDao extends BaseDao<MetadataTableEntity> {
     <E extends IPage<MetadataTableEntity>> E selectPageWithAuth(E page, @Param(Constants.WRAPPER) Wrapper<MetadataTableEntity> queryWrapper, @Param("roles") List<String> roles);
 
 
-    void deleteBysourceId(@Param("sourceId") String sourceId);
+    void deleteBysourceId(@Param("sourceId") String sourceId,@Param("tableName") String tableName);
+
+    List<String> selectTableBySourceId(@Param("sourceId") String sourceId);
 
     Integer countByTableName(@Param("tableName") String tableName);
 

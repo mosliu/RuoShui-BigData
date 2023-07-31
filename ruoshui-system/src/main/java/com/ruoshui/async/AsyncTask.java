@@ -5,6 +5,7 @@ import cn.hutool.core.collection.CollUtil;
 import com.ruoshui.common.database.constants.DbQueryProperty;
 import com.ruoshui.common.database.service.DataSourceFactory;
 import com.ruoshui.common.database.service.DbQuery;
+import com.ruoshui.common.utils.ListUtils;
 import com.ruoshui.core.database.core.DbColumn;
 import com.ruoshui.core.database.core.DbTable;
 import com.ruoshui.market.dto.ApiLogDto;
@@ -22,6 +23,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -62,14 +64,27 @@ public class AsyncTask {
             DbQueryProperty dbQueryProperty = new DbQueryProperty(dataSource.getDbType(), dbSchema.getHost(),dbSchema.getUsername(), dbSchema.getPassword(), dbSchema.getPort(), dbSchema.getDbName(), dbSchema.getSid());
             DbQuery dbQuery = dataSourceFactory.createDbQuery(dbQueryProperty);
             List<DbTable> tables = dbQuery.getTables(dbSchema.getDbName());
+            List<String> SourcetablesList = new ArrayList<>();
+            List<String> SourcecolumnsList = new ArrayList<>();
             if (CollUtil.isNotEmpty(tables)) {
                 List<MetadataTableEntity> metadataTableEntityList = tables.stream().map(table -> {
                     MetadataTableEntity metadataTable = new MetadataTableEntity();
                     metadataTable.setSourceId(dataSource.getId());
                     metadataTable.setTableName(table.getTableName());
                     metadataTable.setTableComment(table.getTableComment());
+                    SourcetablesList.add(table.getTableName());
                     return metadataTable;
                 }).collect(Collectors.toList());
+                List<String> tableList = metadataTableDao.selectTableBySourceId(dataSource.getId());
+
+                if(null != tableList && null != SourcetablesList && tableList.size() > SourcetablesList.size()){
+                    List<String> differListByMap = ListUtils.getDifferListByMap(tableList, SourcetablesList);
+                    System.out.println("集合A和集合B不同的元素："+differListByMap);
+                    for(String tablename : differListByMap) {
+                        metadataTableDao.deleteBysourceId(dataSource.getId(), tablename);
+                    }
+                }
+
                 if (CollUtil.isNotEmpty(metadataTableEntityList)) {
                      metadataTableEntityList.stream().forEach(table -> {
                         Integer tablenumber = metadataTableDao.countByTableName(table.getTableName());
@@ -96,8 +111,10 @@ public class AsyncTask {
                                 metadataColumn.setDataPrecision(column.getDataPrecision());
                                 metadataColumn.setDataScale(column.getDataScale());
                                 metadataColumn.setDataDefault(column.getDataDefault());
+                                SourcecolumnsList.add(column.getColName());
                                 return metadataColumn;
                             }).collect(Collectors.toList());
+
                             if (CollUtil.isNotEmpty(metadataColumnEntityList)) {
                                 metadataColumnEntityList.stream().forEach(column ->
                                 {
