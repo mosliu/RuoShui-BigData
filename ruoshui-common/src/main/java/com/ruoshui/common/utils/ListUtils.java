@@ -7,10 +7,6 @@ import java.util.Map;
 
 
 public class ListUtils {
-
-
-
-
         private static void stupidMethod2(List<String> listA, List<String> listB) {
             System.out.println("数量级为 " + listA.size() + "集合的不同元素为");
             List<String> differList = new ArrayList<>();

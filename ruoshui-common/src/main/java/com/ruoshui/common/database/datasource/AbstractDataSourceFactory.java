@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 import javax.sql.DataSource;
+import java.util.Properties;
 
 @Component
 public  class AbstractDataSourceFactory implements DataSourceFactory {
@@ -42,6 +43,11 @@ public  class AbstractDataSourceFactory implements DataSourceFactory {
 
     public  DataSource createDataSource(DbQueryProperty property) {
         HikariDataSource dataSource = new HikariDataSource();
+        if(DbType.ORACLE_12C.getDb().equals(property.getDbType())){
+            Properties properties = new Properties();
+            properties.put("driverType","thin");
+            dataSource.setDataSourceProperties(properties);
+        }
         dataSource.setJdbcUrl(trainToJdbcUrl(property));
         dataSource.setUsername(property.getUsername());
         dataSource.setPassword(property.getPassword());
