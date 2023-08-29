@@ -238,7 +238,14 @@ export default {
       console.log(this.form2.cipherType)
       console.log(this.form2.cryptType)
       if (this.form2.cipherType && this.form2.cryptType) {
-        this.form.rules.push(this.form2)
+        //this.form.rules.push(this.form2)
+        const newFormData = {
+          fieldName: this.form2.fieldName,
+          cipherType: this.form2.cipherType,
+          cryptType: this.form2.cryptType
+        }
+
+        this.form.rules.push(newFormData)
       }
       const cipher = this.form2.cipherType
       const crypt = this.form2.cryptType
