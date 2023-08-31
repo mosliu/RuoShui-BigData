@@ -20,6 +20,7 @@ public class DialectRegistry {
         dialect_enum_map.put(DbType.SQL_SERVER2008, new SQLServer2008Dialect());
         dialect_enum_map.put(DbType.SQL_SERVER, new SQLServerDialect());
         dialect_enum_map.put(DbType.CLICKHOUSE, new ClickhouseDialect());
+        dialect_enum_map.put(DbType.HIVE, new HiveDialect());
         dialect_enum_map.put(DbType.OTHER, new UnknownDialect());
     }
 

@@ -71,6 +71,8 @@ public abstract class AbstractDbQueryFactory implements DbQuery {
 
     @Override
     public List<DbTable> getTables(String dbName) {
+        String useDatabaseSql = "USE " + dbName;
+        jdbcTemplate.execute(useDatabaseSql);
         String sql = dbDialect.tables(dbName);
         return jdbcTemplate.query(sql, dbDialect.tableMapper());
     }

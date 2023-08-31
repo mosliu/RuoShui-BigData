@@ -405,9 +405,10 @@ public class DataApiServiceImpl extends BaseServiceImpl<DataApiDao, DataApiEntit
 
     @Override
     public Document wordDataApi(String id) throws Exception {
+        //注册编码提供程序
         DataApiEntity dataApiEntity = super.getById(id);
         // 合并模版
-        ClassPathResource classPathResource = new ClassPathResource("templates/api_1.0.0.docx");
+        ClassPathResource classPathResource = new ClassPathResource("templates/api_1.0.0.doc");
         InputStream inputStream = classPathResource.getInputStream();
         Document doc = WordUtil.getInstance().getDocument(inputStream);
         // 提供字段
