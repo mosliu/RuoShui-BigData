@@ -78,7 +78,7 @@ export default {
       })
     },
     initEcharts(data) {
-      const myChart1 = this.$echarts.init(document.getElementsByClassName(data.id)[0])
+      let myChart1 = echarts.init(document.getElementsByClassName(data.id)[0])
       // 绘制图表
       var option1 = {
         title: {
@@ -100,7 +100,7 @@ export default {
           name: 'cpu使用率',
           type: 'gauge',
           max: 100,
-          radius: '70%', // 半径
+          radius: '80%', // 半径
           startAngle: 215, // 起始位置
           endAngle: -35, // 终点位置
           detail: {
@@ -114,7 +114,7 @@ export default {
       }
       myChart1.setOption(option1)
 
-      const myChart2 = this.$echarts.init(document.getElementsByClassName(data.id)[1])
+      let myChart2 = echarts.init(document.getElementsByClassName(data.id)[1])
       // 绘制图表
       var option2 = {
         title: {
@@ -136,7 +136,7 @@ export default {
           name: '内存使用率',
           type: 'gauge',
           max: 100,
-          radius: '70%', // 半径
+          radius: '80%', // 半径
           startAngle: 215, // 起始位置
           endAngle: -35, // 终点位置
           detail: {
@@ -157,7 +157,7 @@ export default {
   .container{
     overflow: hidden;
     p{
-      font-size: 14px;color: #666;padding: 10px 0;
+      font-size: 10px;color: #666;padding: 10px 0;
       .fl{
         float: left;
       }
@@ -173,7 +173,7 @@ export default {
         font-size: 18px;font-weight: bold;color: #333;padding: 5px 0;margin: 0;
       }
       .number{
-        font-size: 45px;color: #3d90d0
+        font-size: 35px;color: #3d90d0
       }
     }
   }
