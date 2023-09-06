@@ -167,7 +167,7 @@
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button @click="dialogFormVisible = false">
+        <el-button @click="cancel()">
           取消
         </el-button>
         <el-button type="primary" @click="dialogStatus==='create'?createData():updateData()">
@@ -400,6 +400,13 @@ export default {
       this.$nextTick(() => {
         this.$refs['dataForm'].clearValidate()
       })
+    },
+    cancel() {
+      this.dialogFormVisible = false
+      this.jdbc = true
+      this.hbase = false
+      this.mongodb = true
+      this.orc = false
     },
     createData() {
       this.$refs['dataForm'].validate((valid) => {
