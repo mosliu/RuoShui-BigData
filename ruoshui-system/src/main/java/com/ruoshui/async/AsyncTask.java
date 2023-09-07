@@ -115,6 +115,16 @@ public class AsyncTask {
                                 return metadataColumn;
                             }).collect(Collectors.toList());
 
+
+                            List<String> columnsList = metadataColumnDao.selectColumnNameByTableId(table.getId(),table.getSourceId());
+                            if(null != tableList && null != SourcecolumnsList && columnsList.size() > SourcecolumnsList.size()){
+                                List<String> differListByMap = ListUtils.getDifferListByMap(columnsList, SourcecolumnsList);
+                                for(String columnName : differListByMap) {
+                                    metadataColumnDao.deleteBysourceIdAndTidAndColName(table.getId(),table.getSourceId(),columnName);
+                                }
+                            }
+
+
                             if (CollUtil.isNotEmpty(metadataColumnEntityList)) {
                                 metadataColumnEntityList.stream().forEach(column ->
                                 {

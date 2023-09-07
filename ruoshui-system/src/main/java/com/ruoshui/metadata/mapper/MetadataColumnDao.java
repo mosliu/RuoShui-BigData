@@ -30,5 +30,10 @@ public interface MetadataColumnDao extends BaseDao<MetadataColumnEntity> {
 
     String selectIdByColumnName(@Param("columnName") String columnName,@Param("tableId") String tableId);
 
+    List<String>  selectColumnNameByTableId(@Param("tableId") String tableId,@Param("sourceId") String sourceId);
+
+    void deleteBysourceIdAndTidAndColName(@Param("tableId") String tableId,@Param("sourceId") String sourceId, @Param("columnName") String columnName);
+
+
 
 }

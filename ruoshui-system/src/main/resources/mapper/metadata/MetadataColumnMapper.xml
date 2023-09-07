@@ -38,6 +38,9 @@
     <delete id="deleteBysourceId">
         delete from metadata_column where source_id = #{sourceId}
     </delete>
+    <delete id="deleteBysourceIdAndTidAndColName">
+        delete from metadata_column where source_id = #{sourceId} and table_id = #{tableId} and column_name = #{columnName}
+    </delete>
 
     <select id="selectPageWithAuth" resultMap="ExtendResultMap">
         SELECT s.source_name, t.table_name, t.table_comment,
@@ -63,6 +66,9 @@
     </select>
     <select id="selectIdByColumnName" resultType="java.lang.String">
         select id from metadata_column where column_name = #{columnName} and table_id = #{tableId}
+    </select>
+    <select id="selectColumnNameByTableId" resultType="java.lang.String">
+        select column_name from metadata_column where table_id = #{tableId} and source_id = #{sourceId}
     </select>
 
 </mapper>
