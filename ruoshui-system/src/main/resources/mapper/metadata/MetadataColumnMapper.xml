@@ -62,10 +62,10 @@
         </trim>
     </select>
     <select id="countByColumnName" resultType="java.lang.Integer">
-        select count(*) from metadata_column where column_name = #{columnName} and table_id = #{tableId}
+        select count(*) from metadata_column where column_name = #{columnName} and table_id = #{tableId} and source_id = #{sourceId}
     </select>
     <select id="selectIdByColumnName" resultType="java.lang.String">
-        select id from metadata_column where column_name = #{columnName} and table_id = #{tableId}
+        select id from metadata_column where column_name = #{columnName} and table_id = #{tableId} and source_id = #{sourceId}
     </select>
     <select id="selectColumnNameByTableId" resultType="java.lang.String">
         select column_name from metadata_column where table_id = #{tableId} and source_id = #{sourceId}

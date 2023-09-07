@@ -26,9 +26,9 @@ public interface MetadataColumnDao extends BaseDao<MetadataColumnEntity> {
 
     void deleteBysourceId(@Param("sourceId") String sourceId);
 
-    Integer countByColumnName(@Param("columnName") String columnName,@Param("tableId") String tableId);
+    Integer countByColumnName(@Param("columnName") String columnName,@Param("tableId") String tableId,@Param("sourceId") String sourceId);
 
-    String selectIdByColumnName(@Param("columnName") String columnName,@Param("tableId") String tableId);
+    String selectIdByColumnName(@Param("columnName") String columnName,@Param("tableId") String tableId,@Param("sourceId") String sourceId);
 
     List<String>  selectColumnNameByTableId(@Param("tableId") String tableId,@Param("sourceId") String sourceId);
 

@@ -87,11 +87,11 @@ public class AsyncTask {
 
                 if (CollUtil.isNotEmpty(metadataTableEntityList)) {
                      metadataTableEntityList.stream().forEach(table -> {
-                        Integer tablenumber = metadataTableDao.countByTableName(table.getTableName());
+                        Integer tablenumber = metadataTableDao.countByTableName(table.getTableName(),table.getSourceId());
                         if(tablenumber == 0){
                             metadataTableDao.insert(table);
                         }else{
-                            String id =  metadataTableDao.selectIdByTableName(table.getTableName());
+                            String id =  metadataTableDao.selectIdByTableName(table.getTableName(),table.getSourceId());
                             table.setId(id);
                             metadataTableDao.updateById(table);
                         }
@@ -128,11 +128,11 @@ public class AsyncTask {
                             if (CollUtil.isNotEmpty(metadataColumnEntityList)) {
                                 metadataColumnEntityList.stream().forEach(column ->
                                 {
-                                    Integer Columnnumber = metadataColumnDao.countByColumnName(column.getColumnName(),column.getTableId());
+                                    Integer Columnnumber = metadataColumnDao.countByColumnName(column.getColumnName(),column.getTableId(),column.getSourceId());
                                     if(Columnnumber == 0){
                                         metadataColumnDao.insert(column);
                                     }else{
-                                        String id = metadataColumnDao.selectIdByColumnName(column.getColumnName(),column.getTableId());
+                                        String id = metadataColumnDao.selectIdByColumnName(column.getColumnName(),column.getTableId(),column.getSourceId());
                                         column.setId(id);
                                         metadataColumnDao.updateById(column);
                                     }
