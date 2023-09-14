@@ -408,7 +408,7 @@ public class DataApiServiceImpl extends BaseServiceImpl<DataApiDao, DataApiEntit
         //注册编码提供程序
         DataApiEntity dataApiEntity = super.getById(id);
         // 合并模版
-        ClassPathResource classPathResource = new ClassPathResource("templates/api_1.0.0.doc");
+        ClassPathResource classPathResource = new ClassPathResource("templates/api_1.0.0.docx");
         InputStream inputStream = classPathResource.getInputStream();
         Document doc = WordUtil.getInstance().getDocument(inputStream);
         // 提供字段
