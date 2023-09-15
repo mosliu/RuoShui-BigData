@@ -207,6 +207,8 @@
              </el-select>
            </template>
          </el-table-column>
+         <el-table-column prop="startValue" label="开始值" align="center" show-overflow-tooltip />
+         <el-table-column prop="endValue" label="结束值" align="center" show-overflow-tooltip />
           <el-table-column prop="exampleValue" label="示例值" align="center" show-overflow-tooltip />
           <el-table-column prop="defaultValue" label="默认值" align="center" show-overflow-tooltip />
         </el-table>

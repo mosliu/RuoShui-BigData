@@ -200,7 +200,7 @@
           </el-table-column>
           <el-table-column prop="whereType" label="操作符" align="center" show-overflow-tooltip>
             <template slot-scope="scope">
-              <el-select v-model="scope.row.whereType" placeholder="请选择操作符">
+              <el-select v-model="scope.row.whereType" placeholder="请选择操作符" >
                 <el-option
                   v-for="dict in dict.type.data_where_type"
                   :key="dict.value"
@@ -210,16 +210,28 @@
               </el-select>
             </template>
           </el-table-column>
-          <el-table-column prop="exampleValue" label="示例值" align="center" show-overflow-tooltip>
-            <template slot-scope="scope">
-              <el-input v-model="scope.row.exampleValue" placeholder="请输入示例值" />
-            </template>
-          </el-table-column>
-          <el-table-column prop="defaultValue" label="默认值" align="center" show-overflow-tooltip>
-            <template slot-scope="scope">
-              <el-input v-model="scope.row.defaultValue" placeholder="请输入默认值" />
-            </template>
-          </el-table-column>
+
+         <el-table-column  prop="exampleValue" label="开始值" align="center" show-overflow-tooltip>
+           <template slot-scope="scope">
+             <el-input v-model="scope.row.startValue" placeholder="请输入开始时间" :disabled="scope.row.whereType != '13'"/>
+           </template>
+         </el-table-column>
+         <el-table-column  prop="exampleValue" label="结束值" align="center" show-overflow-tooltip>
+           <template slot-scope="scope">
+             <el-input v-model="scope.row.endValue" placeholder="请输入示例值" :disabled="scope.row.whereType != '13'"/>
+           </template>
+         </el-table-column>
+
+         <el-table-column  prop="exampleValue" label="示例值" align="center" show-overflow-tooltip>
+           <template slot-scope="scope">
+             <el-input v-model="scope.row.exampleValue" placeholder="请输入示例值" :disabled="scope.row.whereType != '13'" />
+           </template>
+         </el-table-column>
+         <el-table-column  prop="defaultValue" label="默认值" align="center" show-overflow-tooltip>
+           <template slot-scope="scope">
+             <el-input v-model="scope.row.defaultValue" placeholder="请输入默认值" :disabled="scope.row.whereType != '13'"/>
+           </template>
+         </el-table-column>
         </el-table>
         <el-divider content-position="left">返回字段</el-divider>
         <el-table
