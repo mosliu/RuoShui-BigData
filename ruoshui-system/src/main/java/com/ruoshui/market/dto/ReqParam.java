@@ -35,6 +35,12 @@ public class ReqParam implements Serializable {
     @NotNull(message = "参数类型不能为空", groups = {ValidationGroups.Insert.class, ValidationGroups.Update.class})
     private String paramType;
 
+    @ApiModelProperty(value = "开始时间")
+    private String startValue;
+
+    @ApiModelProperty(value = "结束时间")
+    private String endValue;
+
     @ApiModelProperty(value = "示例值")
     @NotBlank(message = "示例值不能为空", groups = {ValidationGroups.Insert.class, ValidationGroups.Update.class})
     private String exampleValue;
@@ -42,4 +48,7 @@ public class ReqParam implements Serializable {
     @ApiModelProperty(value = "默认值")
     @NotBlank(message = "默认值不能为空", groups = {ValidationGroups.Insert.class, ValidationGroups.Update.class})
     private String defaultValue;
+
+
+
 }

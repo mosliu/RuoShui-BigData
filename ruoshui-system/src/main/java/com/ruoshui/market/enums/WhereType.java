@@ -13,7 +13,8 @@ public enum WhereType {
     LESS_THAN_EQUALS("9", "<=", "小于等于"),
     NULL("10", "IS NULL", "是否为空"),
     NOT_NULL("11", "IS NOT NULL", "是否不为空"),
-    IN("12", "IN", "IN");
+    IN("12", "IN", "IN"),
+    BETWEEN("13", "BETWEEN", "BETWEEN");
 
     private final String type;
 
