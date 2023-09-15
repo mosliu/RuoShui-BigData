@@ -74,6 +74,8 @@ public class ApiMappingEngine {
         } catch (Exception e) {
             log.error("全局异常信息ex={}, StackTrace={}", e.getMessage(), ThrowableUtil.getStackTrace(e));
             throw new DataException("API调用查询结果集出错");
+        } finally {
+            dbQuery.close();
         }
         try {
             if (CollUtil.isNotEmpty(rules)){
@@ -85,24 +87,6 @@ public class ApiMappingEngine {
                     FieldRule fieldRule = BeanUtil.fillBeanWithMap(ruless, new FieldRule(), false);
                     finalRules.add(fieldRule);
                 }
-
-//                for(int i=0;i<pageResult.getData().size();i++){
-//                    for(int x=0;x<rules.size();x++){
-//                        Map<String,Object> ruless = (Map<String,Object>)rules.get(x);
-//                        FieldRule fieldRule1 = BeanUtil.fillBeanWithMap(ruless, new FieldRule(), false);
-//                        if (pageResult.getData().get(i).get(fieldRule1.getFieldName())!=null) {
-//                            Object obj = pageResult.getData().get(i).get(fieldRule1.getFieldName());
-//                            if (null != obj){
-//                                AbstractFactory factory = FactoryProducer.getFactory(fieldRule1.getCipherType());
-//                                Crypto crypto = factory.getCrypto(fieldRule1.getCryptType());
-//                                String encrypt = crypto.encrypt(String.valueOf(obj));
-//                                pageResult.getData().get(i).put(fieldRule1.getFieldName(), encrypt);
-//                            }
-//                        }
-//                    }
-//                }
-
-
 
                 pageResult.getData().parallelStream().forEach(m -> {
                     finalRules.stream().forEach(r -> {
