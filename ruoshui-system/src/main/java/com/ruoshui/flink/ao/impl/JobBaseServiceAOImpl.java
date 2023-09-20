@@ -190,7 +190,8 @@ public class JobBaseServiceAOImpl implements JobBaseServiceAO {
         String sqlPath = FileUtils.getSqlHome(systemConfigMap.get(SysConfigEnum.FLINK_STREAMING_PLATFORM_WEB_HOME.getKey()))
                 + FileUtils.createFileName(String.valueOf(jobConfigDTO.getId()));
 
-        String command = "echo \""+ jobConfigDTO.getFlinkSql() +"\">>" + sqlPath;
+//        String command = "echo \""+ jobConfigDTO.getFlinkSql() +"\">>" + sqlPath;
+        String command = "cat  >"+ sqlPath +"<< 'EOF' \n" + jobConfigDTO.getFlinkSql() + "\n" + "EOF";
         log.info("创建文件命令{}"+command);
         String deleteFile = "rm -f " + sqlPath +"\n";
         log.info("刪除文件命令{}"+deleteFile);
