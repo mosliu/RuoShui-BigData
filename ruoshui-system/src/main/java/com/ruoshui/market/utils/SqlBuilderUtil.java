@@ -136,9 +136,9 @@ public class SqlBuilderUtil {
             if (WhereType.LIKE.getType().equals(reqParam.getWhereType()) ) {
                 // LIKE '%' :username '%' ,:username 两边一定要有空格，如果没有空格，是查询不到数据的
                 sql.append(SPACE).append(WhereType.getWhereType(reqParam.getWhereType()).getKey())
-                        .append(SPACE).append(SINGLE_QUOTE).append(PERCENT_SIGN).append(SINGLE_QUOTE).append(SPACE)
+                        .append(SPACE).append(SINGLE_QUOTE).append(PERCENT_SIGN).append(SPACE)
                         .append(COLON).append(reqParam.getParamName())
-                        .append(SPACE).append(SINGLE_QUOTE).append(PERCENT_SIGN).append(SINGLE_QUOTE).append(MARK_KEY_END);
+                        .append(SPACE).append(PERCENT_SIGN).append(SINGLE_QUOTE).append(MARK_KEY_END);
             } else if(WhereType.LIKE_LEFT.getType().equals(reqParam.getWhereType())) {
                 sql.append(SPACE).append(WhereType.getWhereType(reqParam.getWhereType()).getKey())
                         .append(SPACE).append(SINGLE_QUOTE).append(PERCENT_SIGN).append(SINGLE_QUOTE).append(SPACE)
