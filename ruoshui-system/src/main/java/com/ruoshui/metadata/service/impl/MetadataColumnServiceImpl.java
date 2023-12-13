@@ -17,7 +17,7 @@ import com.ruoshui.metadata.query.MetadataColumnQuery;
 import com.ruoshui.metadata.service.MetadataColumnMapper;
 import com.ruoshui.metadata.service.MetadataColumnService;
 import com.ruoshui.metadata.vo.MetadataTreeVo;
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -42,13 +42,13 @@ import static com.ruoshui.common.utils.SecurityUtils.getUsername;
 @Transactional(propagation = Propagation.SUPPORTS, readOnly = true, rollbackFor = Exception.class)
 public class MetadataColumnServiceImpl extends BaseServiceImpl<MetadataColumnDao, MetadataColumnEntity> implements MetadataColumnService {
 
-    @Autowired
+    @Resource
     private MetadataColumnDao metadataColumnDao;
 
-    @Autowired
+    @Resource
     private MetadataColumnMapper metadataColumnMapper;
 
-    @Autowired
+    @Resource
     private RedisCache redisService;
 
     @Override

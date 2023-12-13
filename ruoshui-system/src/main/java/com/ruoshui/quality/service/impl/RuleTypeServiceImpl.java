@@ -7,7 +7,7 @@ import com.ruoshui.quality.entity.RuleTypeReportEntity;
 import com.ruoshui.quality.mapper.RuleTypeDao;
 import com.ruoshui.quality.mapstruct.RuleTypeMapper;
 import com.ruoshui.quality.service.RuleTypeService;
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,10 +26,10 @@ import java.util.List;
 @Transactional(propagation = Propagation.SUPPORTS, readOnly = true, rollbackFor = Exception.class)
 public class RuleTypeServiceImpl extends BaseServiceImpl<RuleTypeDao, RuleTypeEntity> implements RuleTypeService {
 
-    @Autowired
+    @Resource
     private RuleTypeDao ruleTypeDao;
 
-    @Autowired
+    @Resource
     private RuleTypeMapper ruleTypeMapper;
 
     @Override

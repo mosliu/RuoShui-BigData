@@ -7,7 +7,6 @@ import com.dtstack.dtcenter.loader.client.ClientCache;
 import com.dtstack.dtcenter.loader.client.IClient;
 import com.dtstack.dtcenter.loader.dto.SqlQueryDTO;
 import com.dtstack.dtcenter.loader.dto.source.Mysql8SourceDTO;
-import com.dtstack.dtcenter.loader.dto.source.OracleSourceDTO;
 import com.dtstack.dtcenter.loader.source.DataSourceType;
 import com.ruoshui.common.domian.Column;
 import com.ruoshui.common.domian.MySqlTable;
@@ -23,7 +22,7 @@ import java.util.Map;
 
 public class MySqlSource {
 
-    private static Logger logger = LoggerFactory.getLogger(ClickhouseSource.class);
+    private static Logger logger = LoggerFactory.getLogger(MySqlSource.class);
     private static final String SQL = "SELECT * FROM ";// 数据库操作
     private static PreparedStatement pst = null;// 事务对象
 

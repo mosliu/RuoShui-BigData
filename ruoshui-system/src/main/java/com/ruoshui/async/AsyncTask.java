@@ -19,7 +19,7 @@ import com.ruoshui.metadata.mapper.MetadataColumnDao;
 import com.ruoshui.metadata.mapper.MetadataSourceDao;
 import com.ruoshui.metadata.mapper.MetadataTableDao;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
@@ -34,19 +34,19 @@ import java.util.stream.Collectors;
 @Component
 public class AsyncTask {
 
-    @Autowired
+    @Resource
     private ApiLogService apiLogService;
 
-    @Autowired
+    @Resource
     private DataSourceFactory dataSourceFactory;
 
-    @Autowired
+    @Resource
     private MetadataSourceDao metadataSourceDao;
 
-    @Autowired
+    @Resource
     private MetadataTableDao metadataTableDao;
 
-    @Autowired
+    @Resource
     private MetadataColumnDao metadataColumnDao;
 
     @Async("taskExecutor")

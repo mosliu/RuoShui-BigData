@@ -11,7 +11,7 @@ import com.ruoshui.common.utils.StringUtils;
 import com.ruoshui.system.domain.SysConfig;
 import com.ruoshui.system.mapper.SysConfigMapper;
 import com.ruoshui.system.service.ISysConfigService;
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
 import java.util.Collection;
@@ -25,10 +25,10 @@ import java.util.List;
 @Service
 public class SysConfigServiceImpl implements ISysConfigService
 {
-    @Autowired
+    @Resource
     private SysConfigMapper configMapper;
 
-    @Autowired
+    @Resource
     private RedisCache redisCache;
 
     /**

@@ -5,22 +5,22 @@ import com.ruoshui.flink.quartz.BatchJobManagerScheduler;
 import com.ruoshui.flink.service.IpStatusService;
 import com.ruoshui.flink.service.SystemConfigService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
 import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component("flinkTask")
 public class flinkTask {
-    @Autowired
+    @Resource
     private IpStatusService ipStatusService;
 
-    @Autowired
+    @Resource
     private TaskServiceAO taskServiceAO;
 
-    @Autowired
+    @Resource
     private SystemConfigService systemConfigService;
 
-    @Autowired
+    @Resource
     private BatchJobManagerScheduler batchJobManagerScheduler;
 
 

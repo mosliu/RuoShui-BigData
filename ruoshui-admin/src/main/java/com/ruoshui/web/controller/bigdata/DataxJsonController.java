@@ -6,7 +6,7 @@ import com.ruoshui.bigdata.dto.DataXJsonBuildDto;
 import com.ruoshui.bigdata.service.DataxJsonService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "组装datax  json的控制器")
 public class DataxJsonController extends BaseController {
 
-    @Autowired
+    @Resource
     private DataxJsonService dataxJsonService;
 
 

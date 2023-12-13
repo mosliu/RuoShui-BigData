@@ -27,19 +27,16 @@ public class SqlValidationController extends BaseController {
         if (StringUtils.isEmpty(flinkSql)) {
             return RestResult.error("flinkSql 参数不能为空");
         }
-
         try {
             List<String> listSql = SqlValidation.toSqlList(flinkSql);
             if (CollectionUtils.isEmpty(listSql)) {
                 return RestResult.error("没有检测到有效sql语句,是否缺少了 ; 分隔符");
             }
-
             SqlValidation.preCheckSql(listSql);
         } catch (Exception e) {
             log.warn("校验失败flinkSql={}   errorMessage= {} ", flinkSql, e.getMessage());
             return RestResult.error(e.getMessage());
         }
-
         return RestResult.success();
     }
 

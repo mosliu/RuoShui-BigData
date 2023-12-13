@@ -17,7 +17,7 @@ import com.ruoshui.flink.rpc.model.JobInfo;
 import com.ruoshui.flink.service.SystemConfigService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -36,7 +36,7 @@ public class YarnRestRpcAdapterImpl implements YarnRestRpcAdapter {
 
     private final String BODY_HTTP_KILL = "{\"state\":\"KILLED\"}";
 
-    @Autowired
+    @Resource
     private SystemConfigService systemConfigService;
 
     //TODO 设个方法设计不好 需要改造

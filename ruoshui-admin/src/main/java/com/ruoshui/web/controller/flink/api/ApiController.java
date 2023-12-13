@@ -4,7 +4,7 @@ import com.ruoshui.flink.ao.JobServerAO;
 import com.ruoshui.flink.streaming.web.common.RestResult;
 import com.ruoshui.web.controller.flink.web.BaseController;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class ApiController extends BaseController {
 
-    @Autowired
+    @Resource
     private JobServerAO jobYarnServerAO;
 
     @RequestMapping("/ok")

@@ -12,7 +12,7 @@ import org.quartz.JobKey;
 import org.quartz.Scheduler;
 import org.quartz.Trigger;
 import org.quartz.impl.matchers.GroupMatcher;
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
@@ -31,10 +31,10 @@ import java.util.Set;
 @Slf4j
 public class BatchJobManagerScheduler implements ApplicationRunner {
 
-  @Autowired
+  @Resource
   private SchedulerConfig schedulerConfig;
 
-  @Autowired
+  @Resource
   private JobConfigService jobConfigService;
 
   /*

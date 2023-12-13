@@ -5,7 +5,7 @@ import com.ruoshui.flink.streaming.web.model.dto.JobConfigDTO;
 import com.ruoshui.flink.service.JobAlarmConfigService;
 import com.ruoshui.flink.service.JobConfigService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,10 +21,10 @@ import static com.ruoshui.common.utils.SecurityUtils.getUsername;
 @Slf4j
 public class JobConfigAOImpl implements JobConfigAO {
 
-    @Autowired
+    @Resource
     private JobConfigService jobConfigService;
 
-    @Autowired
+    @Resource
     private JobAlarmConfigService jobAlarmConfigService;
 
     @Override

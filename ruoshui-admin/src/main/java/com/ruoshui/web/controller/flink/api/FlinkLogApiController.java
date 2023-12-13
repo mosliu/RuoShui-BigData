@@ -12,7 +12,7 @@ import com.ruoshui.flink.service.SystemConfigService;
 import com.ruoshui.flink.streaming.web.model.dto.JobConfigDTO;
 import com.ruoshui.web.controller.flink.utils.JavaExecLinuxCommandRemote;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -31,10 +31,10 @@ import java.io.*;
 @Slf4j
 public class FlinkLogApiController {
 
-    @Autowired
+    @Resource
     public SystemConfigService systemConfigService;
 
-    @Autowired
+    @Resource
     private JobConfigService jobConfigService;
 
     @Resource

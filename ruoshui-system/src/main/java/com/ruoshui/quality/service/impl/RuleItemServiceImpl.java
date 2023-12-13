@@ -5,7 +5,7 @@ import com.ruoshui.quality.entity.RuleItemEntity;
 import com.ruoshui.quality.mapper.RuleItemDao;
 import com.ruoshui.quality.mapstruct.RuleItemMapper;
 import com.ruoshui.quality.service.RuleItemService;
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,10 +22,10 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(propagation = Propagation.SUPPORTS, readOnly = true, rollbackFor = Exception.class)
 public class RuleItemServiceImpl extends BaseServiceImpl<RuleItemDao, RuleItemEntity> implements RuleItemService {
 
-    @Autowired
+    @Resource
     private RuleItemDao ruleItemDao;
 
-    @Autowired
+    @Resource
     private RuleItemMapper ruleItemMapper;
 
     @Override

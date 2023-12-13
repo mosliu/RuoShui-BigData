@@ -12,7 +12,7 @@ import com.ruoshui.quality.mapstruct.CheckRuleMapper;
 import com.ruoshui.quality.schedule.CheckRuleFactory;
 import com.ruoshui.quality.service.CheckRuleService;
 import com.ruoshui.standard.entity.DictEntity;
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,13 +34,13 @@ import java.util.stream.Collectors;
 @Transactional(propagation = Propagation.SUPPORTS, readOnly = true, rollbackFor = Exception.class)
 public class CheckRuleServiceImpl extends BaseServiceImpl<CheckRuleDao, CheckRuleEntity> implements CheckRuleService {
 
-    @Autowired
+    @Resource
     private CheckRuleDao checkRuleDao;
 
-    @Autowired
+    @Resource
     private CheckRuleMapper checkRuleMapper;
 
-    @Autowired
+    @Resource
     private RedisCache redisService;
 
     private static String BIND_GB_CODE = "gb_code";

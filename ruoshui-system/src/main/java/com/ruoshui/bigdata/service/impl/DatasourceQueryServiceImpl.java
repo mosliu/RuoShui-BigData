@@ -8,7 +8,7 @@ import com.ruoshui.bigdata.service.JobDatasourceService;
 import com.ruoshui.bigdata.tool.query.*;
 import com.ruoshui.bigdata.util.JdbcConstants;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -26,7 +26,7 @@ import java.util.List;
 @Service
 public class DatasourceQueryServiceImpl implements DatasourceQueryService {
 
-    @Autowired
+    @Resource
     private JobDatasourceService jobDatasourceService;
 
     @Override

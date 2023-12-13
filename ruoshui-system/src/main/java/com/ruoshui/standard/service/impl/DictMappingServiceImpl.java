@@ -19,7 +19,7 @@ import com.ruoshui.standard.mapstruct.DictMapper;
 import com.ruoshui.standard.service.DictMappingService;
 import com.ruoshui.standard.vo.ContrastDictVo;
 import com.ruoshui.standard.vo.DictVo;
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -31,19 +31,19 @@ import java.util.stream.Collectors;
 @Service
 public class DictMappingServiceImpl implements DictMappingService {
 
-    @Autowired
+    @Resource
     private ContrastDao contrastDao;
 
-    @Autowired
+    @Resource
     private ContrastDictDao contrastDictDao;
 
-    @Autowired
+    @Resource
     private ContrastDictMapper contrastDictMapper;
 
-    @Autowired
+    @Resource
     private DictDao dictDao;
 
-    @Autowired
+    @Resource
     private DictMapper dictMapper;
 
     private static String BIND_GB_CODE = "gb_code";

@@ -32,7 +32,7 @@ import com.ruoshui.metadata.entity.MetadataTableEntity;
 import com.ruoshui.metadata.enums.SyncStatus;
 import com.ruoshui.metadata.service.MetadataSourceMapper;
 import com.ruoshui.metadata.service.MetadataSourceService;
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -56,25 +56,25 @@ import static com.ruoshui.common.utils.SecurityUtils.getUsername;
 @Transactional(propagation = Propagation.SUPPORTS, readOnly = true, rollbackFor = Exception.class)
 public class MetadataSourceServiceImpl extends BaseServiceImpl<MetadataSourceDao, MetadataSourceEntity> implements MetadataSourceService {
 
-    @Autowired
+    @Resource
     private MetadataSourceDao metadataSourceDao;
 
-    @Autowired
+    @Resource
     private MetadataSourceMapper metadataSourceMapper;
 
-    @Autowired
+    @Resource
     private DataSourceFactory dataSourceFactory;
 
-    @Autowired
+    @Resource
     private AsyncTask asyncTask;
 
-    @Autowired
+    @Resource
     private MetadataTableDao metadataTableDao;
 
-    @Autowired
+    @Resource
     private MetadataColumnDao metadataColumnDao;
 
-    @Autowired
+    @Resource
     private RedisCache redisCache;
 
     @Override

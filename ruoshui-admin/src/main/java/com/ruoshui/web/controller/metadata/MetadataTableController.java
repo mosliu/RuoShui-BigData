@@ -19,7 +19,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -40,10 +40,10 @@ import java.util.stream.Collectors;
 @RequestMapping("/tables")
 public class MetadataTableController extends BaseController {
 
-    @Autowired
+    @Resource
     private MetadataTableService metadataTableService;
 
-    @Autowired
+    @Resource
     private MetadataTableMapper metadataTableMapper;
 
     /**

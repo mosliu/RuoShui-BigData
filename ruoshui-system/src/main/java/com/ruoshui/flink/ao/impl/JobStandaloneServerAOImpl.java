@@ -18,7 +18,7 @@ import com.ruoshui.flink.service.JobConfigService;
 import com.ruoshui.flink.service.SavepointBackupService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -38,19 +38,19 @@ import java.util.Map;
 public class JobStandaloneServerAOImpl implements JobServerAO {
 
 
-    @Autowired
+    @Resource
     private JobConfigService jobConfigService;
 
-    @Autowired
+    @Resource
     private SavepointBackupService savepointBackupService;
 
-    @Autowired
+    @Resource
     private CommandRpcClinetAdapter commandRpcClinetAdapter;
 
-    @Autowired
+    @Resource
     private FlinkRestRpcAdapter flinkRestRpcAdapter;
 
-    @Autowired
+    @Resource
     private JobBaseServiceAO jobBaseServiceAO;
 
     @Resource

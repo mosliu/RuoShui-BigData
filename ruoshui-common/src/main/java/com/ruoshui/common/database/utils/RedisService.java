@@ -1,6 +1,6 @@
 //package com.ruoshui.common.database.utils;
 //
-//import org.springframework.beans.factory.annotation.Autowired;
+//import javax.annotation.Resource;
 //import org.springframework.data.redis.core.RedisTemplate;
 //import org.springframework.stereotype.Component;
 //
@@ -16,7 +16,7 @@
 //@Component
 //public class RedisService {
 //
-//    @Autowired
+//    @Resource
 //    private RedisTemplate<String, Object> redisTemplate;
 //
 //    /**

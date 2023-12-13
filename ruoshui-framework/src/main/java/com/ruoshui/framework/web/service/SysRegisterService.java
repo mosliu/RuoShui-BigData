@@ -1,6 +1,6 @@
 package com.ruoshui.framework.web.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
 import org.springframework.stereotype.Component;
 import com.ruoshui.common.constant.Constants;
 import com.ruoshui.common.constant.UserConstants;
@@ -25,13 +25,13 @@ import com.ruoshui.system.service.ISysUserService;
 @Component
 public class SysRegisterService
 {
-    @Autowired
+    @Resource
     private ISysUserService userService;
 
-    @Autowired
+    @Resource
     private ISysConfigService configService;
 
-    @Autowired
+    @Resource
     private RedisCache redisCache;
 
     /**

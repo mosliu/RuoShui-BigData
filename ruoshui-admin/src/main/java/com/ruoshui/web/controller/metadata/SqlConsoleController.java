@@ -7,7 +7,7 @@ import com.ruoshui.metadata.dto.SqlConsoleDto;
 import com.ruoshui.metadata.service.SqlConsoleService;
 import com.ruoshui.metadata.validate.ValidationGroups;
 import com.ruoshui.metadata.vo.SqlConsoleVo;
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,7 +21,7 @@ import java.util.List;
 @RequestMapping("/sql")
 public class SqlConsoleController extends BaseController {
 
-    @Autowired
+    @Resource
     private SqlConsoleService sqlConsoleService;
 
     @PostMapping("/run")

@@ -6,12 +6,12 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ruoshui.bigdata.mapper.DevEnvSettingMapper;
 import com.ruoshui.bigdata.service.DevEnvSettingService;
 import com.ruoshui.bigdata.entity.DevEnvSetting;
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 @Service("devEnvSettingService")
 public class DevEnvSettingServiceImpl extends ServiceImpl<DevEnvSettingMapper, DevEnvSetting> implements DevEnvSettingService {
 
-    @Autowired
+    @Resource
     private DevEnvSettingMapper devEnvSettingMapper;
 
     @Override

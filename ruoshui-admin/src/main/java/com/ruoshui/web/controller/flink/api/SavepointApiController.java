@@ -12,7 +12,7 @@ import com.ruoshui.flink.service.JobConfigService;
 import com.ruoshui.flink.service.SavepointBackupService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,10 +31,10 @@ import java.util.List;
 @Slf4j
 public class SavepointApiController {
 
-    @Autowired
+    @Resource
     private SavepointBackupService savepointBackupService;
     
-    @Autowired
+    @Resource
     private JobConfigService jobConfigService;
 
     @RequestMapping(value = "/addSavepoint")

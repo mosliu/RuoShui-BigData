@@ -24,7 +24,7 @@ import com.ruoshui.metadata.dto.DbSchema;
 import com.ruoshui.metadata.entity.MetadataSourceEntity;
 import com.ruoshui.metadata.service.MetadataSourceService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -33,13 +33,13 @@ import java.util.*;
 @Service
 public class ApiMappingEngine {
 
-    @Autowired
+    @Resource
     private DataSourceFactory dataSourceFactory;
 
-    @Autowired
+    @Resource
     private MetadataSourceService metadataSourceService;
 
-    @Autowired
+    @Resource
     private ApiMaskService apiMaskService;
 
     public PageResult<Map<String, Object>> execute(DataApiEntity dataApi, Map<String, Object> params) {

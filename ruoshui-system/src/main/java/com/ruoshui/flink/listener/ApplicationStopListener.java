@@ -2,7 +2,7 @@ package com.ruoshui.flink.listener;
 
 import com.ruoshui.flink.service.IpStatusService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextClosedEvent;
 import org.springframework.stereotype.Component;
@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class ApplicationStopListener implements ApplicationListener<ContextClosedEvent> {
 
-    @Autowired
+    @Resource
     private IpStatusService ipStatusService;
 
     @Override

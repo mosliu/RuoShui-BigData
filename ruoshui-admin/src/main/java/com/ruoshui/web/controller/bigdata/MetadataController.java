@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.extension.api.R;
 import com.ruoshui.bigdata.service.DatasourceQueryService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,7 +26,7 @@ import java.util.List;
 @Api(tags = "jdbc数据库查询控制器")
 public class MetadataController extends BaseController {
 
-    @Autowired
+    @Resource
     private DatasourceQueryService datasourceQueryService;
 
     /**

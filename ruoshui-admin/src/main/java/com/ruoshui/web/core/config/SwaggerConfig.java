@@ -2,7 +2,7 @@ package com.ruoshui.web.core.config;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -31,7 +31,7 @@ import springfox.documentation.spring.web.plugins.Docket;
 public class SwaggerConfig
 {
     /** 系统基础配置 */
-    @Autowired
+    @Resource
     private RuoShuiConfig ruoshuiConfig;
 
     /** 是否开启swagger */

@@ -6,7 +6,7 @@ import com.ruoshui.quality.entity.RuleLevelEntity;
 import com.ruoshui.quality.mapper.RuleLevelDao;
 import com.ruoshui.quality.mapstruct.RuleLevelMapper;
 import com.ruoshui.quality.service.RuleLevelService;
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,10 +23,10 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(propagation = Propagation.SUPPORTS, readOnly = true, rollbackFor = Exception.class)
 public class RuleLevelServiceImpl extends BaseServiceImpl<RuleLevelDao, RuleLevelEntity> implements RuleLevelService {
 
-    @Autowired
+    @Resource
     private RuleLevelDao ruleLevelDao;
 
-    @Autowired
+    @Resource
     private RuleLevelMapper ruleLevelMapper;
 
     @Override

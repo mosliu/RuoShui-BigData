@@ -23,7 +23,7 @@ import com.ruoshui.flink.streaming.web.model.entity.JobConfig;
 import com.ruoshui.flink.utils.JavaExecLinuxCommandRemote;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -45,14 +45,14 @@ public class CommandRpcClinetAdapterImpl implements CommandRpcClinetAdapter {
 
     private static long INTERVAL_TIME_TWO = 1000 * 2;
 
-    @Autowired
+    @Resource
     private JobRunLogService jobRunLogService;
 
 
-    @Autowired
+    @Resource
     private SystemConfigService systemConfigService;
 
-    @Autowired
+    @Resource
     private JobConfigService jobConfigService;
 
     @Resource

@@ -10,7 +10,7 @@ import com.ruoshui.flink.streaming.web.model.entity.IpStatus;
 import com.ruoshui.flink.service.IpStatusService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -25,7 +25,7 @@ import java.util.Date;
 @Slf4j
 public class IpStatusServiceImpl implements IpStatusService {
 
-    @Autowired
+    @Resource
     private IpStatusMapper ipStatusMapper;
 
     @Override

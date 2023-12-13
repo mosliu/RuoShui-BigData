@@ -5,7 +5,7 @@ import com.ruoshui.standard.dto.ManualMappingDto;
 import com.ruoshui.standard.service.DictMappingService;
 import io.swagger.annotations.Api;
 import com.ruoshui.common.core.domain.AjaxResult;
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,7 +16,7 @@ import java.util.Map;
 @RequestMapping("/standard/mappings")
 public class DictMappingController extends BaseController {
 
-    @Autowired
+    @Resource
     private DictMappingService dictMappingService;
 
     @GetMapping("/{id}")

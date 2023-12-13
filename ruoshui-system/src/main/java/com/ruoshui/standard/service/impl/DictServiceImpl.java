@@ -9,7 +9,7 @@ import com.ruoshui.standard.entity.DictEntity;
 import com.ruoshui.standard.mapper.DictDao;
 import com.ruoshui.standard.mapstruct.DictMapper;
 import com.ruoshui.standard.service.DictService;
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -34,13 +34,13 @@ import static com.ruoshui.common.utils.SecurityUtils.getUsername;
 @Transactional(propagation = Propagation.SUPPORTS, readOnly = true, rollbackFor = Exception.class)
 public class DictServiceImpl extends BaseServiceImpl<DictDao, DictEntity> implements DictService {
 
-    @Autowired
+    @Resource
     private DictDao dictDao;
 
-    @Autowired
+    @Resource
     private DictMapper dictMapper;
 
-    @Autowired
+    @Resource
     private RedisCache redisService;
 
     @Resource

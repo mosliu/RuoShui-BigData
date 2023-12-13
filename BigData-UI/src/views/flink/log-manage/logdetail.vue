@@ -51,7 +51,7 @@ import { CodeMirror, codemirror } from 'vue-codemirror'
 import 'codemirror/lib/codemirror.css'
 import 'codemirror/mode/shell/shell.js'
 
-import { logDetail } from '@/api/flink/log'
+import { logDetail } from '@/api/flink/runlog'
 
 export default {
   name: 'LogDetail',

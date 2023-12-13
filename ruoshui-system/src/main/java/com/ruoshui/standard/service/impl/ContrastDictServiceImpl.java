@@ -7,7 +7,7 @@ import com.ruoshui.standard.entity.ContrastDictEntity;
 import com.ruoshui.standard.mapper.ContrastDictDao;
 import com.ruoshui.standard.mapstruct.ContrastDictMapper;
 import com.ruoshui.standard.service.ContrastDictService;
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,10 +29,10 @@ import static com.ruoshui.common.utils.SecurityUtils.getUsername;
 @Transactional(propagation = Propagation.SUPPORTS, readOnly = true, rollbackFor = Exception.class)
 public class ContrastDictServiceImpl extends BaseServiceImpl<ContrastDictDao, ContrastDictEntity> implements ContrastDictService {
 
-    @Autowired
+    @Resource
     private ContrastDictDao contrastDictDao;
 
-    @Autowired
+    @Resource
     private ContrastDictMapper contrastDictMapper;
 
     @Override

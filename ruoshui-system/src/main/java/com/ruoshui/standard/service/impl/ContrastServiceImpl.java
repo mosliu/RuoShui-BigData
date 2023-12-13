@@ -11,7 +11,7 @@ import com.ruoshui.standard.mapper.ContrastDao;
 import com.ruoshui.standard.mapstruct.ContrastMapper;
 import com.ruoshui.standard.service.ContrastService;
 import com.ruoshui.standard.vo.ContrastTreeVo;
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,10 +36,10 @@ import static com.ruoshui.common.utils.SecurityUtils.getUsername;
 @Transactional(propagation = Propagation.SUPPORTS, readOnly = true, rollbackFor = Exception.class)
 public class ContrastServiceImpl extends BaseServiceImpl<ContrastDao, ContrastEntity> implements ContrastService {
 
-    @Autowired
+    @Resource
     private ContrastDao contrastDao;
 
-    @Autowired
+    @Resource
     private ContrastMapper contrastMapper;
 
     @Override

@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
 import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -24,7 +24,7 @@ import com.ruoshui.common.utils.StringUtils;
 @RequestMapping("/monitor/cache")
 public class CacheController
 {
-    @Autowired
+    @Resource
     private RedisTemplate<String, String> redisTemplate;
 
     @PreAuthorize("@ss.hasPermi('monitor:cache:list')")

@@ -22,7 +22,7 @@ import com.ruoshui.quality.service.CheckReportService;
 import com.ruoshui.quality.service.CheckRuleService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.concurrent.BasicThreadFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
 import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
@@ -37,13 +37,13 @@ import java.util.concurrent.*;
 @Component("QualityTask")
 public class QualityTask {
 
-    @Autowired
+    @Resource
     private CheckRuleService checkRuleService;
 
-    @Autowired
+    @Resource
     private CheckReportService checkReportService;
 
-    @Autowired
+    @Resource
     private MetadataSourceService metadataSourceService;
 
     public void task() {

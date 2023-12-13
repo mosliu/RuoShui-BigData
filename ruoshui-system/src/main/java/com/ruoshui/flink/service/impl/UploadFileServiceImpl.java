@@ -14,7 +14,7 @@ import com.ruoshui.flink.streaming.web.model.entity.UploadFile;
 import com.ruoshui.flink.streaming.web.model.entity.UploadFileVo;
 import com.ruoshui.flink.streaming.web.model.param.UploadFileParam;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,10 +33,10 @@ import static com.ruoshui.flink.streaming.web.common.MessageConstants.MESSAGE_01
 @Slf4j
 public class UploadFileServiceImpl implements UploadFileService {
 
-  @Autowired
+  @Resource
   private UploadFileMapper uploadFileMapper;
 
-  @Autowired
+  @Resource
   private CustomConfig customConfig;
 
   @Override

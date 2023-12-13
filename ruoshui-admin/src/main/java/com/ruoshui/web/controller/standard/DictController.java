@@ -18,7 +18,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,10 +38,10 @@ import java.util.stream.Collectors;
 @RequestMapping("/standard/dicts")
 public class DictController extends BaseController {
 
-    @Autowired
+    @Resource
     private DictService dictService;
 
-    @Autowired
+    @Resource
     private DictMapper dictMapper;
 
     /**

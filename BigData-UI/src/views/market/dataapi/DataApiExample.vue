@@ -94,18 +94,18 @@
                 </el-table-column>
                 <el-table-column prop="exampleValue" label="开始值" align="center" show-overflow-tooltip>
                   <template slot-scope="scope">
-                    <el-input v-model="scope.row.startValue" placeholder="请输入开始值" :disabled="scope.row.whereType != '13'" />
+                    <el-input v-model="scope.row.startValue" placeholder="请输入开始值" :disabled="scope.row.whereType !== 13" />
                   </template>
                 </el-table-column>
                 <el-table-column prop="exampleValue" label="结束值" align="center" show-overflow-tooltip>
                   <template slot-scope="scope">
-                    <el-input v-model="scope.row.endValue" placeholder="请输入结束值" :disabled="scope.row.whereType != '13'" />
+                    <el-input v-model="scope.row.endValue" placeholder="请输入结束值" :disabled="scope.row.whereType !== 13" />
                   </template>
                 </el-table-column>
                 <el-table-column prop="paramValue" label="参数值" align="center"
                   show-overflow-tooltip>
                   <template slot-scope="scope">
-                    <el-input v-model="scope.row.paramValue" placeholder="请输入参数值" :disabled="scope.row.whereType == '13'" />
+                    <el-input v-model="scope.row.paramValue" placeholder="请输入参数值" :disabled="scope.row.whereType == 13" />
                   </template>
                 </el-table-column>
               </el-table>

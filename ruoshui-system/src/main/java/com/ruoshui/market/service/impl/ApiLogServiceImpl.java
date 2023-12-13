@@ -7,7 +7,7 @@ import com.ruoshui.market.entity.ApiLogEntity;
 import com.ruoshui.market.mapper.ApiLogDao;
 import com.ruoshui.market.mapstruct.ApiLogMapper;
 import com.ruoshui.market.service.ApiLogService;
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,10 +18,10 @@ import java.util.List;
 @Transactional(propagation = Propagation.SUPPORTS, readOnly = true, rollbackFor = Exception.class)
 public class ApiLogServiceImpl extends BaseServiceImpl<ApiLogDao, ApiLogEntity> implements ApiLogService {
 
-    @Autowired
+    @Resource
     private ApiLogDao apiLogDao;
 
-    @Autowired
+    @Resource
     private ApiLogMapper apiLogMapper;
 
     @Override

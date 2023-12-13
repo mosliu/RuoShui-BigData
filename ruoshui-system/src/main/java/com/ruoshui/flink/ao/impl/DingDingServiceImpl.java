@@ -17,7 +17,7 @@ import com.ruoshui.flink.utils.HttpClientToolUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
@@ -32,10 +32,10 @@ import java.util.*;
 @Slf4j
 public class DingDingServiceImpl implements DingDingService {
     
-    @Autowired
+    @Resource
     private AlartLogService alartLogService;
 
-    @Autowired
+    @Resource
     private JobRunLogService jobRunLogService;
 
     @Override

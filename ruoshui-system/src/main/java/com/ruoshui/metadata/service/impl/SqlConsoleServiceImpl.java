@@ -19,7 +19,7 @@ import net.sf.jsqlparser.JSQLParserException;
 import net.sf.jsqlparser.parser.CCJSqlParserUtil;
 import net.sf.jsqlparser.statement.Statement;
 import net.sf.jsqlparser.statement.Statements;
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import java.sql.Connection;
@@ -33,10 +33,10 @@ import java.util.concurrent.*;
 @Service
 public class SqlConsoleServiceImpl implements SqlConsoleService {
 
-    @Autowired
+    @Resource
     private DataSourceFactory dataSourceFactory;
 
-    @Autowired
+    @Resource
     private MetadataSourceService metadataSourceServiceFeign;
 
     private static Map<String, List<Connection>> connectionMap = new ConcurrentHashMap<>();

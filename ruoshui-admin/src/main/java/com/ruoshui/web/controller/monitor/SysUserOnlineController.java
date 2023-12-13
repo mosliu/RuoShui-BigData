@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,10 +32,10 @@ import com.ruoshui.system.service.ISysUserOnlineService;
 @RequestMapping("/monitor/online")
 public class SysUserOnlineController extends BaseController
 {
-    @Autowired
+    @Resource
     private ISysUserOnlineService userOnlineService;
 
-    @Autowired
+    @Resource
     private RedisCache redisCache;
 
     @PreAuthorize("@ss.hasPermi('monitor:online:list')")
