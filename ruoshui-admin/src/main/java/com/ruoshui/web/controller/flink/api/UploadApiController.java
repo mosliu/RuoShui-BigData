@@ -22,11 +22,11 @@ import com.ruoshui.framework.config.ServerConfig;
 import com.ruoshui.web.controller.flink.web.BaseController;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.util.ArrayList;
@@ -45,16 +45,16 @@ import java.util.Map;
 @Slf4j
 public class UploadApiController extends BaseController {
 
-  @Resource
+  @Autowired
   private UploadFileService uploadFileService;
 
-  @Resource
+  @Autowired
   private SystemConfigService systemConfigService;
 
-  @Resource
+  @Autowired
   private BaseResourceMapper baseResourceMapper;
 
-  @Resource
+  @Autowired
   private ServerConfig serverConfig;
 
 

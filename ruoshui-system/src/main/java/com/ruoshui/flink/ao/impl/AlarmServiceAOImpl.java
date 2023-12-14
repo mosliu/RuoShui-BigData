@@ -12,7 +12,7 @@ import com.ruoshui.flink.ao.AlarmServiceAO;
 import com.ruoshui.flink.service.AlartLogService;
 import com.ruoshui.flink.service.JobRunLogService;
 import lombok.extern.slf4j.Slf4j;
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -26,10 +26,10 @@ import org.springframework.stereotype.Component;
 public class AlarmServiceAOImpl implements AlarmServiceAO {
 
 
-    @Resource
+    @Autowired
     private AlartLogService alartLogService;
 
-    @Resource
+    @Autowired
     private JobRunLogService jobRunLogService;
 
     @Override

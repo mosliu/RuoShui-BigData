@@ -35,7 +35,7 @@ import com.ruoshui.flink.streaming.web.model.entity.UploadFile;
 import com.ruoshui.flink.utils.JavaExecLinuxCommandRemote;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.StringReader;
@@ -59,31 +59,31 @@ public class JobBaseServiceAOImpl implements JobBaseServiceAO {
 
     public static final ThreadLocal<String> threadAppId = new ThreadLocal<String>();
 
-    @Resource
+    @Autowired
     private JobRunLogService jobRunLogService;
 
 
-    @Resource
+    @Autowired
     private YarnRestRpcAdapter yarnRestRpcAdapter;
 
-    @Resource
+    @Autowired
     private SystemConfigService systemConfigService;
 
-    @Resource
+    @Autowired
     private CommandRpcClinetAdapter commandRpcClinetAdapter;
 
-    @Resource
+    @Autowired
     private UploadFileMapper uploadFileMapper;
 
-    @Resource
+    @Autowired
     private BaseResourceMapper baseResourceMapper;
 
 
 
-    @Resource
+    @Autowired
     private JobConfigService jobConfigService;
 
-    @Resource
+    @Autowired
     private FlinkRestRpcAdapter flinkRestRpcAdapter;
 
     @NacosInjected

@@ -16,7 +16,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.text.ParseException;
@@ -35,7 +35,7 @@ import java.util.Map;
 @RequestMapping("/api/job")
 public class JobInfoController extends BaseController{
 
-    @Resource
+    @Autowired
     private JobService jobService;
 
 

@@ -19,7 +19,7 @@ import com.ruoshui.metadata.mapper.MetadataColumnDao;
 import com.ruoshui.metadata.mapper.MetadataSourceDao;
 import com.ruoshui.metadata.mapper.MetadataTableDao;
 import lombok.extern.slf4j.Slf4j;
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
@@ -34,19 +34,19 @@ import java.util.stream.Collectors;
 @Component
 public class AsyncTask {
 
-    @Resource
+    @Autowired
     private ApiLogService apiLogService;
 
-    @Resource
+    @Autowired
     private DataSourceFactory dataSourceFactory;
 
-    @Resource
+    @Autowired
     private MetadataSourceDao metadataSourceDao;
 
-    @Resource
+    @Autowired
     private MetadataTableDao metadataTableDao;
 
-    @Resource
+    @Autowired
     private MetadataColumnDao metadataColumnDao;
 
     @Async("taskExecutor")
@@ -103,9 +103,9 @@ public class AsyncTask {
                                 metadataColumn.setTableId(table.getId());
                                 metadataColumn.setColumnName(column.getColName());
                                 metadataColumn.setColumnComment(column.getColComment());
-                                metadataColumn.setColumnKey(column.getColKey() ? "1" : "0");
-                                metadataColumn.setColumnNullable(column.getNullable() ? "1" : "0");
-                                metadataColumn.setColumnPosition(column.getColPosition().toString());
+                                metadataColumn.setColumnKey(column.getColKey() != null ? "1" : "0");
+                                metadataColumn.setColumnNullable(column.getNullable() != null ? "1" : "0");
+                                metadataColumn.setColumnPosition(column.getColPosition());
                                 metadataColumn.setDataType(column.getDataType());
                                 metadataColumn.setDataLength(column.getDataLength());
                                 metadataColumn.setDataPrecision(column.getDataPrecision());

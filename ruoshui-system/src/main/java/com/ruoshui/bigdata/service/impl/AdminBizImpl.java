@@ -21,7 +21,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import java.text.MessageFormat;
 import java.util.Date;
 import java.util.List;
@@ -33,11 +33,11 @@ import java.util.List;
 public class AdminBizImpl implements AdminBiz {
     private static Logger logger = LoggerFactory.getLogger(AdminBizImpl.class);
 
-    @Resource
+    @Autowired
     public JobLogMapper jobLogMapper;
-    @Resource
+    @Autowired
     private JobInfoMapper jobInfoMapper;
-    @Resource
+    @Autowired
     private JobRegistryMapper jobRegistryMapper;
 
     @Override

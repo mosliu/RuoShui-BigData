@@ -18,11 +18,11 @@ import com.ruoshui.flink.service.JobConfigService;
 import com.ruoshui.flink.service.SavepointBackupService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.Map;
@@ -38,22 +38,22 @@ import java.util.Map;
 public class JobStandaloneServerAOImpl implements JobServerAO {
 
 
-    @Resource
+    @Autowired
     private JobConfigService jobConfigService;
 
-    @Resource
+    @Autowired
     private SavepointBackupService savepointBackupService;
 
-    @Resource
+    @Autowired
     private CommandRpcClinetAdapter commandRpcClinetAdapter;
 
-    @Resource
+    @Autowired
     private FlinkRestRpcAdapter flinkRestRpcAdapter;
 
-    @Resource
+    @Autowired
     private JobBaseServiceAO jobBaseServiceAO;
 
-    @Resource
+    @Autowired
     private BaseResourceMapper baseResourceMapper;
 
     @Override

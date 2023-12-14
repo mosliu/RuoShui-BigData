@@ -2,7 +2,7 @@ package com.ruoshui.framework.web.service;
 
 import java.util.HashSet;
 import java.util.Set;
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import com.ruoshui.common.core.domain.entity.SysUser;
 import com.ruoshui.system.service.ISysMenuService;
@@ -16,10 +16,10 @@ import com.ruoshui.system.service.ISysRoleService;
 @Component
 public class SysPermissionService
 {
-    @Resource
+    @Autowired
     private ISysRoleService roleService;
 
-    @Resource
+    @Autowired
     private ISysMenuService menuService;
 
     /**

@@ -10,7 +10,7 @@ import com.ruoshui.flink.service.JobRunLogService;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import lombok.extern.slf4j.Slf4j;
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -23,7 +23,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class JobRunLogServiceImpl implements JobRunLogService {
 
-    @Resource
+    @Autowired
     private JobRunLogMapper jobRunLogMapper;
 
     @Override

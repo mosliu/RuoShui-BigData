@@ -3,11 +3,12 @@ package com.ruoshui.web.controller.common;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.annotation.Resource;
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletResponse;
 import com.ruoshui.common.config.RuoShuiConfig;
-import javax.annotation.Resource;
 import org.springframework.util.FastByteArrayOutputStream;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,16 +28,16 @@ import com.ruoshui.system.service.ISysConfigService;
 @RestController
 public class CaptchaController
 {
-    @Resource(name = "captchaProducer")
+    @Autowired
     private Producer captchaProducer;
 
-    @Resource(name = "captchaProducerMath")
+    @Autowired
     private Producer captchaProducerMath;
 
-    @Resource
+    @Autowired
     private RedisCache redisCache;
     
-    @Resource
+    @Autowired
     private ISysConfigService configService;
     /**
      * 生成验证码

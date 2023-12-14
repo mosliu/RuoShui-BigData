@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import java.util.Date;
 
 import static com.ruoshui.core.biz.model.ReturnT.FAIL_CODE;
@@ -27,9 +27,9 @@ import static com.ruoshui.core.biz.model.ReturnT.FAIL_CODE;
 @Api(tags = "任务状态接口")
 public class JobCodeController {
 
-    @Resource
+    @Autowired
     private JobInfoMapper jobInfoMapper;
-    @Resource
+    @Autowired
     private JobLogGlueMapper jobLogGlueMapper;
 
 

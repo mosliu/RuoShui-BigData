@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import javax.sql.DataSource;
 
 /**
@@ -80,20 +80,20 @@ public class JobAdminConfig implements InitializingBean, DisposableBean {
 
     // dao, service
 
-    @Resource
+    @Autowired
     private JobLogMapper jobLogMapper;
-    @Resource
+    @Autowired
     private JobInfoMapper jobInfoMapper;
-    @Resource
+    @Autowired
     private JobRegistryMapper jobRegistryMapper;
-    @Resource
+    @Autowired
     private JobGroupMapper jobGroupMapper;
-    @Resource
+    @Autowired
     private JobLogReportMapper jobLogReportMapper;
 
-    @Resource
+    @Autowired
     private DataSource dataSource;
-    @Resource
+    @Autowired
     private JobDatasourceMapper jobDatasourceMapper;
 
     public String getI18n() {

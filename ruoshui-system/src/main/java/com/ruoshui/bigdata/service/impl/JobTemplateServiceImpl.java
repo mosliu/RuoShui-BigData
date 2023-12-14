@@ -16,7 +16,7 @@ import com.ruoshui.core.util.Constants;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import java.text.MessageFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -30,15 +30,15 @@ import java.util.Map;
  */
 @Service
 public class JobTemplateServiceImpl implements JobTemplateService {
-    @Resource
+    @Autowired
     private JobGroupMapper jobGroupMapper;
-    @Resource
+    @Autowired
     private JobTemplateMapper jobTemplateMapper;
-    @Resource
+    @Autowired
     private JobLogMapper jobLogMapper;
-    @Resource
+    @Autowired
     private JobLogGlueMapper jobLogGlueMapper;
-    @Resource
+    @Autowired
     private JobInfoMapper jobInfoMapper;
 
     @Override

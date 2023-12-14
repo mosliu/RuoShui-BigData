@@ -17,7 +17,7 @@ import com.ruoshui.market.service.ApiMaskService;
 import com.ruoshui.market.service.DataApiService;
 import com.ruoshui.market.service.impl.ApiMappingEngine;
 import lombok.SneakyThrows;
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -30,13 +30,13 @@ import java.util.Map;
 @RequestMapping("/inner")
 public class marketInnerController extends BaseController {
 
-    @Resource
+    @Autowired
     private DataApiService dataApiService;
 
-    @Resource
+    @Autowired
     private ApiMaskService apiMaskService;
 
-    @Resource
+    @Autowired
     private RequestHandler requestHandler;
 
 

@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,7 +32,7 @@ public class CommonController
 {
     private static final Logger log = LoggerFactory.getLogger(CommonController.class);
 
-    @Resource
+    @Autowired
     private ServerConfig serverConfig;
 
     private static final String FILE_DELIMETER = ",";

@@ -18,7 +18,7 @@ import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.Velocity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.alibaba.fastjson.JSON;
@@ -47,10 +47,10 @@ public class GenTableServiceImpl implements IGenTableService
 {
     private static final Logger log = LoggerFactory.getLogger(GenTableServiceImpl.class);
 
-    @Resource
+    @Autowired
     private GenTableMapper genTableMapper;
 
-    @Resource
+    @Autowired
     private GenTableColumnMapper genTableColumnMapper;
 
     /**

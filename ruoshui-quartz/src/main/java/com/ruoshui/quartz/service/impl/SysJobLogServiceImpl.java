@@ -1,7 +1,7 @@
 package com.ruoshui.quartz.service.impl;
 
 import java.util.List;
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.ruoshui.quartz.domain.SysJobLog;
 import com.ruoshui.quartz.mapper.SysJobLogMapper;
@@ -15,7 +15,7 @@ import com.ruoshui.quartz.service.ISysJobLogService;
 @Service
 public class SysJobLogServiceImpl implements ISysJobLogService
 {
-    @Resource
+    @Autowired
     private SysJobLogMapper jobLogMapper;
 
     /**

@@ -10,7 +10,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,7 +32,7 @@ public class JobDatasourceController extends BaseController {
     /**
      * 服务对象
      */
-    @Resource
+    @Autowired
     private JobDatasourceService jobJdbcDatasourceService;
 
     /**

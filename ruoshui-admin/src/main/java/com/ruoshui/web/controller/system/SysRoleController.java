@@ -2,7 +2,7 @@ package com.ruoshui.web.controller.system;
 
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -39,16 +39,16 @@ import com.ruoshui.system.service.ISysUserService;
 @RequestMapping("/system/role")
 public class SysRoleController extends BaseController
 {
-    @Resource
+    @Autowired
     private ISysRoleService roleService;
 
-    @Resource
+    @Autowired
     private TokenService tokenService;
     
-    @Resource
+    @Autowired
     private SysPermissionService permissionService;
     
-    @Resource
+    @Autowired
     private ISysUserService userService;
 
     @PreAuthorize("@ss.hasPermi('system:role:list')")

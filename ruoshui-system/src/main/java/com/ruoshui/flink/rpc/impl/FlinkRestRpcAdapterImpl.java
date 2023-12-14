@@ -11,7 +11,7 @@ import com.ruoshui.flink.rpc.model.JobStandaloneInfo;
 import com.ruoshui.flink.service.SystemConfigService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 
@@ -25,7 +25,7 @@ import org.springframework.web.client.HttpClientErrorException;
 @Slf4j
 public class FlinkRestRpcAdapterImpl implements FlinkRestRpcAdapter {
 
-    @Resource
+    @Autowired
     private SystemConfigService systemConfigService;
 
     @Override

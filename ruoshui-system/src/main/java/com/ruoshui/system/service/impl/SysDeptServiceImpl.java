@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.ruoshui.common.annotation.DataScope;
 import com.ruoshui.common.constant.UserConstants;
@@ -29,10 +29,10 @@ import com.ruoshui.system.service.ISysDeptService;
 @Service
 public class SysDeptServiceImpl implements ISysDeptService
 {
-    @Resource
+    @Autowired
     private SysDeptMapper deptMapper;
 
-    @Resource
+    @Autowired
     private SysRoleMapper roleMapper;
 
     /**

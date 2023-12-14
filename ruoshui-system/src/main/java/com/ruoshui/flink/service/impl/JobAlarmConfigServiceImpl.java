@@ -10,7 +10,7 @@ import com.ruoshui.flink.service.JobAlarmConfigService;
 import com.ruoshui.flink.service.SystemConfigService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.CollectionUtils;
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,10 +26,10 @@ import java.util.*;
 @Service
 public class JobAlarmConfigServiceImpl implements JobAlarmConfigService {
 
-    @Resource
+    @Autowired
     private JobAlarmConfigMapper jobAlarmConfigMapper;
 
-    @Resource
+    @Autowired
     private SystemConfigService systemConfigService;
 
     @Override

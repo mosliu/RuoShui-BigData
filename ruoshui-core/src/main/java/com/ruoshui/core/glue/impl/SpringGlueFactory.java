@@ -4,9 +4,13 @@ import com.ruoshui.core.executor.impl.JobSpringExecutor;
 import com.ruoshui.core.glue.GlueFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.annotation.AnnotationUtils;
+
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.Resource;
 import java.lang.reflect.Field;
@@ -40,7 +44,7 @@ public class SpringGlueFactory extends GlueFactory {
             }
 
             Object fieldBean = null;
-            // with bean-id, bean could be found by both @Resource and @Resource, or bean could only be found by @Resource
+            // with bean-id, bean could be found by both @Autowired and @Autowired, or bean could only be found by @Autowired
 
             if (AnnotationUtils.getAnnotation(field, Resource.class) != null) {
                 try {

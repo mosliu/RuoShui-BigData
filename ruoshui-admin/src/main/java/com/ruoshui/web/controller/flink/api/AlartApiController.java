@@ -16,7 +16,7 @@ import com.ruoshui.flink.service.SystemConfigService;
 import com.ruoshui.web.controller.flink.web.BaseController;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,13 +35,13 @@ import java.util.List;
 public class AlartApiController extends BaseController {
 
 
-    @Resource
+    @Autowired
     private AlarmServiceAO alarmServiceAO;
 
-    @Resource
+    @Autowired
     private SystemConfigService systemConfigService;
 
-    @Resource
+    @Autowired
     private AlartLogService alartLogService;
     
     /**

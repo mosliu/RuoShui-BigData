@@ -3,7 +3,7 @@ package com.ruoshui.web.controller.system;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -34,10 +34,10 @@ import com.ruoshui.system.service.ISysDictTypeService;
 @RequestMapping("/system/dict/data")
 public class SysDictDataController extends BaseController
 {
-    @Resource
+    @Autowired
     private ISysDictDataService dictDataService;
 
-    @Resource
+    @Autowired
     private ISysDictTypeService dictTypeService;
 
     @PreAuthorize("@ss.hasPermi('system:dict:list')")

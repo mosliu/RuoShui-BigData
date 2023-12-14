@@ -11,7 +11,7 @@ import com.ruoshui.quality.mapper.RuleLevelDao;
 import com.ruoshui.quality.mapper.RuleTypeDao;
 import com.ruoshui.quality.mapstruct.CheckReportMapper;
 import com.ruoshui.quality.service.CheckReportService;
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,16 +31,16 @@ import java.util.stream.Collectors;
 @Transactional(propagation = Propagation.SUPPORTS, readOnly = true, rollbackFor = Exception.class)
 public class CheckReportServiceImpl extends BaseServiceImpl<CheckReportDao, CheckReportEntity> implements CheckReportService {
 
-    @Resource
+    @Autowired
     private CheckReportDao checkReportDao;
 
-    @Resource
+    @Autowired
     private CheckReportMapper checkReportMapper;
 
-    @Resource
+    @Autowired
     private RuleLevelDao ruleLevelDao;
 
-    @Resource
+    @Autowired
     private RuleTypeDao ruleTypeDao;
 
     @Override

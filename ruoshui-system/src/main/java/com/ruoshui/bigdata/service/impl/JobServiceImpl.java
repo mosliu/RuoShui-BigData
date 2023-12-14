@@ -25,7 +25,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import java.io.IOException;
 import java.text.MessageFormat;
 import java.text.ParseException;
@@ -40,21 +40,21 @@ import java.util.*;
 public class JobServiceImpl implements JobService {
     private static Logger logger = LoggerFactory.getLogger(JobServiceImpl.class);
 
-    @Resource
+    @Autowired
     private JobGroupMapper jobGroupMapper;
-    @Resource
+    @Autowired
     private JobInfoMapper jobInfoMapper;
-    @Resource
+    @Autowired
     private JobLogMapper jobLogMapper;
-    @Resource
+    @Autowired
     private JobLogGlueMapper jobLogGlueMapper;
-    @Resource
+    @Autowired
     private JobLogReportMapper jobLogReportMapper;
-    @Resource
+    @Autowired
     private DatasourceQueryService datasourceQueryService;
-    @Resource
+    @Autowired
     private JobTemplateMapper jobTemplateMapper;
-    @Resource
+    @Autowired
     private DataxJsonService dataxJsonService;
 
     @Override

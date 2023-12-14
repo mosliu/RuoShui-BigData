@@ -20,11 +20,11 @@ import com.ruoshui.flink.service.JobConfigService;
 import com.ruoshui.flink.service.SavepointBackupService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
 
@@ -41,23 +41,23 @@ public class JobYarnServerAOImpl implements JobServerAO {
     //最大重试次数
     private static final Integer TRY_TIMES = 2;
 
-    @Resource
+    @Autowired
     private JobConfigService jobConfigService;
 
 
-    @Resource
+    @Autowired
     private YarnRestRpcAdapter yarnRestRpcAdapter;
 
-    @Resource
+    @Autowired
     private CommandRpcClinetAdapter commandRpcClinetAdapter;
 
-    @Resource
+    @Autowired
     private SavepointBackupService savepointBackupService;
 
-    @Resource
+    @Autowired
     private JobBaseServiceAO jobBaseServiceAO;
 
-    @Resource
+    @Autowired
     private BaseResourceMapper baseResourceMapper;
 
     @Override

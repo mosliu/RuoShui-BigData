@@ -54,7 +54,7 @@ import net.sf.jsqlparser.util.SelectUtils;
 import net.sf.jsqlparser.util.TablesNamesFinder;
 import net.sf.jsqlparser.util.deparser.ExpressionDeParser;
 import net.sf.jsqlparser.util.deparser.SelectDeParser;
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -80,16 +80,16 @@ import java.util.stream.Stream;
 @Transactional(propagation = Propagation.SUPPORTS, readOnly = true, rollbackFor = Exception.class)
 public class DataApiServiceImpl extends BaseServiceImpl<DataApiDao, DataApiEntity> implements DataApiService {
 
-    @Resource
+    @Autowired
     private DataApiDao dataApiDao;
 
-    @Resource
+    @Autowired
     private DataApiMapper dataApiMapper;
 
-    @Resource
+    @Autowired
     private ObjectMapper objectMapper;
 
-    @Resource
+    @Autowired
     private RedisCache redisService;
 
     @Override

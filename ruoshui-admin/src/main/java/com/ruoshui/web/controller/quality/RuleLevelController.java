@@ -17,7 +17,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,10 +39,10 @@ import java.util.stream.Collectors;
 @RequestMapping("/quality/ruleLevels")
 public class RuleLevelController extends BaseController {
 
-    @Resource
+    @Autowired
     private RuleLevelService ruleLevelService;
 
-    @Resource
+    @Autowired
     private RuleLevelMapper ruleLevelMapper;
 
     /**

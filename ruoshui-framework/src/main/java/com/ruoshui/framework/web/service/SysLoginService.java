@@ -1,7 +1,7 @@
 package com.ruoshui.framework.web.service;
 
-import javax.annotation.Resource;
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -25,6 +25,8 @@ import com.ruoshui.framework.manager.factory.AsyncFactory;
 import com.ruoshui.system.service.ISysConfigService;
 import com.ruoshui.system.service.ISysUserService;
 
+import javax.annotation.Resource;
+
 /**
  * 登录校验方法
  * 
@@ -33,19 +35,19 @@ import com.ruoshui.system.service.ISysUserService;
 @Component
 public class SysLoginService
 {
-    @Resource
+    @Autowired
     private TokenService tokenService;
 
-    @Resource
+    @Autowired
     private AuthenticationManager authenticationManager;
 
     @Resource
     private RedisCache redisCache;
     
-    @Resource
+    @Autowired
     private ISysUserService userService;
 
-    @Resource
+    @Autowired
     private ISysConfigService configService;
 
     /**

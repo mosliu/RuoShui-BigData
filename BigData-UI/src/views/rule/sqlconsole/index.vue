@@ -145,23 +145,23 @@ export default {
           }
           this.executeResultInfo = resultStr
           if(data != undefined && data.length > 0) {
-              for(let i=0;i<data.length;i++) {
-                  if(data[i].columnList != undefined && data[i].columnList.length > 0) {
-                      for(let j=0;j<data[i].columnList.length;j++) {
-                          data[i].columnList[j] = data[i].columnList[j].replace(/\./g, '>');
-                      }
-                  }
-                  if(data[i].dataList != undefined && data[i].dataList.length > 0) {
-                      for(let j=0;j<data[i].dataList.length;j++) {
-                          for(let key in data[i].dataList[j]) {
-                              let val = data[i].dataList[j][key];
-                              delete data[i].dataList[j][key];
-                              key = key.replace(/\./g, '>');
-                              data[i].dataList[j][key] = val;
-                          }
-                      }
-                  }
+            for(let i=0;i<data.length;i++) {
+              if(data[i].columnList != undefined && data[i].columnList.length > 0) {
+                for(let j=0;j<data[i].columnList.length;j++) {
+                  data[i].columnList[j] = data[i].columnList[j].replace(/\./g, '>');
+                }
               }
+              if(data[i].dataList != undefined && data[i].dataList.length > 0) {
+                for(let j=0;j<data[i].dataList.length;j++) {
+                  for(let key in data[i].dataList[j]) {
+                    let val = data[i].dataList[j][key];
+                    delete data[i].dataList[j][key];
+                    key = key.replace(/\./g, '>');
+                    data[i].dataList[j][key] = val;
+                  }
+                }
+              }
+            }
           }
           this.sqlConsole = data
         }

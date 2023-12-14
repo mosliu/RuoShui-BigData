@@ -14,7 +14,7 @@ import io.swagger.annotations.ApiParam;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import java.util.*;
 
 /**
@@ -25,11 +25,11 @@ import java.util.*;
 @Api(tags = "执行器管理接口")
 public class JobGroupController {
 
-    @Resource
+    @Autowired
     public JobInfoMapper jobInfoMapper;
-    @Resource
+    @Autowired
     public JobGroupMapper jobGroupMapper;
-    @Resource
+    @Autowired
     private JobRegistryMapper jobRegistryMapper;
 
     @GetMapping("/list")

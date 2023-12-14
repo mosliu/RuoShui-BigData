@@ -13,7 +13,7 @@ import com.ruoshui.common.annotation.Excel;
 import com.ruoshui.common.config.RPCClient;
 import com.ruoshui.common.utils.DateUtils;
 import com.ruoshui.common.utils.StringUtils;
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
@@ -26,7 +26,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class SysServersServiceImpl implements ISysServersService
 {
-    @Resource
+    @Autowired
     private SysServersMapper sysServersMapper;
 
     /**

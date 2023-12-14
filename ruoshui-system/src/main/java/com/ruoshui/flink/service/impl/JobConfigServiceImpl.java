@@ -15,7 +15,7 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -34,22 +34,22 @@ import java.util.List;
 public class JobConfigServiceImpl implements JobConfigService {
 
 
-    @Resource
+    @Autowired
     private JobConfigMapper jobConfigMapper;
 
-    @Resource
+    @Autowired
     private JobRunLogService jobRunLogService;
 
-    @Resource
+    @Autowired
     private JobAlarmConfigService jobAlarmConfigService;
 
-    @Resource
+    @Autowired
     private SystemConfigService systemConfigService;
 
-    @Resource
+    @Autowired
     private JobConfigHistoryService jobConfigHistoryService;
 
-    @Resource
+    @Autowired
     private BatchJobManagerScheduler batchJobManagerScheduler;
 
 

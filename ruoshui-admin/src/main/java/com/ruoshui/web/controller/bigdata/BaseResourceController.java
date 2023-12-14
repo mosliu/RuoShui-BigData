@@ -9,7 +9,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import javax.servlet.http.HttpServletRequest;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -23,7 +23,7 @@ import java.util.Map;
 public class BaseResourceController {
 
 	private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-	@Resource
+	@Autowired
 	private BaseResourceMapper baseResourceMapper;
 
 	@ApiOperation("获取所有数据")

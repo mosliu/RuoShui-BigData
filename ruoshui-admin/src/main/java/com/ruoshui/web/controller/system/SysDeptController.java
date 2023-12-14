@@ -3,7 +3,7 @@ package com.ruoshui.web.controller.system;
 import java.util.Iterator;
 import java.util.List;
 import org.apache.commons.lang3.ArrayUtils;
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -32,7 +32,7 @@ import com.ruoshui.system.service.ISysDeptService;
 @RequestMapping("/system/dept")
 public class SysDeptController extends BaseController
 {
-    @Resource
+    @Autowired
     private ISysDeptService deptService;
 
     /**

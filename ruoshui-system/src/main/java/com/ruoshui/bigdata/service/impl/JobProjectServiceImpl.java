@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ruoshui.bigdata.entity.JobProject;
 import com.ruoshui.bigdata.mapper.JobProjectMapper;
 import com.ruoshui.bigdata.service.JobProjectService;
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 @Service("jobProjectService")
 public class JobProjectServiceImpl extends ServiceImpl<JobProjectMapper, JobProject> implements JobProjectService {
 
-    @Resource
+    @Autowired
     private JobProjectMapper jobProjectMapper;
 
     @Override

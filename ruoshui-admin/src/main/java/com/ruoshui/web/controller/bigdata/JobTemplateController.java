@@ -12,7 +12,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import javax.servlet.http.HttpServletRequest;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -30,7 +30,7 @@ import java.util.Map;
 @RequestMapping("/api/jobTemplate")
 public class JobTemplateController extends BaseController{
 
-    @Resource
+    @Autowired
     private JobTemplateService jobTemplateService;
 
     @GetMapping("/pageList")

@@ -20,7 +20,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,10 +40,10 @@ import java.util.stream.Collectors;
 @RequestMapping("/standard/types")
 public class TypeController extends BaseController {
 
-    @Resource
+    @Autowired
     private TypeService typeService;
 
-    @Resource
+    @Autowired
     private TypeMapper typeMapper;
 
     /**

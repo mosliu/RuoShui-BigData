@@ -31,7 +31,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.flink.shaded.jackson2.org.yaml.snakeyaml.Yaml;
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,7 +39,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -60,28 +60,28 @@ import java.util.stream.Collectors;
 public class JobConfigApiController extends BaseController {
 
     
-    @Resource
+    @Autowired
     private JobServerAO jobYarnServerAO;
 
-    @Resource
+    @Autowired
     private JobServerAO jobStandaloneServerAO;
 
-    @Resource
+    @Autowired
     private JobConfigService jobConfigService;
     
-    @Resource
+    @Autowired
     private JobConfigAO jobConfigAO;
 
-    @Resource
+    @Autowired
     private JobConfigHistoryService jobConfigHistoryService;
 
-    @Resource
+    @Autowired
     private SystemConfigService systemConfigService;
 
-    @Resource
+    @Autowired
     public JobAlarmConfigService jobAlarmConfigService;
     
-    @Resource
+    @Autowired
     private SavepointBackupService savepointBackupService;
 
     @RequestMapping("/start")

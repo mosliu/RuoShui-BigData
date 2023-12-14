@@ -24,7 +24,7 @@ public class MetadataColumnVo implements Serializable {
     private String columnComment;
     private String columnKey;
     private String columnNullable;
-    private String columnPosition;
+    private Integer columnPosition;
     private String dataType;
     private String dataLength;
     private String dataPrecision;

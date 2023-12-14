@@ -22,7 +22,7 @@ import com.ruoshui.flink.service.SystemConfigService;
 import com.ruoshui.flink.thread.AlarmDingdingThread;
 import com.ruoshui.flink.thread.AlarmHttpThread;
 import lombok.extern.slf4j.Slf4j;
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
@@ -40,31 +40,31 @@ import java.util.concurrent.ThreadPoolExecutor;
 @Slf4j
 public class TaskServiceAOImpl implements TaskServiceAO {
 
-    @Resource
+    @Autowired
     private JobConfigService jobConfigService;
 
-    @Resource
+    @Autowired
     private FlinkRestRpcAdapter flinkRestRpcAdapter;
 
-    @Resource
+    @Autowired
     private YarnRestRpcAdapter yarnRestRpcAdapter;
 
-    @Resource
+    @Autowired
     private AlarmServiceAO alarmServiceAO;
 
-    @Resource
+    @Autowired
     private JobServerAO jobYarnServerAO;
 
-    @Resource
+    @Autowired
     private JobServerAO jobStandaloneServerAO;
 
-    @Resource
+    @Autowired
     private SystemConfigService systemConfigService;
 
-    @Resource
+    @Autowired
     private JobAlarmConfigService jobAlarmConfigService;
     
-    @Resource
+    @Autowired
     private DingDingService dingDingService;
 
     private ThreadPoolExecutor threadPoolExecutor = AlarmPoolConfig.getInstance().getThreadPoolExecutor();

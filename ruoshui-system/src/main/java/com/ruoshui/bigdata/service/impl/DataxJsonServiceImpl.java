@@ -13,7 +13,7 @@ import com.ruoshui.bigdata.service.DataxJsonService;
 import com.ruoshui.bigdata.service.JobDatasourceService;
 import com.ruoshui.bigdata.tool.datax.DataxJsonHelper;
 import org.springframework.beans.BeanUtils;
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -32,7 +32,7 @@ import java.util.List;
 @Service
 public class DataxJsonServiceImpl implements DataxJsonService {
 
-    @Resource
+    @Autowired
     private JobDatasourceService jobJdbcDatasourceService;
 
     @Override

@@ -12,10 +12,10 @@ import com.ruoshui.flink.service.SystemConfigService;
 import com.ruoshui.flink.streaming.web.model.dto.JobConfigDTO;
 import com.ruoshui.web.controller.flink.utils.JavaExecLinuxCommandRemote;
 import lombok.extern.slf4j.Slf4j;
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
@@ -31,13 +31,13 @@ import java.io.*;
 @Slf4j
 public class FlinkLogApiController {
 
-    @Resource
+    @Autowired
     public SystemConfigService systemConfigService;
 
-    @Resource
+    @Autowired
     private JobConfigService jobConfigService;
 
-    @Resource
+    @Autowired
     private BaseResourceMapper baseResourceMapper;
 
     @RequestMapping(value = "/getFlinkLocalJobLog")

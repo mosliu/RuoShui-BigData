@@ -18,7 +18,7 @@ import com.ruoshui.flink.streaming.web.model.entity.SystemConfig;
 import com.ruoshui.flink.service.SystemConfigService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
@@ -35,10 +35,10 @@ import java.util.List;
 @Slf4j
 public class SystemConfigServiceImpl implements SystemConfigService {
 
-  @Resource
+  @Autowired
   private SystemConfigMapper systemConfigMapper;
 
-  @Resource
+  @Autowired
   private LocalCache localCache;
 
 

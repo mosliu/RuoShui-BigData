@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 import javax.validation.Validator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
@@ -40,25 +40,25 @@ public class SysUserServiceImpl implements ISysUserService
 {
     private static final Logger log = LoggerFactory.getLogger(SysUserServiceImpl.class);
 
-    @Resource
+    @Autowired
     private SysUserMapper userMapper;
 
-    @Resource
+    @Autowired
     private SysRoleMapper roleMapper;
 
-    @Resource
+    @Autowired
     private SysPostMapper postMapper;
 
-    @Resource
+    @Autowired
     private SysUserRoleMapper userRoleMapper;
 
-    @Resource
+    @Autowired
     private SysUserPostMapper userPostMapper;
 
-    @Resource
+    @Autowired
     private ISysConfigService configService;
 
-    @Resource
+    @Autowired
     protected Validator validator;
 
     /**

@@ -14,11 +14,12 @@ import com.ruoshui.metadata.mapper.MetadataTableDao;
 import com.ruoshui.metadata.mapstruct.MetadataTableMapper;
 import com.ruoshui.metadata.query.MetadataTableQuery;
 import com.ruoshui.metadata.service.MetadataTableService;
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Resource;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -37,10 +38,10 @@ import static com.ruoshui.common.utils.SecurityUtils.getUsername;
 @Transactional(propagation = Propagation.SUPPORTS, readOnly = true, rollbackFor = Exception.class)
 public class MetadataTableServiceImpl extends BaseServiceImpl<MetadataTableDao, MetadataTableEntity> implements MetadataTableService {
 
-    @Resource
+    @Autowired
     private MetadataTableDao metadataTableDao;
 
-    @Resource
+    @Autowired
     private MetadataTableMapper metadataTableMapper;
 
     @Resource

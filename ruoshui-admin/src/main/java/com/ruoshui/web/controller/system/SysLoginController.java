@@ -2,7 +2,7 @@ package com.ruoshui.web.controller.system;
 
 import java.util.List;
 import java.util.Set;
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,13 +25,13 @@ import com.ruoshui.system.service.ISysMenuService;
 @RestController
 public class SysLoginController
 {
-    @Resource
+    @Autowired
     private SysLoginService loginService;
 
-    @Resource
+    @Autowired
     private ISysMenuService menuService;
 
-    @Resource
+    @Autowired
     private SysPermissionService permissionService;
 
     /**

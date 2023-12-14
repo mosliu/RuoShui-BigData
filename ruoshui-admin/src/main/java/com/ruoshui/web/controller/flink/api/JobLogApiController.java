@@ -10,7 +10,7 @@ import com.ruoshui.flink.streaming.web.model.vo.JobRunLogVO;
 import com.ruoshui.flink.streaming.web.model.vo.PageVO;
 import com.ruoshui.flink.service.JobRunLogService;
 import com.ruoshui.web.controller.flink.web.BaseController;
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,10 +26,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/flink")
 public class JobLogApiController extends BaseController {
 
-    @Resource
+    @Autowired
     private JobRunLogService jobRunLogService;
     
-    @Resource
+    @Autowired
     private CustomConfig customConfig;
 
     

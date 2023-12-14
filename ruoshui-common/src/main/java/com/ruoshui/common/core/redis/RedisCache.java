@@ -1,24 +1,26 @@
 package com.ruoshui.common.core.redis;
 
-import java.util.*;
-import java.util.concurrent.TimeUnit;
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.BoundSetOperations;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
+import java.util.*;
+import java.util.concurrent.TimeUnit;
+
 /**
  * spring redis 工具类
  *
- * @author ruoshui
+ * @author RuoShui
  **/
 @SuppressWarnings(value = { "unchecked", "rawtypes" })
 @Component
 public class RedisCache
 {
-    @Resource
+    @Autowired
     public RedisTemplate redisTemplate;
 
     /**
@@ -71,6 +73,28 @@ public class RedisCache
     }
 
     /**
+     * 获取有效时间
+     *
+     * @param key Redis键
+     * @return 有效时间
+     */
+    public long getExpire(final String key)
+    {
+        return redisTemplate.getExpire(key);
+    }
+
+    /**
+     * 判断 key是否存在
+     *
+     * @param key 键
+     * @return true 存在 false不存在
+     */
+    public Boolean hasKey(String key)
+    {
+        return redisTemplate.hasKey(key);
+    }
+
+    /**
      * 获得缓存的基本对象。
      *
      * @param key 缓存键值
@@ -98,9 +122,9 @@ public class RedisCache
      * @param collection 多个对象
      * @return
      */
-    public long deleteObject(final Collection collection)
+    public boolean deleteObject(final Collection collection)
     {
-        return redisTemplate.delete(collection);
+        return redisTemplate.delete(collection) > 0;
     }
 
     /**
@@ -137,8 +161,10 @@ public class RedisCache
     public <T> BoundSetOperations<String, T> setCacheSet(final String key, final Set<T> dataSet)
     {
         BoundSetOperations<String, T> setOperation = redisTemplate.boundSetOps(key);
-        for (T t : dataSet) {
-            setOperation.add(t);
+        Iterator<T> it = dataSet.iterator();
+        while (it.hasNext())
+        {
+            setOperation.add(it.next());
         }
         return setOperation;
     }
@@ -204,18 +230,6 @@ public class RedisCache
     }
 
     /**
-     * 删除Hash中的数据
-     * 
-     * @param key
-     * @param hKey
-     */
-    public void delCacheMapValue(final String key, final String hKey)
-    {
-        HashOperations hashOperations = redisTemplate.opsForHash();
-        hashOperations.delete(key, hKey);
-    }
-
-    /**
      * 获取多个Hash中的数据
      *
      * @param key Redis键
@@ -225,6 +239,18 @@ public class RedisCache
     public <T> List<T> getMultiCacheMapValue(final String key, final Collection<Object> hKeys)
     {
         return redisTemplate.opsForHash().multiGet(key, hKeys);
+    }
+
+    /**
+     * 删除Hash中的某条数据
+     *
+     * @param key Redis键
+     * @param hKey Hash键
+     * @return 是否成功
+     */
+    public boolean deleteCacheMapValue(final String key, final String hKey)
+    {
+        return redisTemplate.opsForHash().delete(key, hKey) > 0;
     }
 
     /**
@@ -238,27 +264,17 @@ public class RedisCache
         return redisTemplate.keys(pattern);
     }
 
-    /**
-     * 判断 key是否存在
-     *
-     * @param key 键
-     * @return true 存在 false不存在
-     */
-    public Boolean hasKey(String key)
-    {
-        return redisTemplate.hasKey(key);
-    }
 
     /**
-     * HashGet
+     * 普通缓存获取
      *
-     * @param key  键 不能为 null
-     * @param item 项 不能为 null
+     * @param key 键
      * @return 值
      */
-    public Object hget(String key, String item) {
-        return redisTemplate.opsForHash().get(key, item);
+    public Object get(String key) {
+        return key == null ? null : redisTemplate.opsForValue().get(key);
     }
+
 
     /**
      * HashGet
@@ -271,14 +287,17 @@ public class RedisCache
         redisTemplate.opsForHash().putAll(key, map);
     }
 
+
+
     /**
-     * 普通缓存获取
+     * HashGet
      *
-     * @param key 键
+     * @param key  键 不能为 null
+     * @param item 项 不能为 null
      * @return 值
      */
-    public Object get(String key) {
-        return key == null ? null : redisTemplate.opsForValue().get(key);
+    public Object hget(String key, String item) {
+        return redisTemplate.opsForHash().get(key, item);
     }
 
     /**

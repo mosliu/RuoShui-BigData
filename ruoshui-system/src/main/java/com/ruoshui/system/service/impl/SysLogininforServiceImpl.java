@@ -1,7 +1,7 @@
 package com.ruoshui.system.service.impl;
 
 import java.util.List;
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.ruoshui.system.domain.SysLogininfor;
 import com.ruoshui.system.mapper.SysLogininforMapper;
@@ -16,7 +16,7 @@ import com.ruoshui.system.service.ISysLogininforService;
 public class SysLogininforServiceImpl implements ISysLogininforService
 {
 
-    @Resource
+    @Autowired
     private SysLogininforMapper logininforMapper;
 
     /**

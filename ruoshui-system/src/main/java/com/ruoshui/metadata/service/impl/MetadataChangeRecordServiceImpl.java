@@ -7,7 +7,7 @@ import com.ruoshui.metadata.entity.MetadataChangeRecordEntity;
 import com.ruoshui.metadata.mapper.MetadataChangeRecordDao;
 import com.ruoshui.metadata.mapstruct.MetadataChangeRecordMapper;
 import com.ruoshui.metadata.service.MetadataChangeRecordService;
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,10 +28,10 @@ import static com.ruoshui.common.utils.SecurityUtils.getUsername;
 @Transactional(propagation = Propagation.SUPPORTS, readOnly = true, rollbackFor = Exception.class)
 public class MetadataChangeRecordServiceImpl extends BaseServiceImpl<MetadataChangeRecordDao, MetadataChangeRecordEntity> implements MetadataChangeRecordService {
 
-    @Resource
+    @Autowired
     private MetadataChangeRecordDao metadataChangeRecordDao;
 
-    @Resource
+    @Autowired
     private MetadataChangeRecordMapper metadataChangeRecordMapper;
 
     @Override

@@ -3,7 +3,7 @@ package com.ruoshui.flink.runner;
 import com.ruoshui.flink.service.IpStatusService;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
@@ -23,7 +23,7 @@ import org.springframework.stereotype.Component;
 public class ApplicationRunner implements org.springframework.boot.ApplicationRunner {
 
 
-    @Resource
+    @Autowired
     private IpStatusService ipStatusService;
 
 

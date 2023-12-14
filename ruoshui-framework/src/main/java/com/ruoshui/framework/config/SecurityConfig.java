@@ -1,6 +1,6 @@
 package com.ruoshui.framework.config;
 
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -29,31 +29,31 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
     /**
      * 自定义用户认证逻辑
      */
-    @Resource
+    @Autowired
     private UserDetailsService userDetailsService;
     
     /**
      * 认证失败处理类
      */
-    @Resource
+    @Autowired
     private AuthenticationEntryPointImpl unauthorizedHandler;
 
     /**
      * 退出处理类
      */
-    @Resource
+    @Autowired
     private LogoutSuccessHandlerImpl logoutSuccessHandler;
 
     /**
      * token认证过滤器
      */
-    @Resource
+    @Autowired
     private JwtAuthenticationTokenFilter authenticationTokenFilter;
     
     /**
      * 跨域过滤器
      */
-    @Resource
+    @Autowired
     private CorsFilter corsFilter;
     
     /**

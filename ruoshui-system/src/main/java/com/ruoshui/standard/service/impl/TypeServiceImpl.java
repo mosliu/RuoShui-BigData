@@ -7,7 +7,7 @@ import com.ruoshui.standard.entity.TypeEntity;
 import com.ruoshui.standard.mapper.TypeDao;
 import com.ruoshui.standard.mapstruct.TypeMapper;
 import com.ruoshui.standard.service.TypeService;
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,10 +28,10 @@ import static com.ruoshui.common.utils.SecurityUtils.getUsername;
 @Transactional(propagation = Propagation.SUPPORTS, readOnly = true, rollbackFor = Exception.class)
 public class TypeServiceImpl extends BaseServiceImpl<TypeDao, TypeEntity> implements TypeService {
 
-    @Resource
+    @Autowired
     private TypeDao typeDao;
 
-    @Resource
+    @Autowired
     private TypeMapper typeMapper;
 
     @Override

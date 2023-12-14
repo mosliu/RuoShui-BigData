@@ -63,7 +63,7 @@ public class MetadataColumnEntity implements Serializable {
     /**
      * 字段序号
      */
-    private String columnPosition;
+    private Integer columnPosition;
 
     /**
      * 数据类型

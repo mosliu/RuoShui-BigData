@@ -10,7 +10,7 @@ import com.ruoshui.market.entity.ApiMaskEntity;
 import com.ruoshui.market.mapper.ApiMaskDao;
 import com.ruoshui.market.mapstruct.ApiMaskMapper;
 import com.ruoshui.market.service.ApiMaskService;
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,10 +29,10 @@ import java.util.List;
 @Transactional(propagation = Propagation.SUPPORTS, readOnly = true, rollbackFor = Exception.class)
 public class ApiMaskServiceImpl extends BaseServiceImpl<ApiMaskDao, ApiMaskEntity> implements ApiMaskService {
 
-    @Resource
+    @Autowired
     private ApiMaskDao apiMaskDao;
 
-    @Resource
+    @Autowired
     private ApiMaskMapper apiMaskMapper;
 
     @Override

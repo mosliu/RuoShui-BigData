@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.lang3.ArrayUtils;
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -40,13 +40,13 @@ import com.ruoshui.system.service.ISysUserService;
 @RequestMapping("/system/user")
 public class SysUserController extends BaseController
 {
-    @Resource
+    @Autowired
     private ISysUserService userService;
 
-    @Resource
+    @Autowired
     private ISysRoleService roleService;
 
-    @Resource
+    @Autowired
     private ISysPostService postService;
 
     /**

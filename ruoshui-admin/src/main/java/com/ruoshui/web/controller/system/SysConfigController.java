@@ -2,7 +2,7 @@ package com.ruoshui.web.controller.system;
 
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -32,7 +32,7 @@ import com.ruoshui.system.service.ISysConfigService;
 @RequestMapping("/system/config")
 public class SysConfigController extends BaseController
 {
-    @Resource
+    @Autowired
     private ISysConfigService configService;
 
     /**

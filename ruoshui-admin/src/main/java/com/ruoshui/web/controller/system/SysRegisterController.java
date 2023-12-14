@@ -1,6 +1,6 @@
 package com.ruoshui.web.controller.system;
 
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,10 +19,10 @@ import com.ruoshui.system.service.ISysConfigService;
 @RestController
 public class SysRegisterController extends BaseController
 {
-    @Resource
+    @Autowired
     private SysRegisterService registerService;
 
-    @Resource
+    @Autowired
     private ISysConfigService configService;
 
     @PostMapping("/register")

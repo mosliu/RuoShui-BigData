@@ -7,7 +7,7 @@ import com.ruoshui.flink.streaming.web.model.vo.SystemConfigVO;
 import com.ruoshui.flink.service.SystemConfigService;
 import com.ruoshui.web.controller.flink.web.BaseController;
 import lombok.extern.slf4j.Slf4j;
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,7 +27,7 @@ import java.util.List;
 public class ConfigApiController extends BaseController {
 
 
-    @Resource
+    @Autowired
     private SystemConfigService systemConfigService;
 
     @RequestMapping(value = "/upsertSynConfig", method = RequestMethod.POST)

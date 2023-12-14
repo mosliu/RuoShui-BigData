@@ -6,7 +6,7 @@ import com.ruoshui.bigdata.entity.JobDatasource;
 import com.ruoshui.bigdata.service.JsonService;
 import com.ruoshui.bigdata.service.JobDatasourceService;
 import com.ruoshui.bigdata.tool.flinkx.DataxJsonHelper;
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class JsonServiceImpl implements JsonService {
 
-    @Resource
+    @Autowired
     private JobDatasourceService jobJdbcDatasourceService;
 
     @Override

@@ -1,6 +1,6 @@
 package com.ruoshui.framework.config;
 
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.cors.CorsConfiguration;
@@ -21,7 +21,7 @@ import com.ruoshui.framework.interceptor.RepeatSubmitInterceptor;
 @Configuration
 public class ResourcesConfig implements WebMvcConfigurer
 {
-    @Resource
+    @Autowired
     private RepeatSubmitInterceptor repeatSubmitInterceptor;
 
     @Override

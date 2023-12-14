@@ -38,7 +38,7 @@ public class MetadataColumnDto implements Serializable {
     @ApiModelProperty(value = "字段是否允许为空(1是0否)")
     private String columnNullable;
     @ApiModelProperty(value = "字段序号")
-    private String columnPosition;
+    private Integer columnPosition;
     @ApiModelProperty(value = "数据类型")
     private String dataType;
     @ApiModelProperty(value = "数据长度")

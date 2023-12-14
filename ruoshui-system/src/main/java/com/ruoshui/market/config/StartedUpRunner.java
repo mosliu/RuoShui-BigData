@@ -9,7 +9,7 @@ import com.ruoshui.market.entity.DataApiEntity;
 import com.ruoshui.market.handler.MappingHandlerMapping;
 import com.ruoshui.market.service.DataApiService;
 import lombok.RequiredArgsConstructor;
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -28,10 +28,10 @@ public class StartedUpRunner implements ApplicationRunner {
     private final Environment environment;
 
 
-    @Resource
+    @Autowired
     private MappingHandlerMapping mappingHandlerMapping;
 
-    @Resource
+    @Autowired
     private DataApiService dataApiService;
 
     @Override
