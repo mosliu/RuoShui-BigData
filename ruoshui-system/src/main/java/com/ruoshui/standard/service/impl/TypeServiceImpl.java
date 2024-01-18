@@ -39,6 +39,7 @@ public class TypeServiceImpl extends BaseServiceImpl<TypeDao, TypeEntity> implem
     public TypeEntity saveType(TypeDto typeDto) {
         TypeEntity type = typeMapper.toEntity(typeDto);
         type.setCreateBy(getUsername());
+        type.setStatus("1");
         typeDao.insert(type);
         return type;
     }
