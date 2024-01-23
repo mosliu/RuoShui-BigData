@@ -77,10 +77,6 @@ public class TaskServiceAOImpl implements TaskServiceAO {
             return;
         }
         for (JobConfigDTO jobConfigDTO : jobConfigDTOList) {
-            if (JobTypeEnum.SQL_BATCH.equals(jobConfigDTO.getJobTypeEnum())){
-                log.warn("批任务不需要状态校验");
-                return;
-            }
             List<AlarmTypeEnum> alarmTypeEnumList = jobAlarmConfigService.findByJobId(jobConfigDTO.getId());
             switch (jobConfigDTO.getDeployModeEnum()) {
                 case YARN_PER:
