@@ -103,8 +103,8 @@ public class AsyncTask {
                                 metadataColumn.setTableId(table.getId());
                                 metadataColumn.setColumnName(column.getColName());
                                 metadataColumn.setColumnComment(column.getColComment());
-                                metadataColumn.setColumnKey(column.getColKey() != null ? "1" : "0");
-                                metadataColumn.setColumnNullable(column.getNullable() != null ? "1" : "0");
+                                metadataColumn.setColumnKey(column.getColKey() ? "1" : "0");
+                                metadataColumn.setColumnNullable(column.getNullable() ? "1" : "0");
                                 metadataColumn.setColumnPosition(column.getColPosition());
                                 metadataColumn.setDataType(column.getDataType());
                                 metadataColumn.setDataLength(column.getDataLength());
