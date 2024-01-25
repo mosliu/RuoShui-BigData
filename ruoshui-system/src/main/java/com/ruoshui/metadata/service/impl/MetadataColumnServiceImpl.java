@@ -89,7 +89,7 @@ public class MetadataColumnServiceImpl extends BaseServiceImpl<MetadataColumnDao
     public List<MetadataTreeVo> getDataMetadataTree(String level, MetadataColumnQuery metadataColumnQuery) {
         List<MetadataSourceEntity> sourceList = (List<MetadataSourceEntity>) redisService.getCacheObject(RedisConstant.METADATA_SOURCE_KEY);
         List<MetadataTreeVo> list = new ArrayList<>();
-        if(sourceList.size()>0){
+        if(sourceList != null && sourceList.size()>0){
             for(int i=0;i<sourceList.size();i++){
                 MetadataTreeVo tree = new MetadataTreeVo();
                 tree.setId(sourceList.get(i).getId());
@@ -101,6 +101,8 @@ public class MetadataColumnServiceImpl extends BaseServiceImpl<MetadataColumnDao
                 }
                 list.add(tree);
             }
+        }else{
+            throw new RuntimeException("数据源为空，请到数据源管理中添加数据源，再到详情同步数据源，最后刷新缓存！");
         }
         return list;
     }
@@ -108,7 +110,7 @@ public class MetadataColumnServiceImpl extends BaseServiceImpl<MetadataColumnDao
     private List<MetadataTreeVo> getTableChildrens(String id, String level, String tableId) {
         List<MetadataTableEntity> tableList = (List<MetadataTableEntity>) redisService.hget(RedisConstant.METADATA_TABLE_KEY, id);
         List<MetadataTreeVo> children = new ArrayList<>();
-        if(tableList.size()>0){
+        if(tableList!=null && tableList.size()>0){
             for(int i=0;i<tableList.size();i++){
                 MetadataTreeVo tree = new MetadataTreeVo();
                 tree.setId(tableList.get(i).getId());
