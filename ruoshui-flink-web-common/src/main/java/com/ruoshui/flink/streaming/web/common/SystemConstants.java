@@ -16,6 +16,8 @@ public class SystemConstants {
     public static final String COOKIE_NAME_SESSION_ID = "ruoshui-flink-savepoint-sessionid";
 
     public static final String STATUS_RUNNING = "RUNNING";
+
+    public static final String STATUS_FINISHED = "FINISHED";
     
     public static final String STATUS_RESTARTING = "RESTARTING";
 

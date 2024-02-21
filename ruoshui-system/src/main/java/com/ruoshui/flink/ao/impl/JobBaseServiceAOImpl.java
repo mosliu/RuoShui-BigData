@@ -382,7 +382,6 @@ public class JobBaseServiceAOImpl implements JobBaseServiceAO {
              */
             private String submitJobForStandalone(String command, JobConfigDTO jobConfig, StringBuilder localLog,String serverIp,String serverUser, String serverPassword)
                     throws Exception {
-//                String appId = commandRpcClinetAdapter.submitJob(command, localLog, jobRunLogId, jobConfig.getDeployModeEnum());
                 String appId = commandRpcClinetAdapter.submitJobTwo(command, localLog, jobRunLogId, jobConfig.getDeployModeEnum(),serverIp,serverUser,serverPassword);
                 JobStandaloneInfo jobStandaloneInfo = flinkRestRpcAdapter.getJobInfoForStandaloneByAppId(appId,
                         jobConfig.getDeployModeEnum());
@@ -392,7 +391,7 @@ public class JobBaseServiceAOImpl implements JobBaseServiceAO {
                     localLog.append("\n 任务失败 appId=" + appId);
                     throw new BizException("任务失败");
                 } else {
-                    if (!SystemConstants.STATUS_RUNNING.equals(jobStandaloneInfo.getState())) {
+                    if (!SystemConstants.STATUS_RUNNING.equals(jobStandaloneInfo.getState()) && !SystemConstants.STATUS_FINISHED.equals(jobStandaloneInfo.getState())) {
                         localLog.append("\n 任务失败 appId=" + appId).append("状态是：" + jobStandaloneInfo.getState());
                         throw new BizException("[submitJobForStandalone]任务失败");
                     }
