@@ -1,7 +1,7 @@
 <template>
   <div class="login">
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" style="background-color: rgb(255, 255, 255, 0.1);color: #FFF;">
-      <h3 class="title">系统登录</h3>
+      <h3 class="title">若水数据中台</h3>
       <el-form-item prop="username">
         <el-input
           v-model="loginForm.username"
@@ -56,7 +56,7 @@
     </el-form>
     <!--  底部  -->
     <div class="el-login-footer">
-      <span>Copyright © 2022-2024 www.lsxjrs.com All Rights Reserved.</span>
+      <span>Copyright © 2024-2030 若水数字科技有限公司  All Rights Reserved.</span>
     </div>
   </div>
 </template>

@@ -583,7 +583,7 @@ export default {
         this.jobJson = JSON.parse(this.temp.jobJson)
         this.temp.jobJson = JSON.parse(this.temp.jobJson)
       }
-      
+
       this.glueSource = this.temp.glueSource
       const arrchildSet = []
       const arrJobIdList = []
@@ -660,7 +660,6 @@ export default {
       }
     },
     updateData() {
-      this.temp.jobJson = typeof this.jobJson !== 'string' ? JSON.stringify(this.jobJson) : this.jobJson;
       try {
         let jobJsonObj = JSON.parse(JSON.stringify(this.jobJson));
         this.$refs['dataForm'].validate((valid) => {
@@ -677,7 +676,9 @@ export default {
             if (this.partitionField) {
               this.temp.partitionInfo = this.partitionField + ',' + this.timeOffset + ',' + this.timeFormatType
             }
-            this.temp.jobJson = typeof this.jobJson !== 'string' ? JSON.stringify(this.jobJson) : this.jobJson;
+
+            this.temp.jobJson = typeof this.temp.jobJson !== 'string' ? JSON.stringify(this.temp.jobJson) : this.temp.jobJson;
+            console.log(this.temp.jobJson)
             job.updateJob(this.temp).then(() => {
               this.fetchData()
               this.dialogFormVisible = false
