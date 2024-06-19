@@ -633,8 +633,8 @@ export default {
             }
             this.temp.childJobId = auth.toString()
           }
-          this.temp.jobJson = this.jobJson
-          this.temp.glueSource = this.glueSource
+          this.temp.jobJson = this.jobJson !== "" && this.jobJson !== null && this.jobJson !== undefined ? this.jobJson : this.temp.jobJson
+          this.temp.glueSource = this.glueSource !== "" && this.glueSource !== null && this.glueSource !== undefined ? this.glueSource : this.temp.glueSource
           this.temp.executorHandler = this.temp.glueType === 'BEAN' ? 'executorJobHandler' : ''
           if (this.partitionField) this.temp.partitionInfo = this.partitionField + ',' + this.timeOffset + ',' + this.timeFormatType
           job.createJob(this.temp).then(() => {
