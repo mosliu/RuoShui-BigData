@@ -550,7 +550,7 @@ export default {
     },
     getDataSourceList() {
       datasourceApi.getDataSourceList().then(response => {
-        this.dataSourceList = response
+        this.dataSourceList = response.data
       })
     },
     fetchData() {
