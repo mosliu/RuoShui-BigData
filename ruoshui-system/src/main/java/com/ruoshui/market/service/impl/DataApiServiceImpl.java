@@ -187,7 +187,11 @@ public class DataApiServiceImpl extends BaseServiceImpl<DataApiDao, DataApiEntit
         final List<ResParam> resParams = new ArrayList<>();
         parseFields(sqlParseDto.getSqlText()).forEach((column, alias) -> {
             ResParam resParam = new ResParam();
-            resParam.setFieldName(alias);
+            if(alias.isEmpty()){
+                resParam.setFieldName(column);
+            }else {
+                resParam.setFieldName(alias);
+            }
             resParams.add(resParam);
         });
 
