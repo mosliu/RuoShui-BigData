@@ -215,44 +215,42 @@ public class DataApiServiceImpl extends BaseServiceImpl<DataApiDao, DataApiEntit
                 select.getSelectBody().accept(new SelectVisitorAdapter() {
                     @Override
                     public void visit(PlainSelect plainSelect) {
-                        plainSelect.getSelectItems().stream().forEach(selectItem -> {
+                        plainSelect.getSelectItems().forEach(selectItem -> {
                             selectItem.accept(new SelectItemVisitorAdapter() {
                                 @Override
                                 public void visit(SelectExpressionItem item) {
-                                    Map<String,String> map = new HashMap<>();
+                                    Map<String, String> map = new HashMap<>();
                                     String columnName;
-                                    SimpleNode node = item.getExpression().getASTNode();
-                                    Object value = node.jjtGetValue();
-                                    if (value instanceof Column) {
-                                        Column column = (Column) value;
+                                    Object expression = item.getExpression();
+
+                                    if (expression instanceof Column) {
+                                        Column column = (Column) expression;
                                         columnName = column.getColumnName();
                                         if (item.getAlias() != null) {
                                             map.put("columnAliasName", item.getAlias().getName());
                                         }
-                                    } else if (value instanceof Function) {
-                                        columnName = value.toString();
+                                    } else if (expression instanceof Function) {
+                                        columnName = expression.toString();
                                     } else {
                                         // 增加对select 'aaa' from table; 的支持
-                                        columnName = String.valueOf(value);
-                                        columnName = columnName.replace("'", "");
-                                        columnName = columnName.replace("\"", "");
-                                        columnName = columnName.replace("`", "");
+                                        columnName = String.valueOf(expression);
+                                        columnName = columnName.replace("'", "").replace("\"", "").replace("`", "");
                                     }
-                                    columnName = columnName.replace("'", "");
-                                    columnName = columnName.replace("\"", "");
-                                    columnName = columnName.replace("`", "");
+                                    columnName = columnName.replace("'", "").replace("\"", "").replace("`", "");
                                     map.put("tableName", tableName);
                                     map.put("columnName", columnName);
                                     cols.add(map);
                                 }
                             });
                         });
-                        plainSelect.getWhere().accept(new ExpressionVisitorAdapter() {
-                            @Override
-                            public void visit(JdbcNamedParameter jdbcNamedParameter) {
-                                vars.add(jdbcNamedParameter.getName());
-                            }
-                        });
+                        if (plainSelect.getWhere() != null) {
+                            plainSelect.getWhere().accept(new ExpressionVisitorAdapter() {
+                                @Override
+                                public void visit(JdbcNamedParameter jdbcNamedParameter) {
+                                    vars.add(jdbcNamedParameter.getName());
+                                }
+                            });
+                        }
                     }
                 });
             }
@@ -267,31 +265,30 @@ public class DataApiServiceImpl extends BaseServiceImpl<DataApiDao, DataApiEntit
                     @Override
                     public void visit(PlainSelect plainSelect) {
                         // 存储表名
-                        Map<String,String> map = new HashMap<>();
-                        Table table = (Table)plainSelect.getFromItem();
+                        Map<String, String> map = new HashMap<>();
+                        Table table = (Table) plainSelect.getFromItem();
                         if (table.getAlias() != null) {
                             map.put(table.getName(), table.getAlias().getName());
                         }
                         for (Join join : plainSelect.getJoins()) {
-                            Table table1 = (Table)join.getRightItem();
+                            Table table1 = (Table) join.getRightItem();
                             if (table1.getAlias() != null) {
                                 map.put(table1.getName(), table1.getAlias().getName());
                             }
                         }
-                        plainSelect.getSelectItems().stream().forEach(selectItem -> {
+                        plainSelect.getSelectItems().forEach(selectItem -> {
                             selectItem.accept(new SelectItemVisitorAdapter() {
                                 @Override
                                 public void visit(SelectExpressionItem item) {
-                                    Map<String,String> m = new HashMap<>();
+                                    Map<String, String> m = new HashMap<>();
                                     String tableName = "", columnName;
-                                    SimpleNode node = item.getExpression().getASTNode();
-                                    Object value = node.jjtGetValue();
-                                    if (value instanceof Column) {
-                                        Column column = (Column) value;
+                                    Object expression = item.getExpression();
+                                    if (expression instanceof Column) {
+                                        Column column = (Column) expression;
                                         Table table = column.getTable();
                                         if (table != null) {
                                             for (Map.Entry<String, String> entry : map.entrySet()) {
-                                                if(table.getName().equals(entry.getValue())){
+                                                if (table.getName().equals(entry.getValue())) {
                                                     tableName = entry.getKey();
                                                     break;
                                                 }
@@ -301,30 +298,28 @@ public class DataApiServiceImpl extends BaseServiceImpl<DataApiDao, DataApiEntit
                                         if (item.getAlias() != null) {
                                             m.put("columnAliasName", item.getAlias().getName());
                                         }
-                                    } else if (value instanceof Function) {
-                                        columnName = value.toString();
+                                    } else if (expression instanceof Function) {
+                                        columnName = expression.toString();
                                     } else {
                                         // 增加对select 'aaa' from table; 的支持
-                                        columnName = String.valueOf(value);
-                                        columnName = columnName.replace("'", "");
-                                        columnName = columnName.replace("\"", "");
-                                        columnName = columnName.replace("`", "");
+                                        columnName = String.valueOf(expression);
+                                        columnName = columnName.replace("'", "").replace("\"", "").replace("`", "");
                                     }
-                                    columnName = columnName.replace("'", "");
-                                    columnName = columnName.replace("\"", "");
-                                    columnName = columnName.replace("`", "");
+                                    columnName = columnName.replace("'", "").replace("\"", "").replace("`", "");
                                     m.put("tableName", tableName);
                                     m.put("columnName", columnName);
                                     cols.add(m);
                                 }
                             });
                         });
-                        plainSelect.getWhere().accept(new ExpressionVisitorAdapter() {
-                            @Override
-                            public void visit(JdbcNamedParameter jdbcNamedParameter) {
-                                vars.add(jdbcNamedParameter.getName());
-                            }
-                        });
+                        if (plainSelect.getWhere() != null) {
+                            plainSelect.getWhere().accept(new ExpressionVisitorAdapter() {
+                                @Override
+                                public void visit(JdbcNamedParameter jdbcNamedParameter) {
+                                    vars.add(jdbcNamedParameter.getName());
+                                }
+                            });
+                        }
                     }
                 });
             }
