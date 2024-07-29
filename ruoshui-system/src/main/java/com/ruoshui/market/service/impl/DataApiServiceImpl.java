@@ -35,9 +35,12 @@ import com.ruoshui.market.utils.MD5Util;
 import com.ruoshui.market.utils.SqlBuilderUtil;
 import com.ruoshui.market.vo.ApiHeader;
 import com.ruoshui.market.vo.SqlParseVo;
+import com.ruoshui.metadata.dto.SqlConsoleDto;
 import com.ruoshui.metadata.entity.MetadataColumnEntity;
 import com.ruoshui.metadata.entity.MetadataSourceEntity;
 import com.ruoshui.metadata.entity.MetadataTableEntity;
+import com.ruoshui.metadata.service.SqlConsoleService;
+import com.ruoshui.metadata.vo.SqlConsoleVo;
 import lombok.extern.slf4j.Slf4j;
 import net.sf.jsqlparser.JSQLParserException;
 import net.sf.jsqlparser.expression.ExpressionVisitorAdapter;
@@ -62,6 +65,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ruoshui.common.utils.uuid.UUID;
 
 import java.io.InputStream;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -91,6 +95,9 @@ public class DataApiServiceImpl extends BaseServiceImpl<DataApiDao, DataApiEntit
 
     @Autowired
     private RedisCache redisService;
+
+    @Autowired
+    private SqlConsoleService sqlConsoleService;
 
     @Override
     @Transactional(rollbackFor = Exception.class)
@@ -141,7 +148,7 @@ public class DataApiServiceImpl extends BaseServiceImpl<DataApiDao, DataApiEntit
     }
 
     @Override
-    public SqlParseVo sqlParse(SqlParseDto sqlParseDto) {
+    public SqlParseVo sqlParse(SqlParseDto sqlParseDto) throws SQLException, JSQLParserException {
         String sourceId = sqlParseDto.getSourceId();
         String sql = sqlParseDto.getSqlText();
         sql = sql.replace(SqlBuilderUtil.getInstance().MARK_KEY_START, "");
@@ -175,35 +182,45 @@ public class DataApiServiceImpl extends BaseServiceImpl<DataApiDao, DataApiEntit
             return reqParam;
         }).collect(Collectors.toList());
         sqlParseVo.setReqParams(reqParams);
-        List<ResParam> resParams = new ArrayList<>();
-        List<MetadataSourceEntity> sourceEntityList = (List<MetadataSourceEntity>) redisService.get(RedisConstant.METADATA_SOURCE_KEY);
-        MetadataSourceEntity sourceEntity = sourceEntityList.stream().filter(s -> sourceId.equals(s.getId())).findFirst().orElse(null);
-        if (sourceEntity != null) {
-            List<MetadataTableEntity> tableEntityList = (List<MetadataTableEntity>) redisService.hget(RedisConstant.METADATA_TABLE_KEY, sourceEntity.getId());
-            Map<String, List<Map<String, String>>> map = cols.stream().collect(Collectors.groupingBy(e -> e.get("tableName").toString()));
-            for (Map.Entry<String, List<Map<String, String>>> entry : map.entrySet()) {
-                String entryKey = entry.getKey().toLowerCase();
-                List<Map<String, String>> entryValue = entry.getValue();
-                MetadataTableEntity tableEntity = tableEntityList.stream().filter(t -> entryKey.equals(t.getTableName().toLowerCase())).findFirst().orElse(null);
-                if (tableEntity != null) {
-                    List<MetadataColumnEntity> columnEntityList = (List<MetadataColumnEntity>) redisService.hget(RedisConstant.METADATA_COLUMN_KEY, tableEntity.getId());
-                    entryValue.stream().forEach(m -> {
-                        String columnName = m.get("columnName").toLowerCase();
-                        String columnAliasName = m.get("columnAliasName");
-                        Stream<MetadataColumnEntity> stream = columnEntityList.stream().filter(c -> columnName.equals(c.getColumnName().toLowerCase()));
-                        MetadataColumnEntity columnEntity = stream.findFirst().orElse(null);
-                        if (columnEntity != null) {
-                            ResParam resParam = new ResParam();
-                            resParam.setFieldName(columnEntity.getColumnName());
-                            resParam.setFieldComment(StrUtil.isNotBlank(columnEntity.getColumnComment()) ? columnEntity.getColumnComment() : "");
-                            resParam.setDataType(StrUtil.isNotBlank(columnEntity.getDataType()) ? columnEntity.getDataType() : "");
-                            resParam.setFieldAliasName(StrUtil.isNotBlank(columnAliasName) ? columnAliasName : "");
-                            resParams.add(resParam);
-                        }
-                    });
-                }
-            }
-        }
+
+
+        final List<ResParam> resParams = new ArrayList<>();
+        parseFields(sqlParseDto.getSqlText()).forEach((column, alias) -> {
+            ResParam resParam = new ResParam();
+            resParam.setFieldName(alias);
+            resParams.add(resParam);
+        });
+
+//        List<MetadataSourceEntity> sourceEntityList = (List<MetadataSourceEntity>) redisService.get(RedisConstant.METADATA_SOURCE_KEY);
+//        MetadataSourceEntity sourceEntity = sourceEntityList.stream().filter(s -> sourceId.equals(s.getId())).findFirst().orElse(null);
+//        if (sourceEntity != null) {
+//            List<MetadataTableEntity> tableEntityList = (List<MetadataTableEntity>) redisService.hget(RedisConstant.METADATA_TABLE_KEY, sourceEntity.getId());
+//            Map<String, List<Map<String, String>>> map = cols.stream().collect(Collectors.groupingBy(e -> e.get("tableName").toString()));
+//            for (Map.Entry<String, List<Map<String, String>>> entry : map.entrySet()) {
+//                String entryKey = entry.getKey().toLowerCase();
+//                List<Map<String, String>> entryValue = entry.getValue();
+//                MetadataTableEntity tableEntity = tableEntityList.stream().filter(t -> entryKey.equals(t.getTableName().toLowerCase())).findFirst().orElse(null);
+//                if (tableEntity != null) {
+//                    List<MetadataColumnEntity> columnEntityList = (List<MetadataColumnEntity>) redisService.hget(RedisConstant.METADATA_COLUMN_KEY, tableEntity.getId());
+//                    entryValue.stream().forEach(m -> {
+//                        String columnName = m.get("columnName").toLowerCase();
+//                        String columnAliasName = m.get("columnAliasName");
+//                        Stream<MetadataColumnEntity> stream = columnEntityList.stream().filter(c -> columnName.equals(c.getColumnName().toLowerCase()));
+//                        MetadataColumnEntity columnEntity = stream.findFirst().orElse(null);
+//                        ResParam resParam = new ResParam();
+//                        if (columnEntity != null) {
+//                            resParam.setFieldName(columnEntity.getColumnName());
+//                            resParam.setFieldComment(StrUtil.isNotBlank(columnEntity.getColumnComment()) ? columnEntity.getColumnComment() : "");
+//                            resParam.setDataType(StrUtil.isNotBlank(columnEntity.getDataType()) ? columnEntity.getDataType() : "");
+//                            resParam.setFieldAliasName(StrUtil.isNotBlank(columnAliasName) ? columnAliasName : "");
+//                        }else{
+//                            resParam.setFieldName(columnName);
+//                        }
+//                        resParams.add(resParam);
+//                    });
+//                }
+//            }
+//        }
         sqlParseVo.setResParams(resParams);
         return sqlParseVo;
     }
@@ -489,5 +506,27 @@ public class DataApiServiceImpl extends BaseServiceImpl<DataApiDao, DataApiEntit
     @Override
     public List<DataApiEntity> getDataApiEntityList(String status) {
         return dataApiDao.getDataApiEntityList(status);
+    }
+
+    public static Map<String, String> parseFields(String sql) throws JSQLParserException {
+        // Remove placeholders
+        sql = sql.replaceAll("\\$\\{.*?\\}", "");
+
+        Map<String, String> fields = new HashMap<>();
+        Select select = (Select) CCJSqlParserUtil.parse(sql);
+        PlainSelect plainSelect = (PlainSelect) select.getSelectBody();
+        List<SelectItem> selectItems = plainSelect.getSelectItems();
+
+        for (SelectItem selectItem : selectItems) {
+            selectItem.accept(new SelectItemVisitorAdapter() {
+                @Override
+                public void visit(SelectExpressionItem item) {
+                    String columnName = item.getExpression().toString().replaceAll("^[a-zA-Z]+\\.", "");
+                    String alias = item.getAlias() != null ? item.getAlias().getName().replaceAll("^[a-zA-Z]+\\.", "") : columnName;
+                    fields.put(columnName, alias);
+                }
+            });
+        }
+        return fields;
     }
 }

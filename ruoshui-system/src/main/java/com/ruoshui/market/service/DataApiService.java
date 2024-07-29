@@ -7,7 +7,9 @@ import com.ruoshui.market.dto.DataApiDto;
 import com.ruoshui.market.dto.SqlParseDto;
 import com.ruoshui.market.entity.DataApiEntity;
 import com.ruoshui.market.vo.SqlParseVo;
+import net.sf.jsqlparser.JSQLParserException;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
@@ -31,7 +33,7 @@ public interface DataApiService extends BaseService<DataApiEntity> {
 
     void deleteDataApiBatch(List<String> ids);
 
-    SqlParseVo sqlParse(SqlParseDto sqlParseDto);
+    SqlParseVo sqlParse(SqlParseDto sqlParseDto) throws SQLException, JSQLParserException;
 
     void copyDataApi(String id);
 

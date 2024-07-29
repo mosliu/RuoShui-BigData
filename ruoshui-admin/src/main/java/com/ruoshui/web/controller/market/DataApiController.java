@@ -23,12 +23,14 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import net.sf.jsqlparser.JSQLParserException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.OutputStream;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -153,7 +155,7 @@ public class DataApiController extends BaseController {
     @ApiOperation(value = "SQL解析")
     @ApiImplicitParam(name = "sqlParseDto", value = "SQL解析实体sqlParseDto", required = true, dataType = "SqlParseDto")
     @PostMapping("/sql/parse")
-    public AjaxResult sqlParse(@RequestBody @Validated SqlParseDto sqlParseDto) {
+    public AjaxResult sqlParse(@RequestBody @Validated SqlParseDto sqlParseDto) throws SQLException, JSQLParserException {
         SqlParseVo sqlParseVo = dataApiService.sqlParse(sqlParseDto);
         return AjaxResult.success(sqlParseVo);
     }
