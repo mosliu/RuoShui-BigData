@@ -245,8 +245,14 @@
         data.pageNum = this.callData.pageNum
         data.pageSize = this.callData.pageSize
         data.apiCode = this.form.apiCode
+        console.log(this.form.reqParams)
         this.form.reqParams.forEach(param => {
-          this.$set(data, param.paramName, param.paramValue)
+          if(param.whereType == '13'){
+            this.$set(data, param.paramName+'_Start', param.startValue)
+            this.$set(data, param.paramName+'_End', param.endValue)
+          }else{
+            this.$set(data, param.paramName, param.paramValue)
+          }
         })
         if (this.form.reqMethod === 'GET') {
           console.log(data)

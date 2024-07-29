@@ -114,6 +114,11 @@ public class SqlBuilderUtil {
      */
     private final String GET = ">=";
 
+    private final String START = "_Start";
+
+    private final String END = "_End";
+
+
     /**
      * 拼接命名参数sql
      * @param sql
@@ -158,11 +163,11 @@ public class SqlBuilderUtil {
                         .append(RIGHT_BRACKET).append(MARK_KEY_END);
             }  else if(WhereType.BETWEEN.getType().equals(reqParam.getWhereType())){
                 sql.append(SPACE).append(SPACE).append(GET)
-                        .append(COLON).append(reqParam.getStartValue())
+                        .append(COLON).append(reqParam.getParamName()).append(START)
                         .append(SPACE).append(WHERE_AND).append(SPACE)
                         .append(reqParam.getParamName())
                         .append(SPACE).append(LET)
-                        .append(COLON).append(reqParam.getEndValue())
+                        .append(COLON).append(reqParam.getParamName()).append(END)
                         .append(MARK_KEY_END);
             }else {
                 sql.append(SPACE).append(WhereType.getWhereType(reqParam.getWhereType()).getKey())
