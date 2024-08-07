@@ -143,7 +143,7 @@ public class SqlBuilderUtil {
                 sql.append(SPACE).append(WhereType.getWhereType(reqParam.getWhereType()).getKey())
                         .append(SPACE).append(SINGLE_QUOTE).append(PERCENT_SIGN).append(SPACE)
                         .append(COLON).append(reqParam.getParamName())
-                        .append(SPACE).append(PERCENT_SIGN).append(SINGLE_QUOTE).append(MARK_KEY_END);
+                        .append(SPACE).append(SINGLE_QUOTE).append(PERCENT_SIGN).append(SINGLE_QUOTE).append(MARK_KEY_END);
             } else if(WhereType.LIKE_LEFT.getType().equals(reqParam.getWhereType())) {
                 sql.append(SPACE).append(WhereType.getWhereType(reqParam.getWhereType()).getKey())
                         .append(SPACE).append(SINGLE_QUOTE).append(PERCENT_SIGN).append(SINGLE_QUOTE).append(SPACE)
