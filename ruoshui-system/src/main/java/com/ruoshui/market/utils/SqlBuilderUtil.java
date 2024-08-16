@@ -139,11 +139,11 @@ public class SqlBuilderUtil {
             ReqParam reqParam = params.get(i);
             sql.append(SPACE).append(MARK_KEY_START).append(WHERE_AND).append(SPACE).append(reqParam.getParamName());
             if (WhereType.LIKE.getType().equals(reqParam.getWhereType()) ) {
-                // LIKE '%' :username '%' ,:username 两边一定要有空格，如果没有空格，是查询不到数据的
+                // LIKE :username  把%带到参数里面去
                 sql.append(SPACE).append(WhereType.getWhereType(reqParam.getWhereType()).getKey())
-                        .append(SPACE).append(SINGLE_QUOTE).append(PERCENT_SIGN).append(SPACE)
+                        .append(SPACE)
                         .append(COLON).append(reqParam.getParamName())
-                        .append(SPACE).append(SINGLE_QUOTE).append(PERCENT_SIGN).append(SINGLE_QUOTE).append(MARK_KEY_END);
+                        .append(SPACE).append(MARK_KEY_END);
             } else if(WhereType.LIKE_LEFT.getType().equals(reqParam.getWhereType())) {
                 sql.append(SPACE).append(WhereType.getWhereType(reqParam.getWhereType()).getKey())
                         .append(SPACE).append(SINGLE_QUOTE).append(PERCENT_SIGN).append(SINGLE_QUOTE).append(SPACE)
